@@ -11,24 +11,24 @@
   },
   "homepage": "TBD",
   "scripts": {
-    "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "yarn kill && concurrently \"nodemon\" \"yarn client\"",
-    "server": "yarn kill && nodemon",
-    "client": "cd client && yarn start",
-    "install": "cd client && yarn install",
-    "build": "cd client && yarn build",
-    "heroku-postbuild": "yarn build",
+    "start:dev": "npm run kill && concurrently \"nodemon\" \"npm run client\"",
+    "server": "npm run kill && nodemon",
+    "client": "cd client && npm start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
     "kill": "kill-port 3001",
     "lint": "eslint --quiet .",
     "lint:fix": "eslint --fix .",
-    "tests": "yarn kill && NODE_ENV=test nyc --reporter=html --reporter=text mocha tests/**/*.spec.js --exit",
+    "tests": "npm run kill && NODE_ENV=test nyc --reporter=html --reporter=text mocha tests/**/*.spec.js --exit",
     "test:coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "nodemonConfig": {
     "events": {
-      "restart": "yarn kill",
-      "crash": "yarn kill"
+      "restart": "npm run kill",
+      "crash": "npm run kill"
     },
     "delay": "3000",
     "ignore": [
