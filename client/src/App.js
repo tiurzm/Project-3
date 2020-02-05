@@ -9,9 +9,8 @@ function App (){
   
     return (
       <>
-        <Wrapper>
-          <Navbar></Navbar>
-        </Wrapper>
+        <Navbar/>
+        <Wrapper/>
         <Container>
           <Home />
         </Container>

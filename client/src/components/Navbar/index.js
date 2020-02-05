@@ -15,11 +15,11 @@ class Navbar extends React.Component {
         });
       }
     render() {
-    let className = "navbar navbar-expand-lg navbar-dark fixed-top py-0";
+    let className = "navbar navbar-expand-lg fixed-top py-0";
     if(this.state.isTop) {
-        className += " bg-transparent"
+        className += " navbar-dark bg-transparent"
     } else {
-        className += " bg-info"
+        className += " navbar-light bg-white"
     }
     return (
         <>

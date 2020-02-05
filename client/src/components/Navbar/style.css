@@ -1,15 +1,16 @@
 .navbar-brand{
     font-family: 'Mali', cursive;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .navbar-nav {
     font-size: 20px;
-    font-weight: bolder;
-    font-family: 'Delius', cursive;
+    font-family: 'Signika', sans-serif;
+    /* font-weight: bold; */
+
 }
 
 /* when you scroll */
-.bg-info {
-    transition: background 500ms;
+.bg-white {
+    transition: background 600ms;
 }

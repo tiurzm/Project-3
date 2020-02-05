@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css"
 import logo1 from './cn.jpeg';
 import logo2 from './mrn.jpeg';
-import logo3 from './gr.jpeg';
+import logo3 from './mn.jpeg';
 
 
 function Wrapper(props) {
@@ -10,10 +10,13 @@ function Wrapper(props) {
     // <main className="wrapper" {...props}></main>
     <>
       <div id="carouselWrapperFade" className="carousel slide carousel-fade" data-ride="carousel" {...props}>
-      {props.children}
+        {props.children}
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img src={logo1} className="d-block w-100" alt="..." />
+            <div className="carousel-caption d-none d-md-block">
+              <h1>Grand Canyon</h1>
+            </div>
           </div>
           <div className="carousel-item">
             <img src={logo2} className="d-block w-100" alt="..." />
@@ -29,7 +32,7 @@ function Wrapper(props) {
         <a className="carousel-control-next" href="#carouselWrapperFade" role="button" data-slide="next">
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="sr-only">Next</span>
-        </a> 
+        </a>
       </div>
     </>
   );
