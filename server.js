@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/budget', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://project-3:password123@ds041168.mlab.com:41168/heroku_trdb7h4n', {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
