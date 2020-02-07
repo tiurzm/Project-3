@@ -4,12 +4,13 @@ const helmet = require('helmet');
 const cors = require('cors');
 const session = require('express-session');
 
-const db = require('./models');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const routes = require('./routes');
-const passport = require('./config/passport');
 const corsOptions = require('./config/cors.js');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8001;
 const app = express();
 
 // Define middleware here
@@ -29,6 +30,13 @@ if (process.env.NODE_ENV === 'production') {
 // Add routes, both API and view
 app.use(routes);
 
+const User = require('./models/user');
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 // Serve up static assets (usually on heroku)
@@ -38,17 +46,14 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Dynamically force schema refresh only for 'test'
-const FORCE_SCHEMA = process.env.NODE_ENV === 'test';
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/budget', {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+});
 
-db.sequelize
-  .authenticate()
-  .then(() => {
-    db.sequelize.sync({ force: FORCE_SCHEMA }).then(() => {
-      console.log(`🌎 ==> API server now on port ${PORT}!`); // eslint-disable-line no-console
-      app.emit('appStarted');
-    });
-  })
-  .catch(console.error); // eslint-disable-line no-console
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}!`);
+});
 
 module.exports = app;
