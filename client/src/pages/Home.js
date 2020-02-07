@@ -1,7 +1,10 @@
 import React from "react";
+import Container from "../components/Container"
+
 
 function Home() {
     return (
+        <>
         <div style={{ fontFamily: 'Signika, sans-serif', fontSize: '20px', textAlign: 'justify' }}>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem nulla, pharetra et turpis id, efficitur euismod neque. Suspendisse semper cursus molestie. Ut ac maximus nunc, mollis pellentesque risus. Phasellus dignissim hendrerit volutpat. Vestibulum tempor, dui at laoreet scelerisque, metus neque venenatis ipsum, ac lobortis tellus odio ac nulla. Ut vitae euismod massa, ac congue justo. Etiam tincidunt lectus ut odio posuere, id suscipit odio mattis. Pellentesque ullamcorper, quam eget malesuada gravida, nibh enim pretium leo, ut pharetra magna nulla faucibus tortor. Pellentesque nibh velit, malesuada a nibh non, aliquet maximus orci. Integer tempus nisi a magna ornare imperdiet. Sed et tempus quam, at accumsan lacus. Aenean elementum eleifend magna, vitae dignissim dui mollis in. Proin ut massa purus.
                 Sed a elementum dolor. Aenean id ultrices ligula. Donec bibendum nisl tellus, eget convallis neque blandit quis. Suspendisse id ex laoreet, congue tortor et, varius purus. Fusce laoreet ligula sit amet tristique rhoncus. Integer pretium gravida eros, a ullamcorper elit vehicula vitae. Cras purus quam, pulvinar non metus ac, pretium rutrum leo. Duis volutpat nisl orci. Duis hendrerit metus in augue tristique scelerisque vel ac dui. Fusce velit ante, iaculis aliquet urna mattis, blandit dignissim nunc. Pellentesque in augue vel sem suscipit elementum. Donec purus tortor, pellentesque non consectetur cursus, hendrerit id odio. Mauris et convallis felis, sit amet dapibus diam. Sed vitae augue dui. Praesent eu accumsan nulla. Nam eleifend, dolor eget molestie sollicitudin, libero sapien imperdiet nisl, nec vestibulum augue tellus ac arcu.
@@ -15,6 +18,27 @@ function Home() {
                 Pellentesque scelerisque lectus at ligula feugiat cursus. Aliquam quis metus vel mauris cursus luctus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed metus urna, hendrerit sit amet ante vitae, pharetra porttitor velit. Proin vitae elit libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam posuere turpis condimentum ullamcorper elementum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ullamcorper pulvinar nunc, at fringilla elit venenatis et. Ut malesuada enim sed dui molestie molestie. In id efficitur arcu, vitae varius mi. Maecenas porta, est a luctus commodo, dolor ipsum tincidunt lectus, quis convallis ante nibh nec magna. Phasellus eleifend lectus sit amet nibh rhoncus, in viverra odio gravida. In porta commodo pharetra.
             </p>
         </div>
+        <Container>
+        <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1"/>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+        </Container>
+        
+        </>
+
     );
 };
 
