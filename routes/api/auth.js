@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const passport = require('../../config/passport');
+const passport = require('passport');
 const authController = require('../../controllers/auth');
-
-router.use(passport.authenticate('local'));
 
 // Matches with '/api/auth/login'
 router.route('/login')
-  .post(authController.login);
+  .post(passport.authenticate('local', { failureRedirect: '/login' }), authController.login);
+
+router.route('/register')
+  .post(authController.register);
 
 module.exports = router;

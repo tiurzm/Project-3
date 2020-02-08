@@ -1,0 +1,8 @@
+.carousel-item img {
+    height: 750px;
+}
+
+#carouselWrapperFade {
+    height: 750px;
+    font-family: 'Signika', sans-serif;
+}

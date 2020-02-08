@@ -1,35 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Map from './components/maps'
-import Calendar from './components/calendar'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Navbar from "./components/Navbar"
+import Carousel from "./components/Carousel"
+import { Container } from "./components/Grid"
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
+function App (){
+  
+    return (
+      <Router>
 
-function App() {
- 
-  return (
-    <>
-    <Map />
-    <Calendar />
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        </header>
-      </div>
-      </>
+      <Container fluid>
+        <Navbar/>
+        <Carousel/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/register" component={Register}/>
+          <Route exact path="/login" component={Login}/>
+        </Switch>
+      </Container>
+      </Router>
 
-  );
+    );
 }
 
 export default App;

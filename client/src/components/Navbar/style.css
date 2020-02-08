@@ -1,0 +1,14 @@
+.navbar-brand{
+    font-family: 'Mali', cursive;
+    font-size: 40px;
+}
+
+.navbar-nav {
+    font-size: 20px;
+    font-family: 'Signika', sans-serif;
+}
+
+/* when you scroll */
+.bg-white {
+    transition: background 600ms;
+}
