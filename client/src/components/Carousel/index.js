@@ -1,13 +1,12 @@
 import React from "react";
 import "./style.css"
-import logo1 from './cn.jpeg';
-import logo2 from './mrn.jpeg';
-import logo3 from './mn.jpeg';
+import logo1 from './img/cn.jpeg';
+import logo2 from './img/mrn.jpeg';
+import logo3 from './img/mn.jpeg';
 
 
-function Wrapper(props) {
+function Carousel(props) {
   return (
-    // <main className="wrapper" {...props}></main>
     <>
       <div id="carouselWrapperFade" className="carousel slide carousel-fade" data-ride="carousel" {...props}>
         {props.children}
@@ -38,4 +37,4 @@ function Wrapper(props) {
   );
 }
 
-export default Wrapper;
+export default Carousel;

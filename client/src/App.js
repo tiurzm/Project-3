@@ -1,20 +1,22 @@
 import React from 'react';
 import Navbar from "./components/Navbar"
-import Wrapper from "./components/Wrapper"
-import Container from "./components/Container"
+import Carousel from "./components/Carousel"
+import { Container } from "./components/Grid"
 import Home from "./pages/Home";
+// import Profile from "./pages/Profile";
+// import "./App.css"
+
 
 
 function App (){
   
     return (
-      <>
+      <Container fluid>
         <Navbar/>
-        <Wrapper/>
-        <Container>
-          <Home />
-        </Container>
-      </>
+        <Carousel/>
+        <Home />
+        {/* <Profile/> */}
+      </Container>
     );
 }
 
