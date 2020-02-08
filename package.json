@@ -74,6 +74,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-session": "^1.0.2",
+    "react-places-autocomplete": "^7.2.1",
     "sequelize": "^4.44.3"
   }
 }
