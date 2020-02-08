@@ -4,8 +4,10 @@ import Navbar from "./components/Navbar"
 import Carousel from "./components/Carousel"
 import { Container } from "./components/Grid"
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Modal from "./components/Modal";
+import Profile from "./pages/Profile";
 
 function App (){
   
@@ -18,8 +20,9 @@ function App (){
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/register" component={Register}/>
-          <Route exact path="/login" component={Login}/>
+          <Route exact path="/profile" component={Profile}/>
         </Switch>
+        <Modal/>
       </Container>
       </Router>
 
