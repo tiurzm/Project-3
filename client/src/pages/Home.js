@@ -4,9 +4,6 @@ import { Container, Row, Col } from "../components/Grid"
 
 function Home() {
     return (
-        /* <Input name="email" placeholder="Email (required)"/>
-        <Input name="password" placeholder="Password (required)"/>
-        <FormBtn>Log In</FormBtn> */
         <Container>
             <Row>
                 <Col size="md-12">
