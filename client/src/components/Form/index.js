@@ -13,7 +13,7 @@ export function LoginForm(props) {
                 <label htmlFor="passwordLogin">Password</label>
                 <input type="passwordLogin" className="form-control" id="passwordLogin" />
             </div>
-            <button type="submit" className="btn btn-primary">Log In</button>
+            <button type="submit" className="btn btn-primary"><a href="/profile" style= {{color: "white", textDecoration: "none"}}>Log In</a></button>
         </form>
     )
 };

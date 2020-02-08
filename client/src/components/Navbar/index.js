@@ -47,6 +47,7 @@ class Navbar extends React.Component {
                                 Log In
                             </button>
                             {/* </a> */}
+                            {/* condition renderin one line if statement */}
                         </li>
                     </ul>
                 </div>
