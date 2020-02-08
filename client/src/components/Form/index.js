@@ -47,7 +47,7 @@ export function CreateUser(props) {
                 <label htmlFor="confirm">Confirm Password</label>
                 <input type="confirm" className="form-control" id="confirm" />
             </div>
-            <button type="submit" className="btn btn-primary">Create a New Account</button>
+            <button type="submit" className="btn btn-primary">Register</button>
         </form>
     )
 };

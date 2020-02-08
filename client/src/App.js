@@ -4,6 +4,7 @@ import Carousel from "./components/Carousel"
 import { Container } from "./components/Grid"
 import Home from "./pages/Home";
 // import Profile from "./pages/Profile";
+// import "./App.css"
 
 
 
