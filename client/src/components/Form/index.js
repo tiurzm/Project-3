@@ -1,20 +1,71 @@
 import React from "react";
 
-function Form() {
-    return(
-    <form>
-        <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
-            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" id="password" />
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-    </form>
+// export function Input(props) {
+//     return (
+//         <div className="form-group">
+//             <label {...props}>{props.children}</label>
+//             <input className="form-control" {...props} />
+//         </div>
+//     );
+// }
+
+// export function FormBtn(props) {
+//     return (
+//         <button {...props} className="btn btn-primary">
+//             {props.children}
+//         </button>
+//     );
+// }
+
+export function LoginForm(props) {
+    return (
+        <form {...props}>
+            <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" />
+            </div>
+            <button type="submit" className="btn btn-primary">Log In</button>
+        </form>
     )
 };
 
-export default Form;
+export function CreateUser(props) {
+    return (
+        <form {...props}>
+            <div className="form-group">
+                <label htmlFor="first">First Name</label>
+                <input type="first" className="form-control" id="first" aria-describedby="emailHelp" />
+                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div className="form-group">
+                <label htmlFor="last">Last Name</label>
+                <input type="last" className="form-control" id="last" aria-describedby="emailHelp" />
+                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input type="username" className="form-control" id="username" />
+            </div>
+            <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" />
+            </div>
+            <div className="form-group">
+                <label htmlFor="confirm">Confirm Password</label>
+                <input type="confirm" className="form-control" id="confirm" />
+            </div>
+            <button type="submit" className="btn btn-primary">Create a New Account</button>
+        </form>
+    )
+};
+

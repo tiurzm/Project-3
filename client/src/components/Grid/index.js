@@ -1,8 +1,8 @@
 import React from "react";
 
 // exporting the container, row, and col components from this file
-export function Container({ fluid, children }) {
-  return <div className={`container${fluid ? "-fluid" : ""}`}>{children}</div>;
+export function Container({ props, fluid, children }) {
+  return <div className={`container${fluid ? "-fluid p-0 " : ""}`} {...props}>{children}</div>;
 }
 
 export function Row({ fluid, children }) {
