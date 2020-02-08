@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "./components/Navbar"
-import Wrapper from "./components/Wrapper"
-import Container from "./components/Container"
+import Carousel from "./components/Carousel"
+import { Container } from "./components/Grid"
 import Home from "./pages/Home";
 
 
@@ -10,7 +10,7 @@ function App (){
     return (
       <>
         <Navbar/>
-        <Wrapper/>
+        <Carousel/>
         <Container>
           <Home />
         </Container>
