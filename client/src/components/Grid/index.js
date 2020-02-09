@@ -4,11 +4,11 @@ import "./style.css"
 
 // exporting the container, row, and col components from this file
 export function Container({ fluid, children }) {
-  return <div className={`container${fluid ? "-fluid p-0 " : ""}`}>{children}</div>;
+  return <div className={`mb-5 container${fluid ? "-fluid p-0 " : ""}`}>{children}</div>;
 }
 
 export function Row({ fluid, children }) {
-  return <div className={`mt-5 row${fluid ? "-fluid" : ""}`}>{children}</div>;
+  return <div className={`row${fluid ? "-fluid" : ""}`}>{children}</div>;
 }
 
 export function Col({ size, children }) {

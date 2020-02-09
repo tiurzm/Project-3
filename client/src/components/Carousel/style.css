@@ -1,8 +1,18 @@
-.carousel-item img {
-    height: 750px;
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
+
+.carousel-caption h1 {
+    font-size: 80px;
+}
+
+.image {
+    height: 800px;
 }
 
 #carouselWrapperFade {
-    height: 750px;
+    height: 800px;
     font-family: 'Signika', sans-serif;
 }

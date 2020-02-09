@@ -1,11 +1,10 @@
 import React from "react";
-import { Container, Row, Col } from "../components/Grid"
+import Calender from "../components/calendar"
 
 function Profile () {
     return(
-        // we will have logout option in the navbar, no carousel 
         <>
-
+            <Calender></Calender>
         </>
     );
 }

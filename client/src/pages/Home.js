@@ -1,8 +1,13 @@
 import React from "react";
-import { Container, Row, Col } from "../components/Grid"
+import Navbar from "../components/Navbar"
+import Carousel from "../components/Carousel"
+import { Container, Row, Col } from "../components/Grid";
 
 function Home() {
     return (
+        <>
+        <Navbar/>
+        <Carousel/>
         <Container>
             <Row>
                 <Col size="md-12">
@@ -13,6 +18,7 @@ function Home() {
                 </Col>
             </Row>
         </Container>
+        </>
     );
 };
 
