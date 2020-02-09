@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "../components/Grid";
 import { CreateUser} from "../components/Form";
-
+import API from "../utils/API"
 
 function Register() {
     return (

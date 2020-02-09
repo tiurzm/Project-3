@@ -10,7 +10,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const routes = require('./routes');
 const corsOptions = require('./config/cors.js');
 
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Define middleware here

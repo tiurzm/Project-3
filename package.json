@@ -13,7 +13,8 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "npm run kill && concurrently \"nodemon\" \"npm run client\"",
+    "start:kill": "npm run kill && concurrently \"nodemon\" \"npm run client\"",
+    "start:dev": "concurrently \"nodemon\" \"npm run client\"",
     "server": "npm run kill && nodemon",
     "client": "cd client && npm start",
     "install": "cd client && npm install",
