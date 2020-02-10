@@ -4,17 +4,17 @@ import "./style.css"
 
 // exporting the container, row, and col components from this file
 export function Container({ fluid, children }) {
-  return <div className={`mb-5 container${fluid ? "-fluid p-0 " : ""}`}>{children}</div>;
+  return <div className={`container${fluid ? "-fluid p-0 " : ""}`}>{children}</div>;
 }
 
 export function Row({ fluid, children }) {
   return <div className={`row${fluid ? "-fluid" : ""}`}>{children}</div>;
 }
 
-export function Col({ size, children }) {
+export function Col({ size, children}) {
   return (
     <div
-      className={size
+      className= {size
         .split(" ")
         .map(size => "col-" + size)
         .join(" ")}

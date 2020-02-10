@@ -5,14 +5,13 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction'
 import './main.scss' 
 
-
 export default class DemoApp extends React.Component {
     calendarComponentRef = React.createRef()
         state = {
         calendarWeekends: true,
         calendarEvents: [ // initial event data
             { title: 'Event Now', start: new Date() }
-        ]
+        ],
     }
 
   render() {

@@ -5,7 +5,6 @@ import "./style.css"
 
 function Modal() {
   return (
-    <>
       <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
@@ -21,7 +20,6 @@ function Modal() {
           </div>
         </div>
       </div>
-    </>
   )
 }
 

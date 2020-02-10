@@ -12,7 +12,7 @@ function Register() {
         <Carousel/>
         <Container>
              <Row>
-                <Col size="md-6 sm-12">
+                <Col size="md-6 sm-12" >
                     <CreateUser />
                 </Col>
                 <Col size="md-6 sm-12">
