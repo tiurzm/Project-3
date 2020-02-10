@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../components/Navbar"
-import Carousel from "../components/Carousel"
+import Navbar from "../components/Navbar";
+import Carousel from "../components/Carousel";
 import { Container, Row, Col } from "../components/Grid";
 
 function Home() {

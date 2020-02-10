@@ -41,7 +41,7 @@ export function CreateUser(props) {
                 <label htmlFor="passwordNewUser">Password</label>
                 <input type="passwordNewUser" className="form-control" id="password" />
             </div>
-            <button type="submit" className="btn btn-primary">Register</button>
+            <button type="submit" className="btn btn-primary"><a href="/confirm" className="submit">Register</a></button>
         </form>
     )
 };

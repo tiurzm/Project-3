@@ -1,8 +1,8 @@
 import React from "react";
 import "./style.css"
 import logo1 from './img/cn.jpeg';
-import logo2 from './img/mrn.jpeg';
-import logo3 from './img/mn.jpeg';
+import logo2 from './img/bl.jpeg';
+import logo3 from './img/rc.jpeg';
 
 
 function Carousel(props) {
@@ -20,13 +20,13 @@ function Carousel(props) {
           <div className="carousel-item">
             <img src={logo2} className="d-block w-100" alt="..."/>
             <div className="carousel-caption d-none d-md-block">
-              <h1>Place 2</h1>
+              <h1>Bromo</h1>
             </div>
           </div>
           <div className="carousel-item">
             <img src={logo3} className="d-block w-100" alt="..."/>
             <div className="carousel-caption d-none d-md-block">
-              <h1>Place 3</h1>
+              <h1>Rancho Santana</h1>
             </div>
           </div>
         </div>

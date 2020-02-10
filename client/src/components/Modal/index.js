@@ -15,7 +15,7 @@ function Modal() {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body m-2">
               <LoginForm/>
             </div>
           </div>

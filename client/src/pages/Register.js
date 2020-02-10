@@ -16,7 +16,7 @@ function Register() {
                     <CreateUser />
                 </Col>
                 <Col size="md-6 sm-12">
-                    <h1>Let's Join Our App</h1>
+                    <h1 style={{textAlign:"center", paddingTop: "200px"}}>Let's Join Our App</h1>
                 </Col>
             </Row>
         </Container>

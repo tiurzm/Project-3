@@ -22,7 +22,7 @@ class Navbar extends React.Component {
         navbar += " navbar-light bg-white"
     }
 
-    let button = "btn";
+    let button = "btn pl-0 px-lg-3";
     if(!this.state.isTop) {
         button += " text-dark"
     } else {
@@ -42,11 +42,9 @@ class Navbar extends React.Component {
                             <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item active">
-                            {/* <a className="nav-link" href="/login"> */}
                             <button type="button" className={button} data-toggle="modal" data-target="#loginModal">
                                 Log In
                             </button>
-                            {/* </a> */}
                             {/* condition renderin one line if statement */}
                         </li>
                     </ul>
