@@ -8,7 +8,7 @@ import logo3 from './img/rc.jpeg';
 function Carousel(props) {
   return (
     <>
-      <div id="carouselWrapperFade" className="carousel slide carousel-fade mb-5" data-ride="carousel" {...props}>
+      <div id="carouselWrapperFade" className="carousel slide carousel-fade" data-ride="carousel" {...props}>
         {props.children}
         <div className="carousel-inner">
           <div className="carousel-item active">
