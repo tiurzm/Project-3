@@ -22,7 +22,11 @@ const User = new Schema({
     userCreated: {
         type: Date,
         default: Date.now
-      }
+      },
+    trip: {
+        type: Schema.Types.ObjectId,
+        ref: "MyTrips"
+    }
 });
 
  

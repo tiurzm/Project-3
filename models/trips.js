@@ -23,7 +23,7 @@ const TripSchema = new Schema({
       type: Date,
       default: Date.now
     },
-    lastUpdate: Date,
+    lastUpdate: Date
 });
 
 // Custom method `lastUpdatedDate`

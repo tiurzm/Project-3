@@ -5,9 +5,9 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction'
 import './main.scss' 
 
-const mongoose = require("mongoose")
-const db = require("./models");
-const trips = [];
+// const mongoose = require("mongoose")
+// const db = require("./models");
+// const trips = [];
 
 
 
@@ -15,7 +15,16 @@ export default class DemoApp extends React.Component {
     calendarComponentRef = React.createRef()
         state = {
         calendarWeekends: true,
-        eventSources: trips, 
+        eventSources: [
+          {
+              url: '/api/trips/:user_id?',
+              type: 'GET',
+              error: function () {
+                  alert('There was an error whiled fetching trips.');
+              }
+          }
+      ],
+
     }
     toggleWeekends = () => {
       this.setState({ // update a property

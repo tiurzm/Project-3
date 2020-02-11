@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 // Add routes, both API and view
 app.use(routes);
 
-const User = require('./models');
+const User = require('./models/user');
 
 passport.use(new LocalStrategy(User.authenticate()));
 
