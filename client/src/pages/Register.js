@@ -13,10 +13,10 @@ function Register() {
         <Container>
              <Row>
                 <Col size="md-6 sm-12" >
-                    <CreateUser />
+                    <CreateUser data-aos="fade-zoom-in"/>
                 </Col>
                 <Col size="md-6 sm-12">
-                    <h1 style={{textAlign:"center", paddingTop: "200px",}}>Let's Join Our App</h1>
+                    <h1 data-aos="fade-zoom-in" style={{textAlign:"center", paddingTop: "200px",}}>Let's Join Our App</h1>
                 </Col>
             </Row>
         </Container>
