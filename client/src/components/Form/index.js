@@ -1,25 +1,25 @@
 import React from "react";
 import "./style.css"
 
-export function LoginForm(props) {
-    return (
-        <form {...props}>
-            <div className="form-group">
-                <label htmlFor="emailLogin">Email</label>
-                <input type="email" className="form-control" id="emailLogin"/>
-                <small className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div className="form-group">
-                <label htmlFor="passwordLogin">Password</label>
-                <input type="password" className="form-control" id="passwordLogin"/>
-            </div>
-            <button type="submit" className="btn btn-primary">Log In</button>
-            {/* <a href="/profile" className="submit"></a> */}
-        </form>
-    )
-};
+// export function LoginForm(props) {
+//     return (
+//         <form {...props}>
+//             <div className="form-group">
+//                 <label htmlFor="emailLogin">Email</label>
+//                 <input type="email" className="form-control" id="emailLogin"/>
+//                 <small className="form-text text-muted">We'll never share your email with anyone else.</small>
+//             </div>
+//             <div className="form-group">
+//                 <label htmlFor="passwordLogin">Password</label>
+//                 <input type="password" className="form-control" id="passwordLogin"/>
+//             </div>
+//             <button type="submit" className="btn btn-primary">Log In</button>
+//             {/* <a href="/profile" className="submit"></a> */}
+//         </form>
+//     )
+// };
 
-export function CreateUser(props) {
+function CreateUser(props) {
     return (
         <form {...props}>
             <div className="form-group">
@@ -47,4 +47,5 @@ export function CreateUser(props) {
         </form>
     )
 };
+export default CreateUser;
 

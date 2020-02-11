@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar"
 import Carousel from "../components/Carousel"
 import { Container, Row, Col } from "../components/Grid";
-import { CreateUser} from "../components/Form";
+import CreateUser from "../components/Form";
 
 
 function Register() {
