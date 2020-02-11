@@ -15,7 +15,7 @@ function Modal() {
               </button>
             </div>
             <div className="modal-body m-2">
-              {/* <LoginForm/> */}
+              <LoginForm/>
             </div>
           </div>
         </div>
