@@ -8,10 +8,10 @@ function Profile () {
         <Container>
             <Row>
                 <Col size="md-6">
-                    <h1>User information 1</h1>
+                    <p>User information 1</p>
                 </Col>
                 <Col size="md-6">
-                    <h1>User information 2</h1>
+                    <p>User information 2</p>
 
                 </Col>
             </Row>
