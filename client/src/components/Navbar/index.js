@@ -78,10 +78,10 @@ class Navbar extends React.Component {
                         <li className="nav-item active">
                             <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>
                         </li>
-                        <li className="nav-item active">
+                        <li className="nav-item active" data-toggle="modal" data-target="#loginModal">
                             <button type="button" 
                             className={style} 
-                            isLoggedIn={isLoggedIn}> <a href="./profile">{button}</a>
+                            isLoggedIn={isLoggedIn}>{button}
                             </button>
                             {/* condition renderin one line if statement */}
                         </li>
