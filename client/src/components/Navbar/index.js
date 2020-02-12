@@ -1,11 +1,36 @@
 import React from "react";
 import "./style.css"
 
+function LoginButton(props) {
+    return (
+      <button onClick={props.onClick}>
+        Login
+      </button>
+    );
+}
+  
+function LogoutButton(props) {
+    return (
+      <button onClick={props.onClick}>
+        Logout
+      </button>
+    );
+}
+
 class Navbar extends React.Component {
     state = {
         isTop: true,
+        isLoggedin: false,
       };
+
+      handleLoginClick() {
+        this.setState({isLoggedIn: true});
+      }
     
+      handleLogoutClick() {
+        this.setState({isLoggedIn: false});
+      }
+      
       componentDidMount() {
         document.addEventListener('scroll', () => {
           const isTop = window.scrollY < 30;
@@ -14,7 +39,9 @@ class Navbar extends React.Component {
           }
         });
       }
+    
     render() {
+
     let navbar = "navbar navbar-expand-lg fixed-top py-0";
     if(this.state.isTop) {
         navbar += " navbar-dark bg-transparent"
@@ -22,12 +49,22 @@ class Navbar extends React.Component {
         navbar += " navbar-light bg-white"
     }
 
-    let button = "btn";
+    let style = "btn pl-0 px-lg-3";
     if(!this.state.isTop) {
-        button += " text-dark"
+        style += " text-dark"
     } else {
-        button += " text-white"
+        style += " text-white"
     }
+
+    const isLoggedIn = this.state.isLoggedIn;
+    let button;
+
+    if (isLoggedIn) {
+      button = <LogoutButton onClick={this.handleLogoutClick} />;
+    } else {
+      button = <LoginButton onClick={this.handleLoginClick} />;
+    }
+    
     return (
         <>
             <nav className={navbar} >
@@ -42,11 +79,10 @@ class Navbar extends React.Component {
                             <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item active">
-                            {/* <a className="nav-link" href="/login"> */}
-                            <button type="button" className={button} data-toggle="modal" data-target="#loginModal">
-                                Log In
+                            <button type="button" 
+                            className={style} 
+                            isLoggedIn={isLoggedIn}> <a href="./profile">{button}</a>
                             </button>
-                            {/* </a> */}
                             {/* condition renderin one line if statement */}
                         </li>
                     </ul>

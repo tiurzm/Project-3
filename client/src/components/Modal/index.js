@@ -5,7 +5,6 @@ import "./style.css"
 
 function Modal() {
   return (
-    <>
       <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
@@ -15,13 +14,12 @@ function Modal() {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body m-2">
               <LoginForm/>
             </div>
           </div>
         </div>
       </div>
-    </>
   )
 }
 

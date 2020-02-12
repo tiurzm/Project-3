@@ -1,2 +1,11 @@
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
+
+
+$jaldi: 'Jaldi', sans-serif;   
+$size: 18px;
+
+.demo-app {
+    font-family: $jaldi;
+    font-size: $size;
+}

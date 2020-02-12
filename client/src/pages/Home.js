@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../components/Navbar"
-import Carousel from "../components/Carousel"
+import Navbar from "../components/Navbar";
+import Carousel from "../components/Carousel";
 import { Container, Row, Col } from "../components/Grid";
 
 function Home() {
@@ -26,7 +26,6 @@ function Home() {
                         <p>Get you group ready to get away with GroupAway!</p>
                        <hr />
                         <h6>If you’re new, press “Register” at the top of this page (it’s free). If you already began organizing a trip, just “Log In” to resume your plans.</h6>
-                        
                 </Col>
                 </Row>
             </Container>
