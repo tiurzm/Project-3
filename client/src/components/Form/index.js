@@ -7,7 +7,7 @@ export function LoginForm(props) {
         <label htmlFor="email">Email</label>
         <input
           type="text"
-          name="user"
+          name="username"
           className="form-control"
           onChange={props.inputChange}
           value={props.userValue}

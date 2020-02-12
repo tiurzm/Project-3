@@ -4,10 +4,11 @@ import { LoginForm } from "../components/Form";
 import API from "../utils/API";
 
 class Login extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
-        user: "",
+        username: "",
         password: ""
     }
 
@@ -31,6 +32,7 @@ class Login extends React.Component {
         password: this.state.password
     }
     API.login(req)
+    console.log(req)
 
   }
   render() {
@@ -44,7 +46,7 @@ class Login extends React.Component {
             <LoginForm
               loginHandler={this.handleFormSubmit}
               inputChange={this.handleInputChange}
-              userValue = {this.state.user}
+              userValue = {this.state.username}
               passwordValue = {this.state.password}
             />
           </Col>
