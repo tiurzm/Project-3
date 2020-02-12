@@ -64,7 +64,7 @@ class CreateUser extends Component {
             </div> */}
             <div className="form-group">
                 <label htmlFor="username">Username</label>
-                <input
+                <input className="form-control"
                   value={this.state.username}
                   onChange={this.handleInputChange}
                   name="username"
@@ -78,7 +78,7 @@ class CreateUser extends Component {
             </div> */}
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input
+                <input className="form-control" 
                   value={this.state.password}
                   onChange={this.handleInputChange}
                   name="password"
@@ -88,7 +88,7 @@ class CreateUser extends Component {
             </div>
             <div className="form-group">
                 <label htmlFor="passwordConfirm">Password</label>
-                <input
+                <input className="form-control"
                   value={this.state.passwordConfirm}
                   onChange={this.handleInputChange}
                   name="passwordConfirm"
@@ -97,7 +97,7 @@ class CreateUser extends Component {
                />
             </div>
             {/* <Link to="/confirm"> */}
-                <button onClick={this.handleFormSubmit}>
+                <button className="btn btn-primary" onClick={this.handleFormSubmit}>
                   Sign Up
                </button>
             {/* </Link > */}

@@ -58,7 +58,7 @@ class LoginForm extends Component {
         <form>
             <div className="form-group">
                 <label htmlFor="username">Username</label>
-                <input
+                <input className="form-control"
                      value={this.state.username}
                      name="username"
                      onChange={this.handleInputChange}
@@ -68,7 +68,7 @@ class LoginForm extends Component {
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input
+                <input className="form-control"
                      value={this.state.password}
                      name="password"
                      onChange={this.handleInputChange}
@@ -80,7 +80,7 @@ class LoginForm extends Component {
             {/* <Link to="/profile" >
                 <button type="button" className="btn btn-primary">Log In</button>
             </Link> */}
-            <button onClick={this.handleFormSubmit}>
+            <button className="btn btn-primary" onClick={this.handleFormSubmit}>
                 Log In
             </button>
         </form>
