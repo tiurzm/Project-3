@@ -3,8 +3,6 @@ import Calender from "../components/calendar";
 import { Container, Row, Col } from "../components/Grid";
 import Navbar from "../components/Navbar";
 
-
-
 function Profile () {
     return(
         <>

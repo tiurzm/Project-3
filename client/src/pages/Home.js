@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
 import { Container, Row, Col } from "../components/Grid";
-import Modal from "../components/Modal";
 
 function Home() {
     return (
@@ -23,13 +22,12 @@ function Home() {
                             <li>View the group's itinerary.</li>
                             <li>Store all the trip details so your whole group is on the same page.</li>
                             <li>See a countdown to the start of your trip!</li>
-                            </ul>
+                        </ul>
                         <p>Get you group ready to get away with GroupAway!</p>
-                       <hr />
+                        <hr />
                         <h6>If you’re new, press “Register” at the top of this page (it’s free). If you already began organizing a trip, just “Log In” to resume your plans.</h6>
-                </Col>
+                    </Col>
                 </Row>
-                <Modal/>
             </Container>
         </>
     );
