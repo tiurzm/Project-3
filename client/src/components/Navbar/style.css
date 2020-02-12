@@ -12,3 +12,7 @@
 .bg-white {
     transition: background 600ms;
 }
+
+.pointer {
+    cursor: pointer;
+}
