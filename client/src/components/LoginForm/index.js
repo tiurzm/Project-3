@@ -37,7 +37,7 @@ class LoginForm extends Component {
         })
            .then(response => {
               console.log(response);
-              window.location.href = "/";
+              window.location.href = "/profile";
            })
            .catch(err => {
               console.log(err);

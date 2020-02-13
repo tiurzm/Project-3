@@ -13,12 +13,12 @@ class Navbar extends React.Component {
   };
 
   componentDidMount() {
-    // document.addEventListener('scroll', () => {
-    //   const isTop = window.scrollY < 30;
-    //   if (isTop !== this.state.isTop) {
-    //     this.setState({ isTop })
-    //   }
-    // });
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 30;
+      if (isTop !== this.state.isTop) {
+        this.setState({ isTop })
+      }
+    });
     API.getUser()
       .then(user => {
         console.log("User: ", user);
@@ -36,16 +36,16 @@ class Navbar extends React.Component {
 
   render() {
 
-    // let navbar = "navbar navbar-expand-lg fixed-top py-0";
-    // if (this.state.isTop) {
-    //   navbar += " navbar-dark bg-transparent"
-    // } else {
-    //   navbar += " navbar-light bg-white"
-    // }
+    let navbar = "navbar navbar-expand-lg fixed-top py-0";
+    if (this.state.isTop) {
+      navbar += " navbar-dark bg-transparent"
+    } else {
+      navbar += " navbar-light bg-white"
+    }
 
     if (this.state.isLoggedIn === false) {
       return (
-        <nav className="navbar navbar-expand-lg fixed-top text-white py-0" >
+        <nav className={navbar} >
           <Link className="navbar-brand" to="/">
             GroupAway
           </Link>
