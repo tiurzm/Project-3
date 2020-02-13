@@ -81,7 +81,9 @@ class LoginForm extends Component {
                 <button type="button" className="btn btn-primary">Log In</button>
             </Link> */}
             <button className="btn btn-primary" onClick={this.handleFormSubmit}>
-                Log In
+                <a href="/profile" className="text-white">
+                    Log In
+                </a>    
             </button>
         </form>
     )
