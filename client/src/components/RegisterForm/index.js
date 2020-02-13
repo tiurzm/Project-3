@@ -101,6 +101,7 @@ class CreateUser extends Component {
                   Sign Up
                </button>
             </Link >
+            {/* sign up success but doesn't take me to confirm page */}
         </form>
     )
     }

@@ -76,17 +76,13 @@ class LoginForm extends Component {
                      placeholder="Password"
                 />
             </div>
-            {/* <Link to="/profile">
+            <Link to="/profile">
                 <button type="button" onClick={this.handleFormSubmit} 
                 className="btn btn-primary" 
                 > Log In
                 </button>
-            </Link> */}
-            <button className="btn btn-primary" onClick={this.handleFormSubmit}>
-                <a href="/profile" className="text-white">
-                    Log In
-                </a>    
-            </button>
+            </Link>
+            {/* login success but doesn't take me to profile page */}
         </form>
     )
     }

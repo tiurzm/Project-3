@@ -42,8 +42,6 @@ class Navbar extends React.Component {
     // } else {
     //   navbar += " navbar-light bg-white"
     // }
-
-    if (this.state.isLoggedIn === false) {
       return (
         <nav className="navbar navbar-expand-lg fixed-top text-white py-0" >
           <Link className="navbar-brand" to="/">
@@ -61,34 +59,13 @@ class Navbar extends React.Component {
               </Link>
               </li>
               <li className="nav-item" >
-                <LoginForm />
+                {/* <LoginForm /> */}
+                <a className="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
               </li>
             </ul>
           </div>
         </nav>
       );
-    } else {
-      return (
-        <>
-          <nav className="navbar navbar-expand-lg fixed-top text-white py-0" >
-            <Link className="navbar-brand" to="/">
-              GroupAway
-          </Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <h1>Someone is logged in!</h1>
-                  <a href="/" onClick={this.logout}>Log Out</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </>
-      );
-    }
   }
 }
 
