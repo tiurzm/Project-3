@@ -96,11 +96,11 @@ class CreateUser extends Component {
                   type="password"
                />
             </div>
-            {/* <Link to="/confirm"> */}
+            <Link to="/confirm">
                 <button className="btn btn-primary" onClick={this.handleFormSubmit}>
                   Sign Up
                </button>
-            {/* </Link > */}
+            </Link >
         </form>
     )
     }

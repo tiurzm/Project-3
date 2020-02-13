@@ -76,9 +76,11 @@ class LoginForm extends Component {
                      placeholder="Password"
                 />
             </div>
-            {/* <button type="submit" className="btn btn-primary"><a href="/profile" className="text-white">Log In</a></button> */}
-            {/* <Link to="/profile" >
-                <button type="button" className="btn btn-primary">Log In</button>
+            {/* <Link to="/profile">
+                <button type="button" onClick={this.handleFormSubmit} 
+                className="btn btn-primary" 
+                > Log In
+                </button>
             </Link> */}
             <button className="btn btn-primary" onClick={this.handleFormSubmit}>
                 <a href="/profile" className="text-white">

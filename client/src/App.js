@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Modal from "./components/Modal";
 import Profile from "./pages/Profile";
+import Navbar from "./components/Navbar"
 import Confirm from "./pages/Confirm";
 
 function App (){
@@ -12,6 +13,7 @@ function App (){
     return (
       <Router>
       <Container fluid>
+      <Navbar/>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/register" component={Register}/>

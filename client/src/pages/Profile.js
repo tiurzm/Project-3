@@ -1,12 +1,12 @@
 import React from "react";
 import Calender from "../components/calendar";
 import { Container, Row, Col } from "../components/Grid";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 
 function Profile () {
     return(
         <>
-        <Navbar/>
+        {/* <Navbar/> */}
         <Container>
             <Row>
                 <Col size="md-6">
