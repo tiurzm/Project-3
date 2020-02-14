@@ -1,96 +1,96 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import API from "../../utils/API";
 import "./style.css"
+import LoginForm from "components/LoginForm";
 
-function LoginButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Login
-      </button>
-    );
-}
-  
-function LogoutButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Logout
-      </button>
-    );
-}
 
 class Navbar extends React.Component {
-    state = {
-        isTop: true,
-        isLoggedin: false,
-      };
+  state = {
+    isTop: true,
+    isLoggedIn: false,
+    username: ""
+  };
 
-      handleLoginClick() {
-        this.setState({isLoggedIn: true});
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 30;
+      if (isTop !== this.state.isTop) {
+        this.setState({ isTop })
       }
-    
-      handleLogoutClick() {
-        this.setState({isLoggedIn: false});
-      }
-      
-      componentDidMount() {
-        document.addEventListener('scroll', () => {
-          const isTop = window.scrollY < 30;
-          if (isTop !== this.state.isTop) {
-            this.setState({ isTop })
-          }
+    });
+    API.getUser()
+      .then(user => {
+        console.log("User: ", user);
+        this.setState({
+          isLoggedIn: user.data.loggedIn,
+          username: user.data.username
         });
-      }
-    
-    render() {
+      })
+  }
 
-    let navbar = "navbar navbar-expand-lg fixed-top py-0";
-    if(this.state.isTop) {
-        navbar += " navbar-dark bg-transparent"
+  logout = () => {
+    API.logout().then(res => {
+    })
+  }
+
+  render() {
+
+    let navbar = "navbar navbar-expand-lg fixed-top navbar-light py-0";
+    if (this.state.isTop) {
+      navbar += " bg-transparent"
     } else {
-        navbar += " navbar-light bg-white"
+      navbar += " bg-white"
     }
 
-    let style = "btn pl-0 px-lg-3";
-    if(!this.state.isTop) {
-        style += " text-dark"
+    if (this.state.isLoggedIn === false) {
+      return (
+        <nav className={navbar} >
+          <Link className="navbar-brand" to="/">
+            GroupAway
+          </Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item" >
+              {/* style={this.state.isLoggedIn ? { display: "none" } : { display: "block" }} */}
+                <Link to="/register"
+                  className={window.location.pathname === "/register" ? "nav-link active" : "nav-link"}>
+                  Register
+              </Link>
+              </li>
+              <li className="nav-item" >
+                {/* <LoginForm /> */}
+                <a className="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      );
+
     } else {
-        style += " text-white"
-    }
+      return (
+        <nav className={navbar}>
+          <Link className="navbar-brand" to="/profile">
+            GroupAway
+          </Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a href="/" onClick={this.logout}>Log Out</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      )
 
-    const isLoggedIn = this.state.isLoggedIn;
-    let button;
-
-    if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
-    } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
     }
-    
-    return (
-        <>
-            <nav className={navbar} >
-                <a className="navbar-brand" href="/">GroupAway</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item active">
-                            <button type="button" 
-                            className={style} 
-                            isLoggedIn={isLoggedIn}> <a href="./profile">{button}</a>
-                            </button>
-                            {/* condition renderin one line if statement */}
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </>
-    );
-    }
+  }
 }
 
 export default Navbar;
