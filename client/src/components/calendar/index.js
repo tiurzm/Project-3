@@ -2,7 +2,8 @@ import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin, { Draggable } from '@fullcalendar/interaction'
+import interactionPlugin from '@fullcalendar/interaction'
+import tripForm from 'components/TripForm'
 import './main.scss' 
 
 // const mongoose = require("mongoose")
@@ -20,7 +21,7 @@ export default class DemoApp extends React.Component {
               url: '/api/trips/:user_id?',
               type: 'GET',
               error: function () {
-                  alert('There was an error whiled fetching trips.');
+                  alert('There was an error while fetching trips.');
               }
           }
       ],
@@ -40,10 +41,12 @@ export default class DemoApp extends React.Component {
     handleDateClick = (arg) => {
       if (window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
         this.setState({  // add new event data
-          calendarEvents: this.state.calendarEvents.concat({ // creates a new array
-            title: 'New Event',
-            start: arg.date,
-            allDay: arg.allDay
+          eventSources: this.state.eventSources.concat({ // creates a new array
+            url: '/api/trips',
+            type: 'POST',
+            error: function () {
+              alert('There was an error whiled creating trip.');
+          }
           })
         })
       }
@@ -68,7 +71,7 @@ export default class DemoApp extends React.Component {
             plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
             ref={ this.calendarComponentRef }
             weekends={ this.state.calendarWeekends }
-            events={ this.state.calendarEvents }
+            events={ this.state.eventSources }
             dateClick={ this.handleDateClick }
             />
         </div>
