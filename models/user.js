@@ -1,35 +1,34 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const passportLocalMongoose = require('passport-local-mongoose');
- 
-const User = new Schema({
-    firstName: {
-        type: String,
-        trim: true,
-        required: "First Name is Required"
-    },
-    lastName: {
-        type: String,
-        trim: true,
-        required: "Last Name is Required"
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
-    }, 
-    userCreated: {
-        type: Date,
-        default: Date.now
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+
+var UserSchema = new Schema({
+  username: {
+    type: String,
+    trim: true,
+    required: "Username is required.",
+    unique: true
+  },
+  password: {
+    type: String,
+    trim: true,
+    required: "Password is required.",
+    validate: [
+      function (input) {
+        return input.length >= 6;
       },
-    trip: {
-        type: Schema.Types.ObjectId,
-        ref: "MyTrips"
-    }
+      "Password should be at least 6 characters long."
+    ]
+  },
+  userCreated: {
+    type: Date,
+    default: Date.now
+  },
+  trip: {
+    type: Schema.Types.ObjectId,
+    ref: "MyTrips"
+}
 });
 
- 
-User.plugin(passportLocalMongoose);
- 
-module.exports = mongoose.model('User', User);
+var User = mongoose.model("User", UserSchema);
+
+module.exports = User;

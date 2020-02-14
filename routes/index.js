@@ -1,15 +1,15 @@
-const router = require('express').Router();
-const apiRoutes = require('./api');
-// const calendar = require('../controllers/calendar');
-
-// console.log(calendar);
+const router = require("express").Router();
+const apiRoutes = require("./api");
+const authRoutes = require("./authentication");
 
 // API Routes
-router.use('/api/v1', apiRoutes);
+router.use("/api", apiRoutes);
 
 router.get('/trips', function(){
     console.log("working")
 });
 
+// Authentication Routes
+router.use("/auth", authRoutes);
 
 module.exports = router;

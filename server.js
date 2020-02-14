@@ -1,60 +1,81 @@
-const path = require('path');
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const session = require('express-session');
-
-const mongoose = require('mongoose');
+// Dependencies
+// ==================================================
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const flash = require('express-flash-messages');
+const session = require("express-session");
+const mongoose = require("mongoose");
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const routes = require('./routes');
-const corsOptions = require('./config/cors.js');
-
-const PORT = process.env.PORT || 8001;
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(helmet());
-app.use(session({ secret: 'TBD', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cors(corsOptions));
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+// Middleware
+// ==================================================
+
+// Configure body parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+} else {
+  app.use(express.static("client/public"));
 }
 
-// Add routes, both API and view
-app.use(routes);
-
-const User = require('./models/user');
-
-passport.use(new LocalStrategy(User.authenticate()));
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (_, res) => {
-    res.sendFile(path.join(__dirname, '/client/build/index.html'));
-  });
-}
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/budget', {
+// Connect to Mongoose
+mongoose.Promise = Promise;
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/groupaway", { 
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
 });
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+// Cookie parser
+app.use(cookieParser());
+app.use(flash());
+require('./config/passport')(passport);
+
+// Express session
+app.use(session({
+  // Use dotenv dependency to hide secret
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 2592000000,
+    httpOnly: false
+  }
+}));
+
+// Initialize passport authentication 
+app.use(passport.initialize());
+
+// Persistent login sessions. Session expires after 6 months or when deleted by user.
+app.use(passport.session());
+
+// enable CORS so that browsers don't block requests.
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://localhost:3001'); // eventually change to heroku url - may need to be localhost:3000
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
 });
 
-module.exports = app;
+
+// Routes
+// ==================================================
+
+const routes = require("./routes");
+app.use(routes);
+
+
+// Start API server
+// ==================================================
+
+app.listen(PORT, function () {
+  console.log(`API Server now listening on PORT ${PORT}!`);
+});

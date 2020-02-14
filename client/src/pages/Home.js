@@ -1,20 +1,35 @@
 import React from "react";
-import { Container, Row, Col } from "../components/Grid"
-import Calendar from "components/calendar"
+// import Navbar from "../components/Navbar";
+import Carousel from "../components/Carousel";
+import { Container, Row, Col } from "../components/Grid";
 
 function Home() {
     return (
-        <Container>
-            <Row>
-                <Col size="md-12">
-                    <h1>Our App</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem nulla, pharetra et turpis id, efficitur euismod neque. Suspendisse semper cursus molestie. Ut ac maximus nunc, mollis pellentesque risus. Phasellus dignissim hendrerit volutpat. Vestibulum tempor, dui at laoreet scelerisque, metus neque venenatis ipsum, ac lobortis tellus odio ac nulla. Ut vitae euismod massa, ac congue justo. Etiam tincidunt lectus ut odio posuere, id suscipit odio mattis. Pellentesque ullamcorper, quam eget malesuada gravida, nibh enim pretium leo, ut pharetra magna nulla faucibus tortor. Pellentesque nibh velit, malesuada a nibh non, aliquet maximus orci. Integer tempus nisi a magna ornare imperdiet. Sed et tempus quam, at accumsan lacus. Aenean elementum eleifend magna, vitae dignissim dui mollis in. Proin ut massa purus.
-                    </p>
-                    <Calendar />
-                </Col>
-            </Row>
-        </Container>
+        <>
+            {/* <Navbar /> */}
+            <Carousel />
+            <Container>
+                <Row>
+                    <Col size="md-12">
+                        <h1>Ready to get away?</h1>
+                        <p>
+                            Not quite?? That makes sense. Trips take a lot of planning.
+                            Let GroupAway help.</p>
+
+                        With our app, you and your traveling companions can:
+                            <ul><li>Collaborate to plan <strong>when</strong> to go, <strong>where</strong> to go, and the attractions your group members want to visit.</li>
+                            <li>Map out and organize all aspects of your upcoming trip.</li>
+                            <li>View the group's itinerary.</li>
+                            <li>Store all the trip details so your whole group is on the same page.</li>
+                            <li>See a countdown to the start of your trip!</li>
+                        </ul>
+                        <p>Get you group ready to get away with GroupAway!</p>
+                        <hr />
+                        <h6>If you’re new, press “Register” at the top of this page (it’s free). If you already began organizing a trip, just “Log In” to resume your plans.</h6>
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 };
 

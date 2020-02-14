@@ -11,7 +11,6 @@ import './main.scss'
 // const trips = [];
 
 
-
 export default class DemoApp extends React.Component {
     calendarComponentRef = React.createRef()
         state = {
@@ -55,9 +54,9 @@ export default class DemoApp extends React.Component {
   render() {
     return (
       <div className='demo-app'>
-        <div className='demo-app-top'>
-          <button onClick={ this.toggleWeekends }>toggle weekends</button>&nbsp;
-          <button onClick={ this.gotoPast }>go to a date in the past</button>&nbsp;
+        <div className='demo-app-top my-5'>
+          <button onClick={ this.toggleWeekends } className="btn btn-info">toggle weekends</button>&nbsp;
+          <button onClick={ this.gotoPast } className="btn btn-dark">go to a date in the past</button>&nbsp;
           (also, click a date/time to add an event)
         </div>
         <div className='demo-app-calendar'>
