@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 
 class LoginForm extends Component {
     state = {
-        // redirect: null,
         username: "",
         password: ""
     }
@@ -15,11 +13,6 @@ class LoginForm extends Component {
         });
     };
 
-    // getPage = () => {
-    //     this.setState({
-    //         redirect: "/profile"
-    //     })
-    // }
     handleFormSubmit = event => {
         event.preventDefault();
   
@@ -37,7 +30,7 @@ class LoginForm extends Component {
         })
            .then(response => {
               console.log(response);
-              window.location.href = "/";
+              window.location.href = "/profile";
            })
            .catch(err => {
               console.log(err);
@@ -50,9 +43,6 @@ class LoginForm extends Component {
     };
 
     render(){
-        // if (this.state.redirect) {
-        //     return <Redirect to={this.state.redirect} />
-        // }
 
     return (
         <form>
@@ -82,7 +72,6 @@ class LoginForm extends Component {
                 > Log In
                 </button>
             </Link>
-            {/* login success but doesn't take me to profile page */}
         </form>
     )
     }

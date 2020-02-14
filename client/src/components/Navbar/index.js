@@ -8,7 +8,7 @@ import LoginForm from "components/LoginForm";
 class Navbar extends React.Component {
   state = {
     isTop: true,
-    isLoggedin: false,
+    isLoggedIn: false,
     username: ""
   };
 
@@ -52,7 +52,7 @@ class Navbar extends React.Component {
           </button>
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+              <li className="nav-item" style={this.state.isLoggedIn ? {display: "none"} : {display: "block"}}>
                 <Link to="/register"
                   className={window.location.pathname === "/register" ? "nav-link active" : "nav-link"}>
                   Register
