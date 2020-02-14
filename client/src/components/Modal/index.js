@@ -1,7 +1,5 @@
 import React from "react";
-import { LoginForm } from "../Form";
-import "./style.css"
-
+import LoginForm from "../LoginForm";
 
 function Modal() {
   return (

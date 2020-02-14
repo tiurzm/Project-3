@@ -1,5 +1,5 @@
 import React from "react";
-import { ThankYou } from "../components/Additional";
+import { ThankYou } from "../components/Confirm";
 
 function Confirm() {
     return (
