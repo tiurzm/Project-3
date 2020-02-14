@@ -13,12 +13,12 @@ class Navbar extends React.Component {
   };
 
   componentDidMount() {
-    // document.addEventListener('scroll', () => {
-    //   const isTop = window.scrollY < 30;
-    //   if (isTop !== this.state.isTop) {
-    //     this.setState({ isTop })
-    //   }
-    // });
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 30;
+      if (isTop !== this.state.isTop) {
+        this.setState({ isTop })
+      }
+    });
     API.getUser()
       .then(user => {
         console.log("User: ", user);
@@ -36,14 +36,16 @@ class Navbar extends React.Component {
 
   render() {
 
-    // let navbar = "navbar navbar-expand-lg fixed-top py-0";
-    // if (this.state.isTop) {
-    //   navbar += " navbar-dark bg-transparent"
-    // } else {
-    //   navbar += " navbar-light bg-white"
-    // }
+    let navbar = "navbar navbar-expand-lg fixed-top navbar-light py-0";
+    if (this.state.isTop) {
+      navbar += " bg-transparent"
+    } else {
+      navbar += " bg-white"
+    }
+
+    if (this.state.isLoggedIn === false) {
       return (
-        <nav className="navbar navbar-expand-lg fixed-top text-white py-0" >
+        <nav className={navbar} >
           <Link className="navbar-brand" to="/">
             GroupAway
           </Link>
@@ -52,7 +54,8 @@ class Navbar extends React.Component {
           </button>
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item" style={this.state.isLoggedIn ? {display: "none"} : {display: "block"}}>
+              <li className="nav-item" >
+              {/* style={this.state.isLoggedIn ? { display: "none" } : { display: "block" }} */}
                 <Link to="/register"
                   className={window.location.pathname === "/register" ? "nav-link active" : "nav-link"}>
                   Register
@@ -66,6 +69,27 @@ class Navbar extends React.Component {
           </div>
         </nav>
       );
+
+    } else {
+      return (
+        <nav className={navbar}>
+          <Link className="navbar-brand" to="/profile">
+            GroupAway
+          </Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a href="/" onClick={this.logout}>Log Out</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      )
+
+    }
   }
 }
 
