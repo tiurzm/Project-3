@@ -15,7 +15,7 @@ function Register() {
                     <CreateUser data-aos="fade-zoom-in"/>
                 </Col>
                 <Col size="md-6 sm-12">
-                    <h1 data-aos="fade-zoom-in" style={{textAlign:"center", paddingTop: "100px",}}>Let's Join Our App</h1>
+                    <h1 data-aos="fade-zoom-in" style={{textAlign:"center", paddingTop: "100px",}}>Join GroupAway to get started!</h1>
                 </Col>
             </Row>
         </Container>

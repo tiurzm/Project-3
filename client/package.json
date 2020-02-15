@@ -1,5 +1,5 @@
 {
-  "name": "TBD",
+  "name": "GroupAway",
   "version": "0.1.0",
   "description": "TBD",
   "private": true,
@@ -9,7 +9,9 @@
     "react-dom": "^16.12.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.1"
+    "react-scripts": "3.3.1",
+    "@pusher/chatkit-client": "^1.13.4",
+    "@pusher/chatkit-server": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
