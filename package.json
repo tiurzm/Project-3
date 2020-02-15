@@ -1,5 +1,5 @@
 {
-  "name": "TBD",
+  "name": "GroupAway Travel App",
   "version": "1.0.0",
   "description": "TBD",
   "author": "TBD",
@@ -62,6 +62,8 @@
     "@fullcalendar/interaction": "^4.3.0",
     "@fullcalendar/react": "^4.3.0",
     "@fullcalendar/timegrid": "^4.3.0",
+    "@pusher/chatkit-client": "^1.13.4",
+    "@pusher/chatkit-server": "^2.4.0",
     "axios": "^0.19.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
@@ -85,7 +87,6 @@
     "react-bootstrap": "^1.0.0-beta.16",
     "react-places-autocomplete": "^7.2.1",
     "sequelize": "^4.44.3",
-    "@pusher/chatkit-client": "^1.13.4",
-    "@pusher/chatkit-server": "^2.4.0"
+    "use-open-window": "^1.0.7"
   }
 }

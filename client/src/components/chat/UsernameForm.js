@@ -30,7 +30,7 @@ class UsernameForm extends Component {
           <form onSubmit={this.onSubmit}>
             <input
               type="text"
-              placeholder="Your full name"
+              placeholder="Your username"
               onChange={this.onChange}
             />
             <input type="submit" />

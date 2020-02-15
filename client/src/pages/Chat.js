@@ -13,8 +13,9 @@ class Chat extends Component {
   }
 
   onUsernameSubmitted(username) {
-    fetch('http://localhost:3001/users', {
+    fetch('/users', {
       method: 'POST',
+      mode: "cors",
       headers: {
         'Content-Type': 'application/json',
       },

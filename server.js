@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const passport = require('passport');
 
 // Next 2 needed for Chatkit:
-// const cors = require('cors')
+const cors = require('cors')
 const Chatkit = require('@pusher/chatkit-server')
 
 const app = express();
@@ -25,10 +25,10 @@ const chatkit = new Chatkit.default({
 // Middleware
 // ==================================================
 
-// Configure body parser (Changed from true to false per Chatkit tutorial)
+// Configure body parser (May need to be changed from true to false per Chatkit tutorial)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
 
 
 
@@ -72,7 +72,7 @@ app.use(passport.session());
 
 // enable CORS so that browsers don't block requests.
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://localhost:3000'); // eventually change to heroku url - may need to be localhost:3000
+  res.header('Access-Control-Allow-Origin', 'https://localhost:3001'); // eventually change to heroku url - may need to be localhost:3000
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
