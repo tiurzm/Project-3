@@ -51,7 +51,11 @@ export default class DemoApp extends React.Component {
       calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
     }
 
-    
+    handleCloseClick = () => {
+      this.setState({
+        showModal: false
+      })
+    }
   
     handleDateClick = (arg) => {
       this.setState({
@@ -63,7 +67,7 @@ export default class DemoApp extends React.Component {
   render() {
     return (
       <div className='demo-app'>
-        <TripForm show={this.state.showModal} />
+        <TripForm show={this.state.showModal} close= {this.handleCloseClick}/>
         <div className='demo-app-top my-5'>
           <button onClick={ this.toggleWeekends } className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={ this.gotoPast } className="btn btn-dark">go to a date in the past</button>&nbsp;

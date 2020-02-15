@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import "./style.css"
 
 class CreateUser extends Component {
     state = {
         username: "",
         password: "",
-        passwordConfirm: ""
+        passwordConfirm: "",
+        errorUsername: "",
+        errorPassword: "",
+        errorConfirm:""
     }
 
     handleInputChange = event => {
@@ -34,7 +37,7 @@ class CreateUser extends Component {
               })
                  .then(response => {
                     console.log(response);
-                    window.location.href = "/";
+                    window.location.href = "/confirm";
                  })
                  .catch(err => console.log(err));
   
@@ -44,10 +47,18 @@ class CreateUser extends Component {
                  passwordConfirm: ""
               });
            } else {
-              console.log("Make sure your passwords match.")
+               this.setState({ 
+                  errorUsername: "", 
+                  errorPassword: "*Make sure your passwords match",
+                  errorConfirm: ""
+               });
            }
         } else {
-           console.log("Fill out all fields.")
+           this.setState({ 
+              errorUsername: "*Please fill out your username", 
+               errorPassword: "*Please fill out your password",
+               errorConfirm: "*Please confirm your password"
+            });
         }
     };
 
@@ -71,6 +82,7 @@ class CreateUser extends Component {
                   placeholder="Username"
                   type="text"
                />
+               <p className="error">{this.state.errorUsername}</p>
             </div>
             {/* <div className="form-group">
                 <label htmlFor="emailNewUser">Email</label>
@@ -85,9 +97,10 @@ class CreateUser extends Component {
                   placeholder="Password"
                   type="password"
                />
+               <p className="error">{this.state.errorPassword}</p>
             </div>
             <div className="form-group">
-                <label htmlFor="passwordConfirm">Password</label>
+                <label htmlFor="passwordConfirm">Confirm Password</label>
                 <input className="form-control"
                   value={this.state.passwordConfirm}
                   onChange={this.handleInputChange}
@@ -95,13 +108,11 @@ class CreateUser extends Component {
                   placeholder="Confirm password"
                   type="password"
                />
+               <p className="error">{this.state.errorConfirm}</p>
             </div>
-            <Link to="/confirm">
-                <button className="btn btn-primary" onClick={this.handleFormSubmit}>
+               <button className="btn btn-primary" onClick={this.handleFormSubmit}>
                   Sign Up
                </button>
-            </Link >
-            {/* sign up success but doesn't take me to confirm page */}
         </form>
     )
     }
