@@ -7,6 +7,7 @@ import Modal from "./components/Modal";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar"
 import Confirm from "./pages/Confirm";
+import Chat from "./pages/Chat";
 
 function App (){
   
@@ -19,6 +20,7 @@ function App (){
           <Route exact path="/register" component={Register}/>
           <Route exact path="/profile" component={Profile}/>
           <Route exact path="/confirm" component={Confirm}/>
+          <Route exact path="/chat" component={Chat}/>
         </Switch>
         <Modal/>
       </Container>

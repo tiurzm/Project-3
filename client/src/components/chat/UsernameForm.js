@@ -23,6 +23,9 @@ class UsernameForm extends Component {
     return (
       <div>
         <div>
+          <br />
+          <br />
+          <br />
           <h2>What is your username?</h2>
           <form onSubmit={this.onSubmit}>
             <input
