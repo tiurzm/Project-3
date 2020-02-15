@@ -2,6 +2,7 @@ import React from "react";
 import Calender from "../components/calendar";
 import { Container, Row, Col } from "../components/Grid";
 // import Navbar from "../components/Navbar";
+import Countdown from "../components/countdown"
 
 
 function Profile () {
@@ -19,6 +20,7 @@ function Profile () {
                 </Col>
             </Row>
             <Calender/>
+            <Countdown/>
         </Container>
         </>
     );
