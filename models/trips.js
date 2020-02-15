@@ -23,7 +23,11 @@ const TripSchema = new Schema({
       type: Date,
       default: Date.now
     },
-    lastUpdate: Date
+    lastUpdate: Date,
+    users: {
+      type: Schema.Types.ObjectId,
+      ref: "users"
+  }
 });
 
 // Custom method `lastUpdatedDate`

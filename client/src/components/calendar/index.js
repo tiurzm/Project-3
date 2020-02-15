@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import tripForm from 'components/TripForm'
+import TripForm from 'components/FormModal'
 import './main.scss' 
 
 // const mongoose = require("mongoose")
@@ -24,8 +24,22 @@ export default class DemoApp extends React.Component {
               }
           }
       ],
+      title: "",
+      startDate: new Date(),
+      endDate: new Date(),
+      description: "",
+      showModal: false,
 
     }
+    handleInputChange = event => {
+      // Getting the value and name of the input which triggered the change
+      let value = event.target.value;
+      const name = event.target.name;
+      // Updating the input's state
+      this.setState({
+        [name]: value
+      });
+    };
     toggleWeekends = () => {
       this.setState({ // update a property
         calendarWeekends: !this.state.calendarWeekends
@@ -36,24 +50,20 @@ export default class DemoApp extends React.Component {
       let calendarApi = this.calendarComponentRef.current.getApi()
       calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
     }
+
+    
   
     handleDateClick = (arg) => {
-      if (window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-        this.setState({  // add new event data
-          eventSources: this.state.eventSources.concat({ // creates a new array
-            url: '/api/trips',
-            type: 'POST',
-            error: function () {
-              alert('There was an error whiled creating trip.');
-          }
-          })
-        })
-      }
+      this.setState({
+        startDate: new Date(arg.date),
+        showModal: true
+      })
     }
 
   render() {
     return (
       <div className='demo-app'>
+        <TripForm show={this.state.showModal} />
         <div className='demo-app-top my-5'>
           <button onClick={ this.toggleWeekends } className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={ this.gotoPast } className="btn btn-dark">go to a date in the past</button>&nbsp;
@@ -73,6 +83,7 @@ export default class DemoApp extends React.Component {
             events={ this.state.eventSources }
             dateClick={ this.handleDateClick }
             />
+          
         </div>
       </div>
     )

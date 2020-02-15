@@ -23,6 +23,11 @@ var UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  email: {
+    type: String,
+    unique: true,
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+  },
   trip: {
     type: Schema.Types.ObjectId,
     ref: "MyTrips"

@@ -1,10 +1,18 @@
-import React from "react";
+import React from 'react'
+import {Modal, Button} from 'react-bootstrap'
 
-export function CreateUser(props) {
+
+export default function FormModal(props) {
     return (
-    <form {...props}>
+        <Modal show={props.show}>
+        <Modal.Dialog>
+            <Modal.Header closeButton>
+                <Modal.Title>Modal title</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <form {...props}>
         <div className="form-group">
-            <label for="exampleFormControlInput1">Trip Name</label>
+            <label htmlFor="exampleFormControlInput1">Trip Name</label>
             <input 
             type="text" 
             className="form-control" 
@@ -16,7 +24,7 @@ export function CreateUser(props) {
             />
             </div>
         <div className="form-group">
-            <label for="exampleFormControlInput1">Start Date</label>
+            <label htmlFor="exampleFormControlInput1">Start Date</label>
             <input 
             type="date" 
             className="form-control" 
@@ -27,7 +35,7 @@ export function CreateUser(props) {
             />
             </div>
         <div className="form-group">
-            <label for="exampleFormControlInput1">End Date</label>
+            <label htmlFor="exampleFormControlInput1">End Date</label>
             <input 
             type="date" 
             className="form-control" 
@@ -38,7 +46,7 @@ export function CreateUser(props) {
              />
             </div>
         <div className="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
+            <label htmlFor="exampleFormControlTextarea1">Description</label>
             <textarea 
             className="form-control" 
             id="exampleFormControlTextarea1" 
@@ -50,7 +58,17 @@ export function CreateUser(props) {
 
             </textarea>
             </div>
-        <button type="submit" class="btn btn-primary mb-2">Add Trip</button>
         </form>
-)
-};
+
+            </Modal.Body>
+            <Modal.Footer>
+                <Button
+                variant="secondary">Close</Button>
+                <Button
+                variant="primary">Save Changes</Button>
+            </Modal.Footer>
+        </Modal.Dialog>
+        </Modal>
+           
+    )
+}

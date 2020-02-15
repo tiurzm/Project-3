@@ -25,7 +25,6 @@ const EventsSchema = new Schema({
     },
     end: Date, 
     description: String,
-    editable: true,
     created: {
         type: Date,
         default: Date.now
