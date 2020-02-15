@@ -25,7 +25,10 @@ var UserSchema = new Schema({
   },
   email: {
     type: String,
-    unique: true,
+    index: {
+      unique: true,
+      partialFilterExpression: {email: {$type:"string"}}
+    },
     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
   },
   trip: {
