@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import TripForm from 'components/FormModal'
 import './main.scss' 
-
+import Axios from '../../utils/API'
 // const mongoose = require("mongoose")
 // const db = require("./models");
 // const trips = [];
@@ -17,7 +17,7 @@ export default class DemoApp extends React.Component {
         calendarWeekends: true,
         eventSources: [
           {
-              url: '/api/trips/:user_id?',
+              url: '/api/calendar/populated/:id',
               type: 'GET',
               error: function () {
                   alert('There was an error while fetching trips.');
@@ -56,6 +56,7 @@ export default class DemoApp extends React.Component {
         showModal: false
       })
     }
+    
   
     handleDateClick = (arg) => {
       this.setState({
@@ -64,10 +65,20 @@ export default class DemoApp extends React.Component {
       })
     }
 
+    handleSaveTrip =() => {
+      Axios.saveTrip()
+      .then(
+        console.log("saved trip"),
+        this.setState({showModal: false
+        })
+      )
+    .catch(err => console.log(err));
+    }
+
   render() {
     return (
       <div className='demo-app'>
-        <TripForm show={this.state.showModal} close= {this.handleCloseClick}/>
+        <TripForm show={this.state.showModal} close={this.handleCloseClick} save={this.handleSaveTrip}/>
         <div className='demo-app-top my-5'>
           <button onClick={ this.toggleWeekends } className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={ this.gotoPast } className="btn btn-dark">go to a date in the past</button>&nbsp;

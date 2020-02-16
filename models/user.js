@@ -33,7 +33,7 @@ var UserSchema = new Schema({
   },
   trip: {
     type: Schema.Types.ObjectId,
-    ref: "MyTrips"
+    ref: "Trip"
 }
 });
 
