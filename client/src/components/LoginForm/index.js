@@ -64,7 +64,7 @@ class LoginForm extends Component {
                         type="text"
                         placeholder="Username"
                     />
-                    <p style={{color: "red", fontSize: "15px"}}>{this.state.errorUsername}</p>
+                    <p style={{color: "red", fontSize: "20px"}}>{this.state.errorUsername}</p>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
@@ -75,7 +75,7 @@ class LoginForm extends Component {
                         type="password"
                         placeholder="Password"
                     />
-                    <p style={{color: "red", fontSize: "15px"}}>{this.state.errorPassword}</p>
+                    <p style={{color: "red", fontSize: "20px"}}>{this.state.errorPassword}</p>
                 </div>
                 <button type="button" onClick={this.handleFormSubmit}
                     className="btn btn-primary"
