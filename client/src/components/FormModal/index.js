@@ -6,7 +6,7 @@ export default function FormModal(props) {
     return (
         <Modal show={props.show}>
         <Modal.Dialog>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton onClick={props.close}>
                 <Modal.Title>Modal title</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -62,9 +62,9 @@ export default function FormModal(props) {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button
+                <Button onClick={props.close}
                 variant="secondary">Close</Button>
-                <Button
+                <Button onClick={props.save}
                 variant="primary">Save Changes</Button>
             </Modal.Footer>
         </Modal.Dialog>

@@ -1,34 +1,52 @@
-const db = require("../models/trips");
+const dbTrips = require("../models/trips");
+const dbUsers = require("../models/user")
 
 module.exports = {
-    get: function(data, cb) {
-        db.find({
-            _userId: data._id
-        }, cb);
+    get: function(req, res) {
+        console.log(req.id)
+        dbUsers.find({
+            _id: req.id
+        })
+        .populate({
+            path: "trip",
+            model: "Trip"
+        })
+        .then(function(dbTrips) {
+            res(dbTrips);
+        })
+        .catch(function(err) {
+            return err;
+        });
     },
-    save: function(data, cb){
+    add: function(req, res){
+        console.log(req)
         var newTrip = {
-            _usereId: data._id,
-            title: data.title,
-            start: data.start,
-            end: data.end,
-            description: data.description,
+            title: req.title,
+            start: req.start,
+            end: req.end,
+            description: req.description,
+            user: req.id
 
         };
 
-        db.create(newTrip, function(err, doc){
-            if(err){
-                console.log(err)
-            }else {
-                console.log(doc);
-                cb(doc);
-            }
-        })
+        dbTrips.create(newTrip) 
+            .then(function(dbTrips) {
+               return dbUsers.findOneAndUpdate(
+                    {_id: req.id}, 
+                    { $push: { trip: dbTrips._id } }, 
+                    { new: true })
+                .then(function(dbTrips){
+                    res.json(dbTrips)
+                })
+            })
+            .catch(function(err) {
+                return err;
+            });
     },
-    delete: function(data, cb){
-        Trip.remove({
-            _id: data._id
-        }, cb);
-    }
+    // delete: function(data, cb){
+    //     dbTrips.remove({
+    //         _id: data._id
+    //     }, cb);
+    // }
 
 }; 

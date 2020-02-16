@@ -24,9 +24,9 @@ const TripSchema = new Schema({
       default: Date.now
     },
     lastUpdate: Date,
-    users: {
+    user: {
       type: Schema.Types.ObjectId,
-      ref: "users"
+      ref: "User"
   }
 });
 
