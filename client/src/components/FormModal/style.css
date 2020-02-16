@@ -1,4 +1,11 @@
 .modal-dialog {
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+#trip {
+    max-width: 600px;
+    width: 100%; 
 }

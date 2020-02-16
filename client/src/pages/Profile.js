@@ -2,7 +2,7 @@ import React from "react";
 import Calender from "../components/calendar";
 import { Container, Row, Col } from 'react-bootstrap';
 import Countdown from "../components/countdown";
-import background from "./img/bc.jpeg";
+// import background from "./img/bc.jpeg";
 
 
 function Profile () {

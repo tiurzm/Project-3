@@ -5,7 +5,7 @@ import "./style.css"
 
 export default function FormModal(props) {
     return (
-        <Modal show={props.show} >
+        <Modal show={props.show} id="trip">
         <Modal.Dialog>
             <Modal.Header closeButton onClick={props.close}>
                 <Modal.Title>Modal title</Modal.Title>
