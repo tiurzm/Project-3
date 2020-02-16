@@ -1,14 +1,14 @@
 import React from "react";
 import Carousel from "../components/Carousel";
-import { Container, Row, Col } from "../components/Grid";
+import { Container, Row, Col } from 'react-bootstrap';
 
 function Home() {
     return (
         <>
-            <Carousel />
-            <Container>
+            <Carousel/>
+            <Container className="my-5">
                 <Row>
-                    <Col size="md-12">
+                    <Col>
                         <h1>Ready to get away?</h1>
                         <p>
                             Not quite?? That makes sense. Trips take a lot of planning.

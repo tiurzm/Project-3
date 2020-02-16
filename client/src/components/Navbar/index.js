@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import "./style.css"
-import LoginForm from "components/LoginForm";
-
 
 class Navbar extends React.Component {
   state = {
@@ -62,7 +60,6 @@ class Navbar extends React.Component {
               </Link>
               </li>
               <li className="nav-item" >
-                {/* <LoginForm /> */}
                 <a className="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
               </li>
             </ul>
