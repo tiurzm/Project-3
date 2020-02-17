@@ -20,45 +20,48 @@ class CreateUser extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.username && this.state.password && this.state.passwordConfirm) {
-           if (this.state.password === this.state.passwordConfirm) {
-  
-              fetch("/auth/signup", {
-                 method: "POST",
-                 credentials: "include",
-                 mode: "cors",
-                 body: JSON.stringify({
-                    password: this.state.password,
-                    username: this.state.username
-                 }),
-                 headers: new Headers({
-                    "Content-Type": "application/json"
-                 })
-              })
-                 .then(response => {
-                    console.log(response);
-                    window.location.href = "/confirm";
-                 })
-                 .catch(err => console.log(err));
-  
-              this.setState({
-                 username: "",
-                 password: "",
-                 passwordConfirm: ""
-              });
-           } else {
-               this.setState({ 
-                  errorUsername: "", 
-                  errorPassword: "*Make sure your passwords match",
-                  errorConfirm: ""
-               });
-           }
-        } else {
-           this.setState({ 
-              errorUsername: "*Please fill out your username", 
+        if (!(this.state.username && this.state.password && this.state.passwordConfirm)) {
+            this.setState({ 
+               errorUsername: "*Please fill out your username", 
                errorPassword: "*Please fill out your password",
                errorConfirm: "*Please confirm your password"
             });
+        } else if (this.state.password.length < 6) {
+         this.setState({ 
+            errorUsername: "", 
+            errorPassword: "*Password should be at least 6 characters long",
+            errorConfirm: ""
+         });  
+        } else if (this.state.password !== this.state.passwordConfirm){
+         this.setState({ 
+            errorUsername: "", 
+            errorPassword: "*Make sure your passwords match",
+            errorConfirm: ""
+         });
+        } else {
+         fetch("/auth/signup", {
+            method: "POST",
+            credentials: "include",
+            mode: "cors",
+            body: JSON.stringify({
+               password: this.state.password,
+               username: this.state.username
+            }),
+            headers: new Headers({
+               "Content-Type": "application/json"
+            })
+         })
+            .then(response => {
+               console.log(response);
+               window.location.href = "/confirm";
+            })
+            .catch(err => console.log(err));
+
+         this.setState({
+            username: "",
+            password: "",
+            passwordConfirm: ""
+         });
         }
     };
 
