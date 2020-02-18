@@ -13,11 +13,11 @@ function Register() {
         <Carousel/>
         <Container className="my-5">
              <Row>
-                <Col>
-                    <CreateUser data-aos="fade-zoom-in"/>
+                <Col data-aos="fade-zoom-in">
+                    <CreateUser/>
                 </Col>
-                <Col>
-                    <h1 data-aos="fade-zoom-in" style={{textAlign:"center", paddingTop: "100px",}}>Join GroupAway to get started!</h1>
+                <Col data-aos="fade-zoom-in">
+                    <h1 style={{textAlign:"center", paddingTop: "100px",}}>Join GroupAway to get started!</h1>
                 </Col>
             </Row>
         </Container>

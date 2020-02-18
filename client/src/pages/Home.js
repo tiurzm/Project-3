@@ -13,7 +13,7 @@ function Home() {
             <Carousel/>
             <Container className="my-5">
                 <Row>
-                    <Col>
+                    <Col data-aos="fade-up">
                         <h1>Ready to get away?</h1>
                         <p>
                             Not quite?? That makes sense. Trips take a lot of planning.

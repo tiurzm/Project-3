@@ -17,14 +17,15 @@ class Navbar extends React.Component {
         this.setState({ isTop })
       }
     });
-    API.getUser()
-      .then(user => {
-        console.log("User: ", user);
-        this.setState({
-          isLoggedIn: user.data.loggedIn,
-          username: user.data.username
-        });
-      })
+
+  API.getUser()
+    .then(user => {
+      console.log("User: ", user);
+      this.setState({
+        isLoggedIn: user.data.loggedIn,
+        username: user.data.username
+      });
+    })
   }
 
   logout = () => {
@@ -53,14 +54,14 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item" >
-              {/* style={this.state.isLoggedIn ? { display: "none" } : { display: "block" }} */}
                 <Link to="/register"
                   className={window.location.pathname === "/register" ? "nav-link active" : "nav-link"}>
-                  Register
+                  <i className="fas fa-user-plus"></i> Register
               </Link>
               </li>
               <li className="nav-item" >
-                <a className="nav-link" data-toggle="modal" data-target="#loginModal" href="#">Log In</a>
+                <a className="nav-link" data-toggle="modal" data-target="#loginModal" href="#">
+                  <i className="fas fa-sign-in-alt"></i> Log In</a>
               </li>
             </ul>
           </div>
@@ -85,7 +86,6 @@ class Navbar extends React.Component {
           </div>
         </nav>
       )
-
     }
   }
 }
