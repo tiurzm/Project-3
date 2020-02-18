@@ -31,10 +31,10 @@ var UserSchema = new Schema({
     },
     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
   },
-  trip: {
+  trip: [{
     type: Schema.Types.ObjectId,
     ref: "Trip"
-}
+}]
 });
 
 var User = mongoose.model("User", UserSchema);

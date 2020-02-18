@@ -3,8 +3,12 @@ import React from "react";
 import Carousel from "../components/Carousel";
 import { Container, Row, Col } from "../components/Grid";
 import Calendar from "../components/calendar"
+import Map from "../components/GoogleMaps"
+
 
 function Home() {
+    const googleKey = process.env.GOOGLE_KEY
+    console.log(googleKey)
     return (
         <>
             {/* <Navbar /> */}
@@ -30,7 +34,15 @@ function Home() {
                     </Col>
                 </Row>
             </Container>
-            <Calendar />
+            {/* <Calendar /> */}
+            <div style={{width: '100vw', height: '100vh'}}>
+            <Map 
+            googleMapURL= {`https://maps.googleapis.com/maps/api/js?key=AIzaSyB1w8RkcayeglK2V4_IfRAsgwbGKk4jeJc&libraries=geometry,drawing,places`}
+            loadingElement = {<div style={{height: '100%' }}/>}
+            containerElement = {<div style={{height: '100%' }}/>}
+            mapElement = {<div style={{height: '100%' }}/>}
+            />
+            </div>
         </>
     );
 };
