@@ -8,10 +8,10 @@ module.exports = {
             _id: req.id
         })
         .populate({
-            path: "trip",
-            model: "Trip"
+           path: "trip", populate: {path: "trip"}
         })
         .then(function(dbTrips) {
+            console.log("trips", dbTrips)
             res(dbTrips);
         })
         .catch(function(err) {
