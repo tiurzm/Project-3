@@ -33,14 +33,14 @@ function Home() {
                 </Row>
             </Container>
             {/* <Calendar /> */}
-            <div style={{width: '100vw', height: '100vh'}}>
+            {/* <div style={{width: '100vw', height: '100vh'}}> */}
             {/* <Map 
             googleMapURL= {`https://maps.googleapis.com/maps/api/js?key=AIzaSyB1w8RkcayeglK2V4_IfRAsgwbGKk4jeJc&libraries=geometry,drawing,places`}
             loadingElement = {<div style={{height: '100%' }}/>}
             containerElement = {<div style={{height: '100%' }}/>}
             mapElement = {<div style={{height: '100%' }}/>}
             /> */}
-            </div>
+            {/* </div> */}
         </>
     );
 };

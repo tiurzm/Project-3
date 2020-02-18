@@ -60,7 +60,7 @@ class Navbar extends React.Component {
               </Link>
               </li>
               <li className="nav-item" >
-                <a className="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
+                <a className="nav-link" data-toggle="modal" data-target="#loginModal" href="#">Log In</a>
               </li>
             </ul>
           </div>
