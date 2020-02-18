@@ -1,44 +1,46 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 class UsernameForm extends Component {
- constructor(props) {
-   super(props)
-   this.state = {
-     username: '',
-   }
-   this.onSubmit = this.onSubmit.bind(this)
-   this.onChange = this.onChange.bind(this)
- }
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+    }
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
+  }
 
- onSubmit(e) {
-   e.preventDefault()
-   this.props.onSubmit(this.state.username)
- }
+  onSubmit(e) {
+    e.preventDefault()
+    this.props.onSubmit(this.state.username)
+  }
 
- onChange(e) {
+  onChange(e) {
     this.setState({ username: e.target.value })
   }
 
   render() {
     return (
-      <div>
-        <div>
-          <br />
-          <br />
-          <br />
-          <h2>What is your username?</h2>
-          <form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              placeholder="Your username"
-              onChange={this.onChange}
-            />
-            <input type="submit" />
-          </form>
-        </div>
-      </div>
+      <Container style={{marginTop: "100px", marginBottom: "100px"}}>
+        <Row>
+          <Col>
+            <h2>What is your username?</h2>
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group" style={{maxWidth: "400px", width: "100%"}}>
+                <input className="form-control mb-2" 
+                  type="text"
+                  placeholder="Your username"
+                  onChange={this.onChange}
+                />
+                <button className="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </form>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
 
- export default UsernameForm
+export default UsernameForm;
