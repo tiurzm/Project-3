@@ -16,3 +16,7 @@
 .pointer {
     cursor: pointer;
 }
+
+.text-body:hover {
+    text-decoration: none;
+}

@@ -34,11 +34,11 @@ class Navbar extends React.Component {
 
   render() {
 
-    let navbar = "navbar navbar-expand-lg fixed-top navbar-light py-0";
+    let navbar = "navbar navbar-expand-lg fixed-top py-0";
     if (this.state.isTop) {
-      navbar += " bg-transparent"
+      navbar += " navbar-dark bg-transparent"
     } else {
-      navbar += " bg-white"
+      navbar += " navbar-light bg-white"
     }
 
     if (this.state.isLoggedIn === false) {
@@ -69,8 +69,8 @@ class Navbar extends React.Component {
 
     } else {
       return (
-        <nav className={navbar}>
-          <Link className="navbar-brand" to="/profile">
+        <nav className="navbar navbar-expand-lg fixed-top navbar-white py-0">
+          <Link className="navbar-brand text-body" to="/profile">
             GroupAway
           </Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a href="/" onClick={this.logout}>Log Out</a>
+                <a href="/" className="text-body" onClick={this.logout}>Log Out</a>
               </li>
             </ul>
           </div>
