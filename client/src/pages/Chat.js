@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import UsernameForm from '../components/chat/UsernameForm'
-import ChatScreen from '../ChatScreen'
+import React, { Component } from 'react';
+import UsernameForm from '../components/chat/UsernameForm';
+import ChatScreen from '../ChatScreen';
 
 class Chat extends Component {
   constructor() {

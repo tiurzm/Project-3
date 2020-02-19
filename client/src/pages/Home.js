@@ -1,7 +1,6 @@
 import React from "react";
-// import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
-import { Container, Row, Col } from "../components/Grid";
+import { Container, Row, Col } from 'react-bootstrap';
 // import Calendar from "../components/calendar"
 import Map from "../components/GoogleMaps"
 
@@ -11,11 +10,10 @@ function Home() {
     console.log(googleKey)
     return (
         <>
-            {/* <Navbar /> */}
-            <Carousel />
-            <Container>
+            <Carousel/>
+            <Container className="my-5">
                 <Row>
-                    <Col size="md-12">
+                    <Col data-aos="fade-up">
                         <h1>Ready to get away?</h1>
                         <p>
                             Not quite?? That makes sense. Trips take a lot of planning.

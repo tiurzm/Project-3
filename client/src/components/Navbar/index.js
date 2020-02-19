@@ -1,15 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import API from "../../utils/API";
 import "./style.css"
-import LoginForm from "components/LoginForm";
-
 
 class Navbar extends React.Component {
   state = {
     isTop: true,
-    isLoggedIn: false,
-    username: ""
   };
 
   componentDidMount() {
@@ -19,31 +14,18 @@ class Navbar extends React.Component {
         this.setState({ isTop })
       }
     });
-    API.getUser()
-      .then(user => {
-        console.log("User: ", user);
-        this.setState({
-          isLoggedIn: user.data.loggedIn,
-          username: user.data.username
-        });
-      })
-  }
-
-  logout = () => {
-    API.logout().then(res => {
-    })
   }
 
   render() {
 
-    let navbar = "navbar navbar-expand-lg fixed-top navbar-light py-0";
+    let navbar = "navbar navbar-expand-lg fixed-top py-0";
     if (this.state.isTop) {
-      navbar += " bg-transparent"
+      navbar += " navbar-dark bg-transparent"
     } else {
-      navbar += " bg-white"
+      navbar += " navbar-light bg-white"
     }
 
-    if (this.state.isLoggedIn === false) {
+    if (this.props.isLoggedIn === false) {
       return (
         <nav className={navbar} >
           <Link className="navbar-brand" to="/">
@@ -55,15 +37,14 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item" >
-              {/* style={this.state.isLoggedIn ? { display: "none" } : { display: "block" }} */}
                 <Link to="/register"
                   className={window.location.pathname === "/register" ? "nav-link active" : "nav-link"}>
-                  Register
+                  <i className="fas fa-user-plus"></i> Register
               </Link>
               </li>
               <li className="nav-item" >
-                {/* <LoginForm /> */}
-                <a className="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
+                <a className="nav-link" data-toggle="modal" data-target="#loginModal" href="#">
+                  <i className="fas fa-sign-in-alt"></i> Log In</a>
               </li>
             </ul>
           </div>
@@ -72,8 +53,8 @@ class Navbar extends React.Component {
 
     } else {
       return (
-        <nav className={navbar}>
-          <Link className="navbar-brand" to="/profile">
+        <nav className="navbar navbar-expand-lg fixed-top navbar-white bg-white py-0">
+          <Link className="navbar-brand text-body" to="/profile">
             GroupAway
           </Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,13 +63,12 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a href="/" onClick={this.logout}>Log Out</a>
+                <a href="/" className="text-body" onClick={this.props.logOut}>Log Out</a>
               </li>
             </ul>
           </div>
         </nav>
       )
-
     }
   }
 }
