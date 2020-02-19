@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import "./UsernameForm.css";
 
 class UsernameForm extends Component {
  constructor(props) {
@@ -22,15 +23,15 @@ class UsernameForm extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div id="container-for-chat-login">
           <br />
           <br />
           <br />
-          <h2>What is your username?</h2>
+          <h2>What name do you want to use to chat?</h2>
           <form onSubmit={this.onSubmit}>
             <input
               type="text"
-              placeholder="Your username"
+              placeholder="Your Chat Name"
               onChange={this.onChange}
             />
             <input type="submit" />
