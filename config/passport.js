@@ -11,7 +11,7 @@ module.exports = () => {
    });
 
    passport.deserializeUser((id, cb) => {
-
+     
       db.User.findById(id, (err, user) => {
          if (err) { return cb(err); }
          cb(null, user);
@@ -69,7 +69,7 @@ module.exports = () => {
       passReqToCallback: true
    },
       (req, username, password, done) => {
-
+            
          db.User.findOne({ username: username }, (err, user) => {   
             if (err) {
                console.log("Error: ", err);

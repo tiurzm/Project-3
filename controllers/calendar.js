@@ -19,28 +19,31 @@ module.exports = {
         });
     },
     add: function(req, res){
-        console.log(req)
+        console.log(req.cookies)
+        console.log(req.body)
         var newTrip = {
-            title: req.title,
-            start: req.start,
-            end: req.end,
-            description: req.description,
-            user: req.id
+            title: req.body.title,
+            start: req.body.start,
+            end: req.body.end,
+            description: req.body.description,
+            user: req.cookies.user_id
 
         };
 
         dbTrips.create(newTrip) 
-            .then(function(dbTrips) {
+            .then(function(trip) {
+                console.log(trip)
                return dbUsers.findOneAndUpdate(
-                    {_id: req.id}, 
-                    { $push: { trip: dbTrips._id } }, 
+                    {_id: req.cookies.user_id}, 
+                    { $push: { trip: trip.id } }, 
                     { new: true })
-                .then(function(dbTrips){
-                    res.json(dbTrips)
+                .then(function(user){
+                    res.json(user)
                 })
             })
             .catch(function(err) {
-                return err;
+                console.log(err)
+                res.status(500).json(err)
             });
     },
     // delete: function(data, cb){

@@ -4,8 +4,8 @@ export default {
 
    // Authentication methods
    // ===============================================
-   saveTrip: function (){
-      return axios.post("/api/calendar/add/:id")
+   saveTrip: function (trip){
+      return axios.post("/api/calendar/add", trip)
    },
 
    getUser: function () {

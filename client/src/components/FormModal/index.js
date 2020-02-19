@@ -29,9 +29,9 @@ export default function FormModal(props) {
             <input 
             type="date" 
             className="form-control" 
-            id="startDate"
-            value={props.startDate}
-            name="startDate"
+            id="exampleFormControlInput1"
+            value={props.start}
+            name="start"
             onChange={props.handleInputChange}
             />
             </div>
@@ -40,9 +40,9 @@ export default function FormModal(props) {
             <input 
             type="date" 
             className="form-control" 
-            id="endDate"
-            value={props.endDate}
-            name="endDate"
+            id="exampleFormControlInput1"
+            value={props.end}
+            name="end"
             onChange={props.handleInputChange}
              />
             </div>

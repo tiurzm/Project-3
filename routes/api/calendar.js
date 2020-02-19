@@ -16,11 +16,9 @@ router.get("/populated/:id", function(req, res){
         //     })
         // });
         
-router.post("/add/:id", function(req, res){
-    req.body.id = req.params.id;
-    tripsController.add(req.body, function(data){
-        res.json(data);
-    })
-})
+router.post("/add",
+    // req.body.id = req.params.id;
+    tripsController.add
+)
 
     module.exports = router;
