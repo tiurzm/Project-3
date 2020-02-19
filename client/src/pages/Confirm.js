@@ -1,9 +1,15 @@
 import React from "react";
-import { ThankYou } from "../components/Confirm";
+import { Container, Row, Col } from 'react-bootstrap';
 
 function Confirm() {
     return (
-        <ThankYou/>
+        <Container className="mt-5">
+            <Row>
+                <Col>
+                    <h1 style={{textAlign: "center"}}>Thank You</h1>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

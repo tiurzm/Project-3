@@ -1,30 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Container } from "./components/Grid";
+import { Container } from 'react-bootstrap';
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Modal from "./components/Modal";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar"
 import Confirm from "./pages/Confirm";
+import Chat from "./pages/Chat";
+import NoMatch from "./pages/NoMatch";
+import API from "./utils/API";
+import "./App.css";
 
-function App (){
-  
+
+class App extends Component{
+  state = {
+    isLoggedIn: false,
+    username: ""
+  }
+
+  logIn = () => {
+    return API.getUser()
+    .then(user => {
+      console.log("User: ", user);
+      this.setState({
+        isLoggedIn: user.data.loggedIn,
+        username: user.data.username
+      });
+    })
+  }
+
+  logOut = () => {
+    API.logout()
+      .then(res => {
+      this.setState({
+        isLoggedIn: false,
+        username: ""
+      });
+    })
+  }
+
+  render(){  
     return (
       <Router>
-      <Container fluid>
-      <Navbar/>
+      <Container fluid className="p-0">
+      <Navbar logout={this.logOut} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/register" component={Register}/>
           <Route exact path="/profile" component={Profile}/>
           <Route exact path="/confirm" component={Confirm}/>
+          <Route exact path="/chat" component={Chat}/>
+          <Route component={NoMatch} />
         </Switch>
-        <Modal/>
+        <Modal login={this.logIn}/>
       </Container>
       </Router>
 
     );
+  }
 }
 
 export default App;

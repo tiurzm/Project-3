@@ -22,7 +22,19 @@ var UserSchema = new Schema({
   userCreated: {
     type: Date,
     default: Date.now
-  }
+  },
+  email: {
+    type: String,
+    index: {
+      unique: true,
+      partialFilterExpression: {email: {$type:"string"}}
+    },
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+  },
+  trip: [{
+    type: Schema.Types.ObjectId,
+    ref: "Trip"
+}]
 });
 
 var User = mongoose.model("User", UserSchema);

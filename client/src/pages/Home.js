@@ -1,16 +1,19 @@
 import React from "react";
-// import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
-import { Container, Row, Col } from "../components/Grid";
+import { Container, Row, Col } from 'react-bootstrap';
+// import Calendar from "../components/calendar"
+// import Map from "../components/GoogleMaps"
+
 
 function Home() {
+    const googleKey = process.env.GOOGLE_KEY
+    console.log(googleKey)
     return (
         <>
-            {/* <Navbar /> */}
-            <Carousel />
-            <Container>
+            <Carousel/>
+            <Container className="my-5">
                 <Row>
-                    <Col size="md-12">
+                    <Col data-aos="fade-up">
                         <h1>Ready to get away?</h1>
                         <p>
                             Not quite?? That makes sense. Trips take a lot of planning.
@@ -29,6 +32,15 @@ function Home() {
                     </Col>
                 </Row>
             </Container>
+            {/* <Calendar /> */}
+            {/* <div style={{width: '100vw', height: '100vh'}}> */}
+            {/* <Map 
+            googleMapURL= {`https://maps.googleapis.com/maps/api/js?key=AIzaSyB1w8RkcayeglK2V4_IfRAsgwbGKk4jeJc&libraries=geometry,drawing,places`}
+            loadingElement = {<div style={{height: '100%' }}/>}
+            containerElement = {<div style={{height: '100%' }}/>}
+            mapElement = {<div style={{height: '100%' }}/>}
+            /> */}
+            {/* </div> */}
         </>
     );
 };
