@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import "./UsernameForm.css";
 
 class UsernameForm extends Component {
   constructor(props) {
@@ -25,12 +26,12 @@ class UsernameForm extends Component {
       <Container style={{marginTop: "100px", marginBottom: "100px"}}>
         <Row>
           <Col>
-            <h2>What is your username?</h2>
+            <h2>What name do you want to use to chat?</h2>
             <form onSubmit={this.onSubmit}>
               <div className="form-group" style={{maxWidth: "400px", width: "100%"}}>
                 <input className="form-control mb-2" 
                   type="text"
-                  placeholder="Your username"
+                  placeholder="Your Chat Name"
                   onChange={this.onChange}
                 />
                 <button className="btn btn-primary" type="submit">Submit</button>
