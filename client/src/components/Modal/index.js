@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "../LoginForm";
 
-function Modal() {
+function Modal(props) {
   return (
       <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
@@ -13,7 +13,7 @@ function Modal() {
               </button>
             </div>
             <div className="modal-body m-2">
-              <LoginForm/>
+              <LoginForm login={props.login}/>
             </div>
           </div>
         </div>

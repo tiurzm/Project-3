@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import API from "../../utils/API";
 import "./style.css"
 
 class Navbar extends React.Component {
   state = {
     isTop: true,
-    isLoggedIn: false,
-    username: ""
   };
 
   componentDidMount() {
@@ -17,20 +14,6 @@ class Navbar extends React.Component {
         this.setState({ isTop })
       }
     });
-
-  API.getUser()
-    .then(user => {
-      console.log("User: ", user);
-      this.setState({
-        isLoggedIn: user.data.loggedIn,
-        username: user.data.username
-      });
-    })
-  }
-
-  logout = () => {
-    API.logout().then(res => {
-    })
   }
 
   render() {
@@ -42,7 +25,7 @@ class Navbar extends React.Component {
       navbar += " navbar-light bg-white"
     }
 
-    if (this.state.isLoggedIn === false) {
+    if (this.props.isLoggedIn === false) {
       return (
         <nav className={navbar} >
           <Link className="navbar-brand" to="/">
@@ -80,7 +63,7 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a href="/" className="text-body" onClick={this.logout}>Log Out</a>
+                <a href="/" className="text-body" onClick={this.props.logOut}>Log Out</a>
               </li>
             </ul>
           </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import Home from "./pages/Home";
@@ -9,15 +9,42 @@ import Navbar from "./components/Navbar"
 import Confirm from "./pages/Confirm";
 import Chat from "./pages/Chat";
 import NoMatch from "./pages/NoMatch";
+import API from "./utils/API";
 import "./App.css";
 
 
-function App (){
-  
+class App extends Component{
+  state = {
+    isLoggedIn: false,
+    username: ""
+  }
+
+  logIn = () => {
+    return API.getUser()
+    .then(user => {
+      console.log("User: ", user);
+      this.setState({
+        isLoggedIn: user.data.loggedIn,
+        username: user.data.username
+      });
+    })
+  }
+
+  logOut = () => {
+    API.logout()
+      .then(res => {
+      this.setState({
+        isLoggedIn: false,
+        username: ""
+      });
+    })
+  }
+
+  render(){  
     return (
       <Router>
       <Container fluid className="p-0">
-      <Navbar/>
+      <Navbar logout={this.logOut} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/register" component={Register}/>
@@ -26,11 +53,12 @@ function App (){
           <Route exact path="/chat" component={Chat}/>
           <Route component={NoMatch} />
         </Switch>
-        <Modal/>
+        <Modal login={this.logIn}/>
       </Container>
       </Router>
 
     );
+  }
 }
 
 export default App;

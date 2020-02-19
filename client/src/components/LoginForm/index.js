@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {withRouter} from 'react-router-dom';
 
 class LoginForm extends Component {
     state = {
@@ -31,8 +32,13 @@ class LoginForm extends Component {
                 })
             })
                 .then(response => {
-                    console.log(response);
-                    window.location.href = "/profile";
+                    this.props.login().then( () => {
+                        console.log(response);
+                        // close the modal
+                        global.$("#loginModal").modal("hide");
+                        this.props.history.push('/profile')
+                    })
+                    
                 })
                 .catch(err => {
                     console.log(err);
@@ -86,4 +92,4 @@ class LoginForm extends Component {
     }
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);
