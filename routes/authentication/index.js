@@ -57,6 +57,7 @@ router.post("/signup", (req, res, next) => {
          res.cookie("username", req.user.username);
          res.cookie("user_id", req.user.id);
          return res.redirect("/");
+         // user res.send not res.redirect
       });
 
    })(req, res, next);

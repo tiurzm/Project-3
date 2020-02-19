@@ -1,3 +1,8 @@
+/* when you scroll */
+.bg-white {
+    transition: background 600ms;
+}
+
 .navbar-brand{
     font-family: 'Mali', cursive;
     font-size: 40px;
@@ -8,11 +13,10 @@
     font-family: 'Signika', sans-serif;
 }
 
-/* when you scroll */
-.bg-white {
-    transition: background 600ms;
-}
-
 .pointer {
     cursor: pointer;
+}
+
+.text-body:hover {
+    text-decoration: none;
 }

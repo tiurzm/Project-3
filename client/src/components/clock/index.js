@@ -32,7 +32,7 @@ class Clock extends Component {
         const hours = Math.floor(time/(1000*60*60)%24)
         const days = Math.floor(time/(1000*60*60*24))
 
-        console.log('time', days, hours, minutes, seconds)
+        // console.log('time', days, hours, minutes, seconds);
         this.setState({
             days,
             hours,

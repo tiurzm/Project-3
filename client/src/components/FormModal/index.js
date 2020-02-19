@@ -1,10 +1,11 @@
-import React from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import React from 'react';
+import {Modal, Button} from 'react-bootstrap';
+import "./style.css"
 
 
 export default function FormModal(props) {
     return (
-        <Modal show={props.show}>
+        <Modal show={props.show} id="trip">
         <Modal.Dialog>
             <Modal.Header closeButton onClick={props.close}>
                 <Modal.Title>Modal title</Modal.Title>
@@ -12,11 +13,11 @@ export default function FormModal(props) {
             <Modal.Body>
             <form {...props}>
         <div className="form-group">
-            <label htmlFor="exampleFormControlInput1">Trip Name</label>
+            <label htmlFor="title">Trip Name</label>
             <input 
             type="text" 
             className="form-control" 
-            id="exampleFormControlInput1" 
+            id="title" 
             placeholder="Vacay Name"
             value={props.title}
             name="title"
@@ -24,32 +25,32 @@ export default function FormModal(props) {
             />
             </div>
         <div className="form-group">
-            <label htmlFor="exampleFormControlInput1">Start Date</label>
+            <label htmlFor="startDate">Start Date</label>
             <input 
             type="date" 
             className="form-control" 
-            id="exampleFormControlInput1"
+            id="startDate"
             value={props.startDate}
             name="startDate"
             onChange={props.handleInputChange}
             />
             </div>
         <div className="form-group">
-            <label htmlFor="exampleFormControlInput1">End Date</label>
+            <label htmlFor="endDate">End Date</label>
             <input 
             type="date" 
             className="form-control" 
-            id="exampleFormControlInput1"
+            id="endDate"
             value={props.endDate}
             name="endDate"
             onChange={props.handleInputChange}
              />
             </div>
         <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Description</label>
+            <label htmlFor="description">Description</label>
             <textarea 
             className="form-control" 
-            id="exampleFormControlTextarea1" 
+            id="description" 
             rows="4"
             value={props.description}
             name="description"
