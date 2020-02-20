@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router"
 import "./style.css"
 
 class CreateUser extends Component {
@@ -8,7 +9,8 @@ class CreateUser extends Component {
       passwordConfirm: "",
       errorUsername: "",
       errorPassword: "",
-      errorConfirm: ""
+      errorConfirm: "",
+      toConfirm: false
    }
 
    handleInputChange = event => {
@@ -51,21 +53,31 @@ class CreateUser extends Component {
                "Content-Type": "application/json"
             })
          })
-            .then(response => {
-               console.log(response);
-               window.location.href = "/confirm";
+            .then(() => {
+               // console.log(response);
+               // window.location.href = "/confirm";
+               this.setState({
+                  toConfirm: true
+               })
             })
             .catch(err => console.log(err));
 
          this.setState({
             username: "",
             password: "",
-            passwordConfirm: ""
+            passwordConfirm: "",
+            errorUsername: "",
+            errorPassword: "",
+            errorConfirm: ""
          });
       }
    };
 
+   
    render() {
+      if(this.state.toConfirm) {
+         return <Redirect to="/confirm"></Redirect>
+      }
       return (
          <form>
             {/* <div className="form-group">
