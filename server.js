@@ -7,6 +7,7 @@ const flash = require('express-flash-messages');
 const session = require("express-session");
 const mongoose = require("mongoose");
 const passport = require('passport');
+const path = require('path');
 
 // Next 2 needed for Chatkit:
 const cors = require('cors')
@@ -107,6 +108,17 @@ app.post('/authenticate', (req, res) => {
 
 const routes = require("./routes");
 app.use(routes);
+
+
+app.get('*', (req, res) => {
+
+  if (process.env.NODE_ENV === "production") {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  } else {
+    res.sendFile(path.join(__dirname, 'client/public/index.html'));
+  }
+});
+
 
 
 // Start API server

@@ -1,8 +1,7 @@
 import React from "react";
 import Carousel from "../components/Carousel";
 import { Container, Row, Col } from 'react-bootstrap';
-// import Calendar from "../components/calendar"
-// import Map from "../components/GoogleMaps"
+import Map from "../components/GoogleMaps";
 
 
 function Home() {
@@ -10,10 +9,10 @@ function Home() {
     console.log(googleKey)
     return (
         <>
-            <Carousel/>
+            <Carousel />
             <Container className="my-5">
                 <Row>
-                    <Col data-aos="fade-up">
+                    <Col data-aos="fade-up" className="mb-5">
                         <h1>Ready to get away?</h1>
                         <p>
                             Not quite?? That makes sense. Trips take a lot of planning.
@@ -29,18 +28,20 @@ function Home() {
                         <p>Get you group ready to get away with GroupAway!</p>
                         <hr />
                         <h6>If you’re new, press “Register” at the top of this page (it’s free). If you already began organizing a trip, just “Log In” to resume your plans.</h6>
+                    </Col >
+                    <Col data-aos="fade-up" className= "mb-5 mx-auto">
+                        <div style={{ width: '80vw', height: '80vh' }}>
+                            <Map
+                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&libraries=geometry,drawing,places`}
+                                loadingElement={<div style={{ height: '100%' }} />}
+                                containerElement={<div style={{ height: '100%' }} />}
+                                mapElement={<div style={{ height: '100%' }} />}
+                            />
+                        </div>
                     </Col>
                 </Row>
             </Container>
-            {/* <Calendar /> */}
-            {/* <div style={{width: '100vw', height: '100vh'}}> */}
-            {/* <Map 
-            googleMapURL= {`https://maps.googleapis.com/maps/api/js?key=AIzaSyB1w8RkcayeglK2V4_IfRAsgwbGKk4jeJc&libraries=geometry,drawing,places`}
-            loadingElement = {<div style={{height: '100%' }}/>}
-            containerElement = {<div style={{height: '100%' }}/>}
-            mapElement = {<div style={{height: '100%' }}/>}
-            /> */}
-            {/* </div> */}
+
         </>
     );
 };

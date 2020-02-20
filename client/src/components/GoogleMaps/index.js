@@ -23,7 +23,7 @@ function Map(){
     };        
     return(
         <div>
-            <PlacesAutocomplete
+            <PlacesAutocomplete 
                 value={address}
                 onChange={setAddress}
                 onSelect={handleSelect}
