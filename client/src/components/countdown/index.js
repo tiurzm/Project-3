@@ -18,7 +18,7 @@ class Countdown extends Component {
 
   render() {
     return (
-      <div className="countdown">
+      <div className="countdown mt-5">
         <div>Countdown Until {this.state.deadline}</div>
         <Clock deadline={this.state.deadline}/>
         <div>

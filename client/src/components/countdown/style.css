@@ -1,7 +1,7 @@
 .countdown {
     text-align: center;
     font-size: 35px;
-    margin-top: 20%;
+    font-family: 'Jaldi', sans-serif;
 }
 
 .clockDays, .clockHours, .clockMinutes, .clockSeconds {

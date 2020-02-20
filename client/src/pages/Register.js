@@ -1,15 +1,11 @@
 import React from "react";
-import Navbar from "../components/Navbar"
-import Carousel from "../components/Carousel"
+import Carousel from "../components/Carousel";
 import { Container, Row, Col } from 'react-bootstrap';
 import CreateUser from "../components/RegisterForm";
-// import "./css/register.css";
-
 
 function Register() {
     return (
         <>
-        <Navbar/>
         <Carousel/>
         <Container className="my-5">
              <Row>
