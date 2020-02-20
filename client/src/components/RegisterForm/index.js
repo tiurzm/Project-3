@@ -60,7 +60,10 @@ class CreateUser extends Component {
          this.setState({
             username: "",
             password: "",
-            passwordConfirm: ""
+            passwordConfirm: "",
+            errorUsername: "",
+            errorPassword: "",
+            errorConfirm: ""
          });
       }
    };
