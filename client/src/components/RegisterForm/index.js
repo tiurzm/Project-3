@@ -1,5 +1,4 @@
 import React, { Component, createRef } from "react";
-import { Redirect } from "react-router"
 import "./style.css"
 
 class CreateUser extends Component {
@@ -83,9 +82,6 @@ constructor(props) {
 
    
    render() {
-      // if(this.state.toConfirm) {
-      //    return <Redirect to="/profile"></Redirect>
-      // }
       return (
          <form ref={this.form} >
             <div className="form-group">
