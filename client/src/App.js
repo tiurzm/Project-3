@@ -47,8 +47,13 @@ class App extends Component{
       <Navbar logout={this.logOut} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/register" component={Register}/>
+
           <Route exact path="/profile"  component={() => <Profile username={this.state.username}/>}/>
+
+          <Route exact path="/register"
+          render={(props) => <Register {...props} login={this.logIn}/>}
+          />
+         
           <Route exact path="/confirm" component={Confirm}/>
           <Route exact path="/chat" component={Chat}/>
           <Route component={NoMatch} />
