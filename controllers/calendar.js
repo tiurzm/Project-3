@@ -3,24 +3,22 @@ const dbUsers = require("../models/user")
 
 module.exports = {
     get: function(req, res) {
-        console.log(req.id)
+        console.log(req.session.passport.user)
         dbUsers.find({
-            _id: req.id
+            _id: req.session.passport.user
         })
         .populate({
            path: "trip", populate: {path: "trip"}
         })
         .then(function(dbTrips) {
             console.log("trips", dbTrips)
-            res(dbTrips);
+            res.send(dbTrips);
         })
         .catch(function(err) {
             return err;
         });
     },
     add: function(req, res){
-        console.log(req.cookies)
-        console.log(req.body)
         var newTrip = {
             title: req.body.title,
             start: req.body.start,
