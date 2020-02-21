@@ -23,23 +23,14 @@ export default class DemoApp extends React.Component {
   }
     calendarComponentRef = React.createRef()
         state = {
-        calendarWeekends: true,
-        eventSources: [
-          // {
-          //     url: '/api/calendar/populated',
-          //     type: 'GET',
-          //     failure: function () {
-          //         alert('There was an error while fetching trips.');
-          //     }
-          // }
-      ],
-      title: "",
-      start: new Date(),
-      end: new Date(),
-      description: "",
-      showModal: false,
-
-    }
+          calendarWeekends: true,
+          eventSources: [],
+          title: "",
+          start: new Date(),
+          end: new Date(),
+          description: "",
+          showModal: false,
+        }
     handleInputChange = event => {
       // Getting the value and name of the input which triggered the change
       let value = event.target.value;
