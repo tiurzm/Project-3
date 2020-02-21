@@ -46,7 +46,7 @@ class LoginForm extends Component {
                 .catch(err => {
                     this.setState({
                         errorUsername: "",
-                        errorPassword: "User doesn't exist. Please try again."
+                        errorPassword: "Incorrect Username or Password. Please try again."
                     })
                 });
 
