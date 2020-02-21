@@ -14,4 +14,8 @@ router.post("/add",
     tripsController.add
 )
 
+router.post("/delete",
+    tripsController.delete
+)
+
     module.exports = router;
