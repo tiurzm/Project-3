@@ -5,8 +5,7 @@ import Map from "../components/GoogleMaps";
 
 
 function Home() {
-    const googleKey = process.env.GOOGLE_KEY
-    console.log(process.env)
+    const googleKey = process.env.REACT_APP_GOOGLE_KEY
     return (
         <>
             <Carousel />
