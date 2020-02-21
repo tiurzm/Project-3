@@ -1,13 +1,13 @@
-const router = require("express").Router();
-const tripsController = require("../../controllers/trips")
+// const router = require("express").Router();
+// const tripsController = require("../../controllers/trips")
 
 
-router
-    .route("/")
-    .get(tripsController.getAllTrips)
-    .post(tripsController.createTrip);
+// router
+//     .route("/")
+//     .get(tripsController.getAllTrips)
+//     .post(tripsController.createTrip);
 
-router
-    .route("/:id")
-    .get(tripsController.getOneTrip);
+// router
+//     .route("/:id")
+//     .get(tripsController.getOneTrip);
   
