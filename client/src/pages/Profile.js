@@ -5,16 +5,16 @@ import Countdown from "../components/countdown";
 // import background from "./img/bc.jpeg";
 
 
-function Profile () {
+function Profile (props) {
     return(
         <Container style={{marginTop: "100px", marginBottom: "100px"}}>
             {/* backgroundImage: `url(${background})` */}
             <Row>
                 <Col>
-                    <p>User information 1</p>
+                    <p>Hello {props.username}</p>
                 </Col>
                 <Col>
-                    <p>User information 2</p>
+                  
 
                 </Col>
             </Row>
