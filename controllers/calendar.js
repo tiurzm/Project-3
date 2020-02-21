@@ -44,10 +44,18 @@ module.exports = {
                 res.status(500).json(err)
             });
     },
-    // delete: function(data, cb){
-    //     dbTrips.remove({
-    //         _id: data._id
-    //     }, cb);
+    delete: function(req, res) {
+        dbTrips.findByIdAndDelete(req.cookies.user_id)
+            .then(function(dbTrips) {
+                console.log("deleted trip", dbTrips)
+                res.send(dbTrips);
+            })
+            .catch(function(err) {
+                return err;
+            });
+      },
+    // update: function (req, res){
+    //     dbTrips.findOneAndUpdate({_id: req.cookies.user_id})
     // }
 
 }; 
