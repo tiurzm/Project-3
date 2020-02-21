@@ -71,29 +71,27 @@ router.post("/login", (req, res, next) => {
 
    passport.authenticate("local-login", (err, user) => {
       if (err) {
-         console.log("Error: ", err);
-         return next(err);
+      console.log("Error: ", err);
+      return res.status(401).send("Login failed");
       }
-
+      
       if (!user) {
-         console.log("Not a user.");
-         return res.send("Please re-enter your username and password.");
+      console.log("Not a user.");
+      return res.status(401).send("Login failed");
       }
-
+      
       req.login(user, (err) => {
-         
-         if (err) {
-            console.log("auth error");
-            return next(err);
-         }
-
-         res.cookie("username", user.username);
-         res.cookie("user_id", user._id);
-         var userI = { username: user.username }
-         return res.json(userI);
+      
+      if (err) {
+      console.log("auth error");
+      return res.status(401).send("Login failed");
+      }
+      
+      res.redirect("/profile");
       })
-
+      
    })(req, res, next);
+      
 });
 
 

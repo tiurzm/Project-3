@@ -32,6 +32,9 @@ class LoginForm extends Component {
                 })
             })
                 .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
                     this.props.login().then( () => {
                         console.log(response);
                         // close the modal
@@ -41,12 +44,17 @@ class LoginForm extends Component {
                     
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.setState({
+                        errorUsername: "",
+                        errorPassword: "User doesn't exist. Please try again."
+                    })
                 });
 
             this.setState({
                 username: "",
-                password: ""
+                password: "",
+                errorUsername: "",
+                errorPassword: ""
             });
         } else {
             this.setState ({
