@@ -6,6 +6,7 @@ class CreateUser extends Component {
 constructor(props) {
    super(props);
    this.form = createRef();
+   console.log(this.props,props)
 }
 
    state = {
@@ -62,11 +63,11 @@ constructor(props) {
                "Content-Type": "application/json"
             })
          })
-            .then(() => {
-               this.setState({
-                  toConfirm: true
-               })
+         .then(response => {
+            this.props.login().then( () => {
+               this.props.history.push('/profile')
             })
+         })
             .catch(err => console.log(err));
 
          this.setState({
@@ -82,11 +83,11 @@ constructor(props) {
 
    
    render() {
-      if(this.state.toConfirm) {
-         return <Redirect to="/confirm"></Redirect>
-      }
+      // if(this.state.toConfirm) {
+      //    return <Redirect to="/profile"></Redirect>
+      // }
       return (
-         <form ref={this.form}>
+         <form ref={this.form} >
             <div className="form-group">
                <label htmlFor="username">Username</label>
                <input className="form-control"
