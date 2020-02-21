@@ -1,8 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { Redirect } from "react-router"
 import "./style.css"
 
 class CreateUser extends Component {
+constructor(props) {
+   super(props);
+   this.form = createRef();
+}
+
    state = {
       username: "",
       password: "",
@@ -11,6 +16,10 @@ class CreateUser extends Component {
       errorPassword: "",
       errorConfirm: "",
       toConfirm: false
+   }
+
+   componentDidMount() {
+      this.form.current.scrollIntoView({ behavior: 'smooth' });
    }
 
    handleInputChange = event => {
@@ -54,8 +63,6 @@ class CreateUser extends Component {
             })
          })
             .then(() => {
-               // console.log(response);
-               // window.location.href = "/confirm";
                this.setState({
                   toConfirm: true
                })
@@ -79,15 +86,7 @@ class CreateUser extends Component {
          return <Redirect to="/confirm"></Redirect>
       }
       return (
-         <form>
-            {/* <div className="form-group">
-                <label htmlFor="first">First Name</label>
-                <input type="text" className="form-control" id="first"/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="last">Last Name</label>
-                <input type="text" className="form-control" id="last"/>
-            </div> */}
+         <form ref={this.form}>
             <div className="form-group">
                <label htmlFor="username">Username</label>
                <input className="form-control"
@@ -99,10 +98,6 @@ class CreateUser extends Component {
                />
                <p className="error">{this.state.errorUsername}</p>
             </div>
-            {/* <div className="form-group">
-                <label htmlFor="emailNewUser">Email</label>
-                <input type="email" className="form-control" id="emailNewUser"/>
-            </div> */}
             <div className="form-group">
                <label htmlFor="password">Password</label>
                <input className="form-control"
