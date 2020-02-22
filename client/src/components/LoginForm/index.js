@@ -31,24 +31,22 @@ class LoginForm extends Component {
                     "Content-Type": "application/json"
                 })
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    }
-                    this.props.login().then( () => {
-                        console.log(response);
-                        // close the modal
-                        global.$("#loginModal").modal("hide");
-                        this.props.history.push('/profile')
-                    })
-                    
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                this.props.login().then( () => {
+                    global.$("#loginModal").modal("hide");
+                    this.props.history.push('/profile')
                 })
-                .catch(err => {
-                    this.setState({
-                        errorUsername: "",
-                        errorPassword: "User doesn't exist. Please try again."
-                    })
-                });
+                    
+            })
+            .catch(err => {
+                this.setState({
+                    errorUsername: "",
+                    errorPassword: "Incorrect Username or Password. Please try again."
+                })
+            });
 
             this.setState({
                 username: "",
