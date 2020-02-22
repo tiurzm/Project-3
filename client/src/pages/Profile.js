@@ -1,5 +1,5 @@
 import React from "react";
-import Calender from "../components/calendar";
+// import Calender from "../components/calendar";
 import { Container, Row, Col } from "react-bootstrap";
 import Countdown from "../components/countdown";
 import Trips from "../components/trips";
@@ -16,9 +16,7 @@ function Profile(props) {
         </Col>
         <Col></Col>
       </Row>
-      <Trips>
-        <Calender />
-      </Trips>
+      <Trips/>
     </Container>
   );
 }
