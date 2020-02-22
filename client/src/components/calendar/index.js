@@ -93,17 +93,6 @@ export default class DemoApp extends React.Component {
   };
 
   handleSaveTrip = () => {
-<<<<<<< HEAD
-    axios
-      .saveTrip(this.state)
-      .then(
-        console.log("saved trip"),
-        this.refreshTrips(),
-        this.setState({ showModal: false })
-      )
-      .catch(err => console.log(err));
-  };
-=======
     if (this.state.title && this.state.start && this.state.end && this.state.description) {
       axios.saveTrip(this.state)
         .then(() => {
@@ -134,7 +123,6 @@ export default class DemoApp extends React.Component {
 
     }
   }
->>>>>>> e28c58e1025d215269af44d6b05967f9b2f608d3
 
   // handleSaveTrip =() => {
   //   axios.saveTrip(this.state)
@@ -149,24 +137,6 @@ export default class DemoApp extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className="demo-app">
-        <TripForm
-          show={this.state.showModal}
-          close={this.handleCloseClick}
-          save={this.handleSaveTrip}
-          handleInputChange={this.handleInputChange}
-        />
-        <div className="demo-app-top my-5">
-          <button onClick={this.toggleWeekends} className="btn btn-info">
-            toggle weekends
-          </button>
-          &nbsp;
-          <button onClick={this.gotoPast} className="btn btn-dark">
-            go to a date in the past
-          </button>
-          &nbsp; (also, click a date/time to add an event)
-=======
       <div className='demo-app'>
         <TripForm show={this.state.showModal}
           {...this.state}
@@ -177,7 +147,6 @@ export default class DemoApp extends React.Component {
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
           (also, click a date/time to add an event)
->>>>>>> e28c58e1025d215269af44d6b05967f9b2f608d3
         </div>
         <div className="demo-app-calendar">
           <FullCalendar
