@@ -106,12 +106,12 @@ export default class DemoApp extends React.Component {
   
   handleSaveTrip =() => {
     axios.saveTrip(this.state)
-    .then(
-      console.log("saved trip"),
-      this.refreshTrips(),
-      this.setState({showModal: false
+    .then(() => {
+      this.refreshTrips();
+      this.setState({
+        showModal: false
       })
-    )
+    })
   .catch(err => console.log(err));
   }
 
