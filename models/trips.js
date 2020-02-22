@@ -14,10 +14,10 @@ const TripSchema = new Schema({
           ]
     },
     start: {
-        type: Date,
+        type: new Date("<YYYY-mm-ddTHH:MM:ss>"),
         required: true
     },
-    end: Date, 
+    end: new Date("<YYYY-mm-ddTHH:MM:ss>"), 
     description: String,
     created: {
       type: Date,
