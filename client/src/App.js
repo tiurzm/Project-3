@@ -20,6 +20,10 @@ class App extends Component{
     username: ""
   }
 
+  componentDidMount() {
+    this.logIn()
+  }
+
   logIn = () => {
     return API.getUser()
     .then(user => {
@@ -46,7 +50,7 @@ class App extends Component{
     return (
       <Router>
       <Container fluid className="p-0">
-      <Navbar logout={this.logOut} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
+      <Navbar logOut={this.logOut} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
         <Switch>
           <Route exact path="/" component={Home}/>
 

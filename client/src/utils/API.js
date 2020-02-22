@@ -21,7 +21,7 @@ export default {
    },
 
    logout: function () {
-      return axios("/auth/logout");
+      return axios.get("/auth/logout")
    }
 
 };

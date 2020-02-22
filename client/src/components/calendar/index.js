@@ -93,6 +93,7 @@ export default class DemoApp extends React.Component {
   };
 
   handleSaveTrip = () => {
+<<<<<<< HEAD
     axios
       .saveTrip(this.state)
       .then(
@@ -102,9 +103,53 @@ export default class DemoApp extends React.Component {
       )
       .catch(err => console.log(err));
   };
+=======
+    if (this.state.title && this.state.start && this.state.end && this.state.description) {
+      axios.saveTrip(this.state)
+        .then(() => {
+          this.refreshTrips();
+          this.setState({
+            showModal: false
+          })
+        })
+        .catch(err => console.log(err));
+      this.setState({
+        title: "",
+        start: new Date().getUTCHours(),
+        end: new Date().getUTCHours(),
+        description: "",
+        errorTitle: "",
+        errorStart: "",
+        errorEnd: "",
+        errorDescription: ""
+      })
+
+    } else {
+      this.setState({
+        errorTitle: "*Please enter your trip name",
+        errorStart: "*Please enter the start date",
+        errorEnd: "*Please enter the end date",
+        errorDescription: "*Please enter the description"
+      })
+
+    }
+  }
+>>>>>>> e28c58e1025d215269af44d6b05967f9b2f608d3
+
+  // handleSaveTrip =() => {
+  //   axios.saveTrip(this.state)
+  //   .then(() => {
+  //     this.refreshTrips();
+  //     this.setState({
+  //       showModal: false
+  //     })
+  //   })
+  // .catch(err => console.log(err));
+  // }
 
   render() {
     return (
+<<<<<<< HEAD
       <div className="demo-app">
         <TripForm
           show={this.state.showModal}
@@ -121,6 +166,18 @@ export default class DemoApp extends React.Component {
             go to a date in the past
           </button>
           &nbsp; (also, click a date/time to add an event)
+=======
+      <div className='demo-app'>
+        <TripForm show={this.state.showModal}
+          {...this.state}
+          close={this.handleCloseClick}
+          save={this.handleSaveTrip}
+          handleInputChange={this.handleInputChange} />
+        <div className='demo-app-top my-5'>
+          <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
+          <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
+          (also, click a date/time to add an event)
+>>>>>>> e28c58e1025d215269af44d6b05967f9b2f608d3
         </div>
         <div className="demo-app-calendar">
           <FullCalendar

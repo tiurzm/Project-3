@@ -102,12 +102,14 @@ router.get("/logout", function (req, res) {
 
    req.session.destroy(function (err) {
      if (err) {
-       console.log("Error: ", err);
+      res.status(500).json();
+      return 
      }
+
      res.clearCookie("user_id");
      res.clearCookie("username");
      res.clearCookie("connect.sid");
-     res.redirect("/");
+     res.json();
    });
 
  });
