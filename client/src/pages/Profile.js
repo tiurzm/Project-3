@@ -19,6 +19,7 @@ function Profile(props) {
       <Trips>
         <Calender />
       </Trips>
+      <Countdown/>
     </Container>
   );
 }

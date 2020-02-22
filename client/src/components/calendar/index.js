@@ -11,7 +11,7 @@ import moment from 'moment';
 
 
 export default class DemoApp extends React.Component {
-  
+
 
   componentDidMount() {
     this.refreshTrips();
@@ -25,7 +25,7 @@ export default class DemoApp extends React.Component {
           start: moment(e.start).add(1, 'days').format(),
           end: moment(e.end).add(2, 'days').format(),
         }))
-      }, function() {console.log(this.state.eventSources)})
+      }, function () { console.log(this.state.eventSources) })
     })
   }
   calendarComponentRef = React.createRef()
@@ -41,11 +41,11 @@ export default class DemoApp extends React.Component {
     errorStart: "",
     errorEnd: "",
     errorDescription: ""
-    
+
   }
   handleEventClick = (info) => {
     alert('Event: ' + info.event.title);
-   
+
   }
 
   handleInputChange = event => {
@@ -81,48 +81,57 @@ export default class DemoApp extends React.Component {
     })
   }
 
-  // handleSaveTrip = () => {
-  //   if (this.state.title && this.state.start && this.state.end && this.state.description) {
-  //     axios.saveTrip(this.state)
-  //       .then(
-  //         console.log("saved trip"),
-  //         this.refreshTrips(),
-  //         this.setState({
-  //           showModal: false
-  //         })
-  //       )
-  //       .catch(err => console.log(err));
-      
-  //   } else {
-  //     this.setState({
-  //       errorTitle: "*Please enter your trip name",
-  //       errorStart:"*Please enter the start date",
-  //       errorEnd: "*Please enter the end date",
-  //       errorDescription: "*Please enter the description"
-  //     })
-      
-  //   }
-  // }
-  
-  handleSaveTrip =() => {
-    axios.saveTrip(this.state)
-    .then(() => {
-      this.refreshTrips();
+  handleSaveTrip = () => {
+    if (this.state.title && this.state.start && this.state.end && this.state.description) {
+      axios.saveTrip(this.state)
+        .then(() => {
+          this.refreshTrips();
+          this.setState({
+            showModal: false
+          })
+        })
+        .catch(err => console.log(err));
       this.setState({
-        showModal: false
+        title: "",
+        start: new Date().getUTCHours(),
+        end: new Date().getUTCHours(),
+        description: "",
+        errorTitle: "",
+        errorStart: "",
+        errorEnd: "",
+        errorDescription: ""
       })
-    })
-  .catch(err => console.log(err));
+
+    } else {
+      this.setState({
+        errorTitle: "*Please enter your trip name",
+        errorStart: "*Please enter the start date",
+        errorEnd: "*Please enter the end date",
+        errorDescription: "*Please enter the description"
+      })
+
+    }
   }
+
+  // handleSaveTrip =() => {
+  //   axios.saveTrip(this.state)
+  //   .then(() => {
+  //     this.refreshTrips();
+  //     this.setState({
+  //       showModal: false
+  //     })
+  //   })
+  // .catch(err => console.log(err));
+  // }
 
   render() {
     return (
       <div className='demo-app'>
         <TripForm show={this.state.showModal}
-        {...this.state}
-        close={this.handleCloseClick} 
-        save={this.handleSaveTrip}  
-        handleInputChange={this.handleInputChange} />
+          {...this.state}
+          close={this.handleCloseClick}
+          save={this.handleSaveTrip}
+          handleInputChange={this.handleInputChange} />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
