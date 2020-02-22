@@ -6,10 +6,12 @@ import interactionPlugin from '@fullcalendar/interaction'
 import TripForm from 'components/FormModal'
 import './main.scss'
 import axios from '../../utils/API'
+import moment from 'moment';
 
 
 
 export default class DemoApp extends React.Component {
+  
 
   componentDidMount() {
     this.refreshTrips();
@@ -18,8 +20,12 @@ export default class DemoApp extends React.Component {
   refreshTrips() {
     axios.getTrips().then((resp) => {
       this.setState({
-        eventSources: resp.data[0].trip
-      })
+        eventSources: resp.data[0].trip.map(e => ({
+          ...e,
+          start: moment(e.start).add(1, 'days').format(),
+          end: moment(e.end).add(2, 'days').format(),
+        }))
+      }, function() {console.log(this.state.eventSources)})
     })
   }
   calendarComponentRef = React.createRef()
@@ -27,15 +33,21 @@ export default class DemoApp extends React.Component {
     calendarWeekends: true,
     eventSources: [],
     title: "",
-    start: new Date(),
-    end: new Date(),
+    start: new Date().getUTCHours(),
+    end: new Date().getUTCHours(),
     description: "",
     showModal: false,
     errorTitle: "",
     errorStart: "",
     errorEnd: "",
     errorDescription: ""
+    
   }
+  handleEventClick = (info) => {
+    alert('Event: ' + info.event.title);
+   
+  }
+
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -129,6 +141,7 @@ export default class DemoApp extends React.Component {
             weekends={this.state.calendarWeekends}
             events={this.state.eventSources}
             dateClick={this.handleDateClick}
+            eventClick={this.handleEventClick}
           />
 
         </div>
