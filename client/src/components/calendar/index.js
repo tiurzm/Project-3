@@ -1,52 +1,62 @@
-import React from 'react'
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import TripForm from 'components/FormModal'
-import './main.scss'
-import axios from '../../utils/API'
-import moment from 'moment';
-
-
+import React from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import TripForm from "components/FormModal";
+import "./main.scss";
+import axios from "../../utils/API";
+import moment from "moment";
 
 export default class DemoApp extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      calendarWeekends: true,
+      eventSources: [],
+      title: "",
+      start: new Date().getUTCHours(),
+      end: new Date().getUTCHours(),
+      description: "",
+      showModal: false,
+      errorTitle: "",
+      errorStart: "",
+      errorEnd: "",
+      errorDescription: ""
+    };
+  }
 
   componentDidMount() {
     this.refreshTrips();
   }
 
   refreshTrips() {
-    axios.getTrips().then((resp) => {
-      this.setState({
-        eventSources: resp.data[0].trip.map(e => ({
-          ...e,
-          start: moment(e.start).add(1, 'days').format(),
-          end: moment(e.end).add(2, 'days').format(),
-        }))
-      }, function () { console.log(this.state.eventSources) })
-    })
-  }
-  calendarComponentRef = React.createRef()
-  state = {
-    calendarWeekends: true,
-    eventSources: [],
-    title: "",
-    start: new Date().getUTCHours(),
-    end: new Date().getUTCHours(),
-    description: "",
-    showModal: false,
-    errorTitle: "",
-    errorStart: "",
-    errorEnd: "",
-    errorDescription: ""
+    axios.getTrips().then(resp => {
+      this.setState(
+        {
+          eventSources: resp.data[0].trip.map(e => ({
+            ...e,
+            start: moment(e.start)
+              .add(1, "days")
+              .format(),
+            end: moment(e.end)
+              .add(2, "days")
+              .format()
+          }))
+        },
+        function() {
+          console.log(this.state.eventSources);
+        }
+      );
+    });
 
+    this.props.detectChange(true);
   }
-  handleEventClick = (info) => {
-    alert('Event: ' + info.event.title);
+  calendarComponentRef = React.createRef();
 
-  }
+  handleEventClick = info => {
+    alert("Event: " + info.event.title);
+  };
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -58,28 +68,29 @@ export default class DemoApp extends React.Component {
     });
   };
   toggleWeekends = () => {
-    this.setState({ // update a property
+    this.setState({
+      // update a property
       calendarWeekends: !this.state.calendarWeekends
-    })
-  }
+    });
+  };
 
   gotoPast = () => {
-    let calendarApi = this.calendarComponentRef.current.getApi()
-    calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
-  }
+    let calendarApi = this.calendarComponentRef.current.getApi();
+    calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
+  };
 
   handleCloseClick = () => {
     this.setState({
       showModal: false
-    })
-  }
+    });
+  };
 
-  handleDateClick = (arg) => {
+  handleDateClick = arg => {
     this.setState({
       startDate: new Date(arg.date),
       showModal: true
-    })
-  }
+    });
+  };
 
   handleSaveTrip = () => {
     if (this.state.title && this.state.start && this.state.end && this.state.description) {
@@ -137,13 +148,13 @@ export default class DemoApp extends React.Component {
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
           (also, click a date/time to add an event)
         </div>
-        <div className='demo-app-calendar'>
+        <div className="demo-app-calendar">
           <FullCalendar
             defaultView="dayGridMonth"
             header={{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
@@ -152,10 +163,8 @@ export default class DemoApp extends React.Component {
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
           />
-
         </div>
       </div>
-    )
+    );
   }
-
 }
