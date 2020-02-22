@@ -63,7 +63,7 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse float-right" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a href="/" className="text-body" onClick={this.props.logOut}>Log Out</a>
+                <Link to="/" className="text-body" onClick={this.props.logOut}>Log Out</Link>
               </li>
             </ul>
           </div>

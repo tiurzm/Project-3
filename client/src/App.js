@@ -10,6 +10,7 @@ import Confirm from "./pages/Confirm";
 import Chat from "./pages/Chat";
 import NoMatch from "./pages/NoMatch";
 import API from "./utils/API";
+import ls from 'local-storage';
 import "./App.css";
 
 
@@ -19,10 +20,15 @@ class App extends Component{
     username: ""
   }
 
+  componentDidMount() {
+    this.logIn()
+  }
+
   logIn = () => {
     return API.getUser()
     .then(user => {
-      console.log("User: ", user);
+      console.log(user);
+      console.log(user.data.loggedIn);
       this.setState({
         isLoggedIn: user.data.loggedIn,
         username: user.data.username
@@ -44,7 +50,7 @@ class App extends Component{
     return (
       <Router>
       <Container fluid className="p-0">
-      <Navbar logout={this.logOut} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
+      <Navbar logOut={this.logOut} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
         <Switch>
           <Route exact path="/" component={Home}/>
 

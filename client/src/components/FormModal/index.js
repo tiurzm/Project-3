@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import "./style.css"
 
 
@@ -18,33 +18,36 @@ export default function FormModal(props) {
             type="text" 
             className="form-control" 
             id="title" 
-            placeholder="Vacay Name"
+            placeholder="Trip Name"
             value={props.title}
             name="title"
             onChange={props.handleInputChange}
             />
+            <p className="error">{props.errorTitle}</p>
             </div>
         <div className="form-group">
             <label htmlFor="startDate">Start Date</label>
             <input 
             type="date" 
             className="form-control" 
-            id="exampleFormControlInput1"
+            id="start"
             value={props.start}
             name="start"
             onChange={props.handleInputChange}
             />
+            <p className="error">{props.errorStart}</p>
             </div>
         <div className="form-group">
             <label htmlFor="endDate">End Date</label>
             <input 
             type="date" 
             className="form-control" 
-            id="exampleFormControlInput1"
+            id="end"
             value={props.end}
             name="end"
             onChange={props.handleInputChange}
              />
+             <p className="error">{props.errorEnd}</p>
             </div>
         <div className="form-group">
             <label htmlFor="description">Description</label>
@@ -58,6 +61,7 @@ export default function FormModal(props) {
             >
 
             </textarea>
+            <p className="error">{props.errorDescription}</p>
             </div>
         </form>
 
@@ -70,6 +74,5 @@ export default function FormModal(props) {
             </Modal.Footer>
         </Modal.Dialog>
         </Modal>
-           
     )
 }
