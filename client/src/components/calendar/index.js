@@ -69,42 +69,46 @@ export default class DemoApp extends React.Component {
     })
   }
 
-  // handleSaveTrip = () => {
-  //   if (!(this.title && this.start && this.end && this.description)) {
-  //     this.setState({
-  //       errorTitle: "*Please",
-  //       errorStart:"*Please",
-  //       errorEnd: "*Please",
-  //       errorDescription: "*Please"
-  //     })
-  //   } else {
-  //     axios.saveTrip(this.state)
-  //       .then(
-  //         console.log("saved trip"),
-  //         this.refreshTrips(),
-  //         this.setState({
-  //           showModal: false
-  //         })
-  //       )
-  //       .catch(err => console.log(err));
-  //   }
-  // }
-  
-  handleSaveTrip =() => {
-    axios.saveTrip(this.state)
-    .then(
-      console.log("saved trip"),
-      this.refreshTrips(),
-      this.setState({showModal: false
+  handleSaveTrip = () => {
+    if (!(this.title && this.start && this.end && this.description)) {
+      this.setState({
+        errorTitle: "*Please",
+        errorStart:"*Please",
+        errorEnd: "*Please",
+        errorDescription: "*Please"
       })
-    )
-  .catch(err => console.log(err));
+    } else {
+      axios.saveTrip(this.state)
+        .then(
+          console.log("saved trip"),
+          this.refreshTrips(),
+          this.setState({
+            showModal: false
+          })
+        )
+        .catch(err => console.log(err));
+    }
   }
+  
+  // handleSaveTrip =() => {
+  //   axios.saveTrip(this.state)
+  //   .then(
+  //     console.log("saved trip"),
+  //     this.refreshTrips(),
+  //     this.setState({showModal: false
+  //     })
+  //   )
+  // .catch(err => console.log(err));
+  // }
 
   render() {
     return (
       <div className='demo-app'>
-        <TripForm show={this.state.showModal} close={this.handleCloseClick} save={this.handleSaveTrip} handleInputChange={this.handleInputChange} />
+        <TripForm show={this.state.showModal}
+        {...this.state}
+        close={this.handleCloseClick} 
+        save={this.handleSaveTrip}  
+        handleInputChange={this.handleInputChange} />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
