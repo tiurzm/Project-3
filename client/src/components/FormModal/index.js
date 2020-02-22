@@ -18,7 +18,7 @@ export default function FormModal(props) {
             type="text" 
             className="form-control" 
             id="title" 
-            placeholder="Vacay Name"
+            placeholder="Trip Name"
             value={props.title}
             name="title"
             onChange={props.handleInputChange}

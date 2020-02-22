@@ -69,37 +69,39 @@ export default class DemoApp extends React.Component {
     })
   }
 
-  handleSaveTrip = () => {
-    if (!(this.title && this.start && this.end && this.description)) {
-      this.setState({
-        errorTitle: "*Please enter your trip title",
-        errorStart:"*Please enter the start date",
-        errorEnd: "*Please enter the end date",
-        errorDescription: "*Please enter the description"
-      })
-    } else {
-      axios.saveTrip(this.state)
-        .then(
-          console.log("saved trip"),
-          this.refreshTrips(),
-          this.setState({
-            showModal: false
-          })
-        )
-        .catch(err => console.log(err));
-    }
-  }
-  
-  // handleSaveTrip =() => {
-  //   axios.saveTrip(this.state)
-  //   .then(
-  //     console.log("saved trip"),
-  //     this.refreshTrips(),
-  //     this.setState({showModal: false
+  // handleSaveTrip = () => {
+  //   if (this.state.title && this.state.start && this.state.end && this.state.description) {
+  //     axios.saveTrip(this.state)
+  //       .then(
+  //         console.log("saved trip"),
+  //         this.refreshTrips(),
+  //         this.setState({
+  //           showModal: false
+  //         })
+  //       )
+  //       .catch(err => console.log(err));
+      
+  //   } else {
+  //     this.setState({
+  //       errorTitle: "*Please enter your trip name",
+  //       errorStart:"*Please enter the start date",
+  //       errorEnd: "*Please enter the end date",
+  //       errorDescription: "*Please enter the description"
   //     })
-  //   )
-  // .catch(err => console.log(err));
+      
+  //   }
   // }
+  
+  handleSaveTrip =() => {
+    axios.saveTrip(this.state)
+    .then(
+      console.log("saved trip"),
+      this.refreshTrips(),
+      this.setState({showModal: false
+      })
+    )
+  .catch(err => console.log(err));
+  }
 
   render() {
     return (

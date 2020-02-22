@@ -20,6 +20,10 @@ class App extends Component{
     username: ""
   }
 
+  componentDidMount() {
+    this.logIn()
+  }
+
   logIn = () => {
     return API.getUser()
     .then(user => {
