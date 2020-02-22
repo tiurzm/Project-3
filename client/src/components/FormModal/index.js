@@ -23,7 +23,7 @@ export default function FormModal(props) {
             name="title"
             onChange={props.handleInputChange}
             />
-            <p>{props.errorTitle}</p>
+            <p className="error">{props.errorTitle}</p>
             </div>
         <div className="form-group">
             <label htmlFor="startDate">Start Date</label>
@@ -35,7 +35,7 @@ export default function FormModal(props) {
             name="start"
             onChange={props.handleInputChange}
             />
-            <p>{props.errorStart}</p>
+            <p className="error">{props.errorStart}</p>
             </div>
         <div className="form-group">
             <label htmlFor="endDate">End Date</label>
@@ -47,7 +47,7 @@ export default function FormModal(props) {
             name="end"
             onChange={props.handleInputChange}
              />
-             <p>{props.errorEnd}</p>
+             <p className="error">{props.errorEnd}</p>
             </div>
         <div className="form-group">
             <label htmlFor="description">Description</label>
@@ -61,7 +61,7 @@ export default function FormModal(props) {
             >
 
             </textarea>
-            <p>{props.errorDescription}</p>
+            <p className="error">{props.errorDescription}</p>
             </div>
         </form>
 

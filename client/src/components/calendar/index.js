@@ -72,10 +72,10 @@ export default class DemoApp extends React.Component {
   handleSaveTrip = () => {
     if (!(this.title && this.start && this.end && this.description)) {
       this.setState({
-        errorTitle: "*Please",
-        errorStart:"*Please",
-        errorEnd: "*Please",
-        errorDescription: "*Please"
+        errorTitle: "*Please enter your trip title",
+        errorStart:"*Please enter the start date",
+        errorEnd: "*Please enter the end date",
+        errorDescription: "*Please enter the description"
       })
     } else {
       axios.saveTrip(this.state)
