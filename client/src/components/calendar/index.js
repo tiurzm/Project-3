@@ -12,7 +12,22 @@ import moment from 'moment';
 
 
 export default class DemoApp extends React.Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      calendarWeekends: true,
+      eventSources: [],
+      title: "",
+      start: new Date().getUTCHours(),
+      end: new Date().getUTCHours(),
+      description: "",
+      showModal: false,
+      errorTitle: "",
+      errorStart: "",
+      errorEnd: "",
+      errorDescription: ""
+    };
+  }
 
   componentDidMount() {
     this.refreshTrips();
@@ -73,15 +88,16 @@ export default class DemoApp extends React.Component {
     });
   };
   toggleWeekends = () => {
-    this.setState({ // update a property
+    this.setState({
+      // update a property
       calendarWeekends: !this.state.calendarWeekends
-    })
-  }
+    });
+  };
 
   gotoPast = () => {
-    let calendarApi = this.calendarComponentRef.current.getApi()
-    calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
-  }
+    let calendarApi = this.calendarComponentRef.current.getApi();
+    calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
+  };
 
   handleCloseClick = () => {
     this.setState({
@@ -90,46 +106,55 @@ export default class DemoApp extends React.Component {
     })
   }
 
-  handleDateClick = (arg) => {
+  handleDateClick = arg => {
     this.setState({
       startDate: new Date(arg.date),
       showModal: true
-    })
+    });
+  };
+
+  handleSaveTrip = () => {
+    if (this.state.title && this.state.start && this.state.end && this.state.description) {
+      axios.saveTrip(this.state)
+        .then(() => {
+          this.refreshTrips();
+          this.setState({
+            showModal: false
+          })
+        })
+        .catch(err => console.log(err));
+      this.setState({
+        title: "",
+        start: new Date().getUTCHours(),
+        end: new Date().getUTCHours(),
+        description: "",
+        errorTitle: "",
+        errorStart: "",
+        errorEnd: "",
+        errorDescription: ""
+      })
+
+    } else {
+      this.setState({
+        errorTitle: "*Please enter your trip name",
+        errorStart: "*Please enter the start date",
+        errorEnd: "*Please enter the end date",
+        errorDescription: "*Please enter the description"
+      })
+
+    }
   }
 
-  // handleSaveTrip = () => {
-  //   if (this.state.title && this.state.start && this.state.end && this.state.description) {
-  //     axios.saveTrip(this.state)
-  //       .then(
-  //         console.log("saved trip"),
-  //         this.refreshTrips(),
-  //         this.setState({
-  //           showModal: false
-  //         })
-  //       )
-  //       .catch(err => console.log(err));
-      
-  //   } else {
+  // handleSaveTrip =() => {
+  //   axios.saveTrip(this.state)
+  //   .then(() => {
+  //     this.refreshTrips();
   //     this.setState({
-  //       errorTitle: "*Please enter your trip name",
-  //       errorStart:"*Please enter the start date",
-  //       errorEnd: "*Please enter the end date",
-  //       errorDescription: "*Please enter the description"
+  //       showModal: false
   //     })
-      
-  //   }
+  //   })
+  // .catch(err => console.log(err));
   // }
-  
-  handleSaveTrip =() => {
-    axios.saveTrip(this.state)
-    .then(() => {
-      this.refreshTrips();
-      this.setState({
-        showModal: false
-      })
-    })
-  .catch(err => console.log(err));
-  }
 
   render() {
     return (
@@ -148,13 +173,13 @@ export default class DemoApp extends React.Component {
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
           (also, click a date/time to add an event)
         </div>
-        <div className='demo-app-calendar'>
+        <div className="demo-app-calendar">
           <FullCalendar
             defaultView="dayGridMonth"
             header={{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
@@ -163,10 +188,8 @@ export default class DemoApp extends React.Component {
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
           />
-
         </div>
       </div>
-    )
+    );
   }
-
 }
