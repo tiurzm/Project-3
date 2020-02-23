@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import TripForm from 'components/FormModal'
+import TripCard from 'components/TripCard'
 import './main.scss'
 import axios from '../../utils/API'
 import moment from 'moment';
@@ -40,14 +41,28 @@ export default class DemoApp extends React.Component {
     errorTitle: "",
     errorStart: "",
     errorEnd: "",
-    errorDescription: ""
+    errorDescription: "",
+    showCard: false
     
   }
-  handleEventClick = (info) => {
-    alert('Event: ' + info.event.title);
+  handleEventClick = () => {
+    this.setState({
+      showCard: true
+    })
    
   }
+  handleDeleteTrip = () => {
+    axios.deleteTrip(this.state)
+    .then(() => {
+      this.refreshTrips();
+      this.setState({
+        showCard:false
+      })
+    })
+  .catch(err => console.log(err));
 
+  }
+ 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -70,7 +85,8 @@ export default class DemoApp extends React.Component {
 
   handleCloseClick = () => {
     this.setState({
-      showModal: false
+      showModal: false,
+      showCard: false
     })
   }
 
@@ -123,6 +139,10 @@ export default class DemoApp extends React.Component {
         close={this.handleCloseClick} 
         save={this.handleSaveTrip}  
         handleInputChange={this.handleInputChange} />
+        <TripCard show={this.state.showCard}
+        {...this.state}
+        close={this.handleCloseClick}
+        delete={this.handleDeleteTrip} />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;

@@ -45,7 +45,8 @@ module.exports = {
             });
     },
     delete: function(req, res) {
-        dbTrips.findByIdAndDelete(req.session.passport.user)
+        dbTrips.findByIdAndDelete(req.body.trip.id)
+            console.log(req.body)
             .then(function(dbTrips) {
                 console.log("deleted trip", dbTrips)
                 res.send(dbTrips);
