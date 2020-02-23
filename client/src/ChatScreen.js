@@ -5,6 +5,10 @@ import SendMessageForm from './components/chat/SendMessageForm';
 import TypingIndicator from './components/chat/TypingIndicator';
 import WhosOnlineList from './components/chat/WhosOnlineList';
 
+const chatInstanceLocator = process.env.REACT_APP_CHAT_INSTANCE_LOCATOR
+
+const chatRoomID = process.env.REACT_APP_CHAT_ROOM_ID
+
 class ChatScreen extends Component {
   constructor(props) {
     super(props)
@@ -33,7 +37,7 @@ class ChatScreen extends Component {
 
   componentDidMount() {
     const chatManager = new Chatkit.ChatManager({
-      instanceLocator: 'v1:us1:d4c14810-ec52-4731-a04b-a6a95a8e9e6c',
+      instanceLocator: chatInstanceLocator,
       userId: this.props.currentUsername,
       tokenProvider: new Chatkit.TokenProvider({
         url: '/authenticate',
@@ -45,7 +49,7 @@ class ChatScreen extends Component {
       .then(currentUser => {
         this.setState({ currentUser })
         return currentUser.subscribeToRoom({
-          roomId: "5e218670-f364-4fe7-8f41-2e30ce4ceef5",
+          roomId: chatRoomID,
           messageLimit: 100,
           hooks: {
             onMessage: message => {
