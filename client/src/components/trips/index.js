@@ -8,7 +8,7 @@ class Trips extends Component {
     super(props);
     this.state = {
       trips: [], 
-      show: true
+      show: false
     };
 
     this.handleCalendarChange = this.handleCalendarChange.bind(this);
@@ -22,16 +22,10 @@ class Trips extends Component {
     });
   }
 
-  showTrip = () => {
-    if(this.state.show) {
-      this.setState({
-        show: false
-      })
-    } else {
-      this.setState({
-        show: true
-      })
-    }
+  toggleTrip = () => {
+    this.setState({
+      show: !this.state.show
+    })
   }
 
   handleCalendarChange(didItChange) {
@@ -70,8 +64,8 @@ class Trips extends Component {
             console.log(trip)
             return (
               <div className="card">
-                <div className="card-header" id={trip._id}>
-                  <h2 className="mb-0" onClick= {this.showTrip}>
+                <div className="card-header" id={trip._id} onClick= {this.toggleTrip}>
+                  <h2 className="mb-0" >
                     <button
                       className="btn btn-link"
                       type="button" 
@@ -80,7 +74,7 @@ class Trips extends Component {
                     </button>
                   </h2>
                 </div>
-
+                {this.state.show && 
                 <div
                   id="a-trip"
                 >
@@ -90,6 +84,7 @@ class Trips extends Component {
                     Description: {trip.description}
                   </div>
                 </div>
+                }
               </div>
             )
           })}
