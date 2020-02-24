@@ -2,31 +2,21 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import "./style.css"
 
-
-class TripCard extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render(){
-        let trips = this.props.eventSources  
-        console.log(trips);
-
+export default function TripCard(props) {
+    console.log(props)
     return (
-        <Modal show={this.props.show} id="trip">
+        <Modal show={props.show} id="trip">
         <Modal.Dialog>
-            <Modal.Header closeButton onClick={this.props.close}>
+            <Modal.Header closeButton onClick={props.close}>
                 Trip's Information
             </Modal.Header>
             <Modal.Body>
-                <div>
-                    {/* {trips} */}
-                </div>
 
-                <Button onClick={this.props.delete}
-                variant="danger"
-                >
-                    Delete
-                </Button>
+            <Button onClick={props.delete}
+            variant="danger"
+            > 
+                Delete
+            </Button>
             {/* <div className="card" {...props}>
                 <h5 className="card-header">Trip</h5>
                 <div className="card-body">
@@ -52,7 +42,6 @@ class TripCard extends Component {
         </Modal.Dialog>
         </Modal>
     )
-    }
 }
 
 export default TripCard;
