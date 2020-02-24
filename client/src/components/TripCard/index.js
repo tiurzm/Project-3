@@ -6,8 +6,11 @@ import "./style.css"
 class TripCard extends Component {
     constructor(props) {
         super(props);
-      }
+    }
     render(){
+        let trips = this.props.eventSources  
+        console.log(trips);
+
     return (
         <Modal show={this.props.show} id="trip">
         <Modal.Dialog>
@@ -15,6 +18,10 @@ class TripCard extends Component {
                 Trip's Information
             </Modal.Header>
             <Modal.Body>
+                <div>
+                    {/* {trips} */}
+                </div>
+
                 <Button onClick={this.props.delete}
                 variant="danger"
                 >
