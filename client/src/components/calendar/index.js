@@ -102,7 +102,11 @@ export default class DemoApp extends React.Component {
   handleCloseClick = () => {
     this.setState({
       showModal: false,
-      showCard: false
+      showCard: false,
+      errorTitle: "",
+      errorStart: "",
+      errorEnd: "",
+      errorDescription: ""
     })
   }
 
@@ -144,17 +148,6 @@ export default class DemoApp extends React.Component {
 
     }
   }
-
-  // handleSaveTrip =() => {
-  //   axios.saveTrip(this.state)
-  //   .then(() => {
-  //     this.refreshTrips();
-  //     this.setState({
-  //       showModal: false
-  //     })
-  //   })
-  // .catch(err => console.log(err));
-  // }
 
   render() {
     return (
