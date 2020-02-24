@@ -1,7 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router"
 import { Container, Row, Col } from "react-bootstrap";
-import Trips from "../components/trips";
+// import Trips from "../components/trips";
+import Calender from "../components/calendar";
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -34,7 +36,7 @@ class Profile extends React.Component {
             </button>
           </Col>
           <Col className="col-md-12">
-            <Trips />      
+            <Calender />
           </Col>
         </Row>
 

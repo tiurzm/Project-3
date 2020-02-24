@@ -10,7 +10,6 @@ import Confirm from "./pages/Confirm";
 import Chat from "./pages/Chat";
 import NoMatch from "./pages/NoMatch";
 import API from "./utils/API";
-import ls from 'local-storage';
 import "./App.css";
 
 
@@ -27,8 +26,6 @@ class App extends Component{
   logIn = () => {
     return API.getUser()
     .then(user => {
-      console.log(user);
-      console.log(user.data.loggedIn);
       this.setState({
         isLoggedIn: user.data.loggedIn,
         username: user.data.username
