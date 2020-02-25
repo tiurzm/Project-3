@@ -26,6 +26,19 @@ export default function FormModal(props) {
             <p className="error">{props.errorTitle}</p>
             </div>
         <div className="form-group">
+            <label htmlFor="location">Location</label>
+            <input 
+            type="text" 
+            className="form-control" 
+            id="location" 
+            placeholder="Location"
+            value={props.location}
+            name="location"
+            onChange={props.handleInputChange}
+            />
+            <p className="error">{props.errorTitle}</p>
+            </div>
+        <div className="form-group">
             <label htmlFor="startDate">Start Date</label>
             <input 
             type="date" 
