@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router"
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 // import Trips from "../components/trips";
 import Calender from "../components/calendar";
 
@@ -31,8 +32,13 @@ class Profile extends React.Component {
             <p>Hello {this.props.username}</p>
           </Col>
           <Col className="col-md-6 text-right">
-            <button className="btn btn-info">
-              <a href="/chat" target="_" className="text-white text-decoration-none">Open Chat in a New Window</a>
+            <Link to="/location">
+              <button className="btn btn-warning mr-2">
+                Location <i class="fas fa-map-pin"></i>
+              </button>
+            </Link>
+            <button className="btn btn-success">
+              <a href="/chat" target="_" className="text-white text-decoration-none">Chat <i class="far fa-comment-dots"></i></a>
             </button>
           </Col>
           <Col className="col-md-12">
