@@ -6,48 +6,52 @@ import { Link } from "react-router-dom";
 import Calender from "../components/calendar";
 
 
-class Profile extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      shouldRedirectToChat: false
-    }
-    this.redirectToChat = this.redirectToChat.bind(this)
-  }
-  redirectToChat() {
-    this.setState({
-      shouldRedirectToChat: true
-    })
-  }
+function Profile(props) {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     shouldRedirectToChat: false
+  //   }
+  //   this.redirectToChat = this.redirectToChat.bind(this)
+  // }
+  // redirectToChat() {
+  //   this.setState({
+  //     shouldRedirectToChat: true
+  //   })
+  // }
 
-  render() {
+  // render() {
 
-    if (this.state.shouldRedirectToChat) {
-      return <Redirect to="/chat"></Redirect>
-    }
-    else {
-      return <Container style={{ marginTop: "150px", marginBottom: "150px" }}>
-        <Row>
-          <Col className="col-md-6">
-            <p>Hello {this.props.username}</p>
-          </Col>
-          <Col className="col-md-6 text-right">
-            <Link to="/location">
-              <button className="btn btn-warning mr-2">
-                Location <i class="fas fa-map-pin"></i>
-              </button>
-            </Link>
-            <button className="btn btn-success">
-              <a href="/chat" target="_" className="text-white text-decoration-none">Chat <i class="far fa-comment-dots"></i></a>
+  // if (this.state.shouldRedirectToChat) {
+  //   return <Redirect to="/chat"></Redirect>
+  // }
+  // else {
+  return (
+    <Container style={{ marginTop: "150px", marginBottom: "150px" }}>
+      <Row>
+        <Col className="col-md-6">
+          <p>Hello {props.username}</p>
+        </Col>
+        <Col className="col-md-6 text-right">
+          <Link to="/location">
+            <button className="btn btn-warning mr-2">
+              Location <i class="fas fa-map-pin"></i>
             </button>
-          </Col>
-          <Col className="col-md-12">
-            <Calender />
-          </Col>
-        </Row>
+          </Link>
+          <Link to="/chat">
+            <button className="btn btn-success">Chat <i class="far fa-comment-dots"></i>
+              {/* <a href="/chat" target="_" className="text-white text-decoration-none">Chat <i class="far fa-comment-dots"></i></a> */}
+            </button>
+          </Link>
 
-      </Container>
-    }
-  }
+        </Col>
+        <Col className="col-md-12">
+          <Calender />
+        </Col>
+      </Row>
+
+    </Container>
+  )
 }
+// }
 export default Profile;
