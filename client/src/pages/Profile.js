@@ -1,10 +1,9 @@
 import React from "react";
-// import Calender from "../components/calendar";
 import { Redirect } from "react-router"
 import { Container, Row, Col } from "react-bootstrap";
-// import Countdown from "../components/countdown";
-import Trips from "../components/trips";
-// import { DateProfileGenerator } from "@fullcalendar/core";
+// import Trips from "../components/trips";
+import Calender from "../components/calendar";
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -26,19 +25,20 @@ class Profile extends React.Component {
       return <Redirect to="/chat"></Redirect>
     }
     else {
-      return <Container style={{ marginTop: "100px", marginBottom: "100px" }}>
+      return <Container style={{ marginTop: "150px", marginBottom: "150px" }}>
         <Row>
-          <Col>
+          <Col className="col-md-6">
             <p>Hello {this.props.username}</p>
           </Col>
-          <Col></Col>
+          <Col className="col-md-6 text-right">
+            <button className="btn btn-info">
+              <a href="/chat" target="_" className="text-white text-decoration-none">Open Chat in a New Window</a>
+            </button>
+          </Col>
+          <Col className="col-md-12">
+            <Calender />
+          </Col>
         </Row>
-        <Trips />
-        <br />
-
-        <button style={{padding: "15px", textAlign: "center", borderRadius: "12px", color: "white", backgroundColor: "#67CCD5", fontSize: "2em"}}>
-          <a href="/chat" target="_">Open Chat in a New Window</a>
-        </button>
 
       </Container>
     }
