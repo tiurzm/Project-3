@@ -35,11 +35,11 @@ function Profile(props) {
         <Col className="col-md-6 text-right">
           <Link to="/location">
             <button className="btn btn-warning mr-2">
-              Location <i class="fas fa-map-pin"></i>
+              Location <i className="fas fa-map-pin"></i>
             </button>
           </Link>
           <Link to="/chat">
-            <button className="btn btn-success">Chat <i class="far fa-comment-dots"></i>
+            <button className="btn btn-success">Chat <i className="far fa-comment-dots"></i>
               {/* <a href="/chat" target="_" className="text-white text-decoration-none">Chat <i class="far fa-comment-dots"></i></a> */}
             </button>
           </Link>

@@ -9,8 +9,6 @@ import './main.scss'
 import axios from '../../utils/API'
 import moment from 'moment';
 
-
-
 export default class DemoApp extends React.Component {
   constructor(props) {
     super(props);
@@ -73,11 +71,17 @@ export default class DemoApp extends React.Component {
   }
 
   handleTrip = () => {
-    axios.getTrips().then(res => {
+    // axios.getTrips().then(res => {
+    //   this.setState({
+    //     tripTitle: res.data[0].trip[0].title
+    //   })
+    //   console.log(res.data[0].trip[0].title)
+    // })
+    axios.getOneTrip().then(res => {
+      console.log(res)
       this.setState({
-        tripTitle: res.data[0].trip[0].title
+        tripTitle: res.data.title
       })
-      console.log(res.data[0].trip[0].title)
     })
   }
 

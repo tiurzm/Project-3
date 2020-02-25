@@ -10,7 +10,7 @@ module.exports = {
            path: "trip", populate: {path: "trip"}
         })
         .then(function(dbTrips) {
-            console.log("trips", dbTrips)
+            // console.log("trips", dbTrips)
             res.send(dbTrips);
         })
         .catch(function(err) {
@@ -55,10 +55,9 @@ module.exports = {
             });
       },
     getTrip: function(req, res){
-        dbTrips.find({
-           //_id: trip ID here
-        })
+        dbTrips.findOne(req.params.id)
         .then(function(dbTrips) {
+            console.log(req.params.id);
             console.log("trips", dbTrips)
             res.send(dbTrips);
         })
