@@ -11,6 +11,9 @@ export default function TripCard(props) {
                 Trip's Information
             </Modal.Header>
             <Modal.Body>
+                <div>
+                    <p>{props.tripTitle}</p>
+                </div>
 
             <Button onClick={props.delete}
             variant="danger"
@@ -43,5 +46,3 @@ export default function TripCard(props) {
         </Modal>
     )
 }
-
-export default TripCard;

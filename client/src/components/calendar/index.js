@@ -44,6 +44,7 @@ export default class DemoApp extends React.Component {
       }, function() {console.log(this.state.eventSources)})
     })
   }
+
   calendarComponentRef = React.createRef()
   state = {
     calendarWeekends: true,
@@ -57,15 +58,28 @@ export default class DemoApp extends React.Component {
     errorStart: "",
     errorEnd: "",
     errorDescription: "",
-    showCard: false
+    showCard: false,
+    tripTitle: ""
     
   }
+
   handleEventClick = () => {
     this.setState({
       showCard: true
     })
+    this.handleTrip(); 
    
   }
+
+  handleTrip = () => {
+    axios.getTrips().then(res => {
+      this.setState({
+        tripTitle: res.data[0].trip[0].title
+      })
+      console.log(res.data[0].trip[0].title)
+    })
+  }
+
   handleDeleteTrip = () => {
     axios.deleteTrip(this.state)
     .then(() => {
