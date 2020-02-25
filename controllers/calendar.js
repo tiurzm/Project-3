@@ -3,7 +3,6 @@ const dbUsers = require("../models/user")
 
 module.exports = {
     get: function(req, res) {
-        console.log(req.session.passport.user)
         dbUsers.find({
             _id: req.session.passport.user
         })
@@ -21,6 +20,7 @@ module.exports = {
     add: function(req, res){
         var newTrip = {
             title: req.body.title,
+            location: req.body.location,
             start: req.body.start,
             end: req.body.end,
             description: req.body.description,
@@ -46,7 +46,6 @@ module.exports = {
     },
     delete: function(req, res) {
         dbTrips.findByIdAndDelete(req.body.trip.id)
-            console.log(req.body)
             .then(function(dbTrips) {
                 console.log("deleted trip", dbTrips)
                 res.send(dbTrips);
@@ -55,6 +54,18 @@ module.exports = {
                 return err;
             });
       },
+    getTrip: function(req, res){
+        dbTrips.find({
+           //_id: trip ID here
+        })
+        .then(function(dbTrips) {
+            console.log("trips", dbTrips)
+            res.send(dbTrips);
+        })
+        .catch(function(err) {
+            return err;
+        });
+    }
     // update: function (req, res){
     //     dbTrips.findOneAndUpdate({_id: req.cookies.user_id})
     // }
