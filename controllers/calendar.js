@@ -55,9 +55,9 @@ module.exports = {
             });
       },
     getTrip: function(req, res){
-        dbTrips.findOne(req.params.id)
+        console.log(req.params.id);
+        dbTrips.findById(req.params.id)
         .then(function(dbTrips) {
-            console.log(req.params.id);
             console.log("trips", dbTrips)
             res.send(dbTrips);
         })

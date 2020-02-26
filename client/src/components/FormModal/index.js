@@ -36,7 +36,7 @@ export default function FormModal(props) {
                                 name="location"
                                 onChange={props.handleInputChange}
                             />
-                            <p className="error">{props.errorTitle}</p>
+                            <p className="error">{props.errorLocation}</p>
                         </div>
                         <div className="form-group">
                             <label htmlFor="startDate">Start Date</label>

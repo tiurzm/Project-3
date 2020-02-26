@@ -19,7 +19,7 @@ export default function TripCard(props) {
                                 className="form-control"
                                 id="title"
                                 placeholder="Trip Name"
-                                value={props.tripTitle}
+                                value={props.title}
                                 name="title"
                                 onChange={props.handleInputChange}
                             />

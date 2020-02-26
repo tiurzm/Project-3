@@ -10,23 +10,23 @@ import axios from '../../utils/API'
 import moment from 'moment';
 
 export default class DemoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      calendarWeekends: true,
-      eventSources: [],
-      title: "",
-      location: "",
-      start: new Date(),
-      end: new Date(),
-      description: "",
-      showModal: false,
-      errorTitle: "",
-      errorStart: "",
-      errorEnd: "",
-      errorDescription: ""
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     calendarWeekends: true,
+  //     eventSources: [],
+  //     title: "",
+  //     location: "",
+  //     start: new Date(),
+  //     end: new Date(),
+  //     description: "",
+  //     showModal: false,
+  //     errorTitle: "",
+  //     errorStart: "",
+  //     errorEnd: "",
+  //     errorDescription: ""
+  //   };
+  // }
 
   componentDidMount() {
     this.refreshTrips();
@@ -54,33 +54,43 @@ export default class DemoApp extends React.Component {
     description: "",
     showModal: false,
     errorTitle: "",
+    errorLocation: "",
     errorStart: "",
     errorEnd: "",
     errorDescription: "",
-    showCard: false,
-    tripTitle: ""
-    
+    showCard: false    
   }
 
-  handleEventClick = () => {
+
+  handleEventClick = (event) => {
+    console.log(event);
     this.setState({
-      showCard: true
+      showCard: true,
+      title: "",
+      location:"",
+      start: new Date().getUTCHours(),
+      end: new Date().getUTCHours(),
+      description: ""
     })
-    this.handleTrip(); 
+    this.handleTrip(event.event.extendedProps._id); 
    
   }
 
-  handleTrip = () => {
+  handleTrip = (id) => {
     // axios.getTrips().then(res => {
     //   this.setState({
     //     tripTitle: res.data[0].trip[0].title
     //   })
     //   console.log(res.data[0].trip[0].title)
     // })
-    axios.getOneTrip().then(res => {
+    axios.getOneTrip(id).then(res => {
       console.log(res)
       this.setState({
-        tripTitle: res.data.title
+        title: res.data.title,
+        location: res.data.location,
+        start: res.data.start,
+        end: res.data.end,
+        description: res.data.description
       })
     })
   }
@@ -124,6 +134,7 @@ export default class DemoApp extends React.Component {
       showCard: false,
       errorTitle: "",
       errorStart: "",
+      errorLocation: "",
       errorEnd: "",
       errorDescription: ""
     })
@@ -148,10 +159,12 @@ export default class DemoApp extends React.Component {
         .catch(err => console.log(err));
       this.setState({
         title: "",
+        location:"",
         start: new Date().getUTCHours(),
         end: new Date().getUTCHours(),
         description: "",
         errorTitle: "",
+        errorLocation: "",
         errorStart: "",
         errorEnd: "",
         errorDescription: ""
@@ -160,6 +173,7 @@ export default class DemoApp extends React.Component {
     } else {
       this.setState({
         errorTitle: "*Please enter your trip name",
+        errorLocation: "*Please enter your trip location",
         errorStart: "*Please enter the start date",
         errorEnd: "*Please enter the end date",
         errorDescription: "*Please enter the description"
