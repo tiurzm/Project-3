@@ -15,15 +15,15 @@ function Home() {
                             Let GroupAway help.</p>
 
                         With our app, you and your traveling companions can:
-                            <ul><li>Collaborate to plan <strong>when</strong> to go, <strong>where</strong> to go, and the attractions your group members want to visit.</li>
-                            <li>Map out and organize all aspects of your upcoming trip.</li>
-                            <li>View the group's itinerary.</li>
-                            <li>Store all the trip details so your whole group is on the same page.</li>
+                            <ul><li>Collaborate to create a plan of <strong>when</strong> to go, <strong>where</strong> to go, and the attractions you all would like to visit.</li>
+                            <li>Chat and organize the details of your upcoming trip.</li>
+                            <li>View the schedule for your trip.</li>
+                            <li>Get your whole group on the same page.</li>
                             <li>See a countdown to the start of your trip!</li>
                         </ul>
                         <p>Get you group ready to get away with GroupAway!</p>
                         <hr />
-                        <h6>If you’re new, press “Register” at the top of this page (it’s free). If you already began organizing a trip, just “Log In” to resume your plans.</h6>
+                        <h6>If you’re new, press “Register” at the top of this page (it’s free). If you have already started organizing a trip, just “Log In” to resume your plans.</h6>
                     </Col >
                 </Row>
             </Container>
