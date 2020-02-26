@@ -29,7 +29,7 @@ class Profile extends Component {
         <Container style={{ marginTop: "150px", marginBottom: "150px" }}>
           <Row>
             <Col className="col-md-8 text-justify">
-              <p>Hello {this.props.username}</p>
+              <p>Welcome back, {this.props.username}!</p>
               <p>
                 Let's get started! 
                 <li>Click anywhere on the calendar and a box will open to input your trip details.</li>
