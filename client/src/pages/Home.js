@@ -8,7 +8,7 @@ function Home() {
             <Carousel />
             <Container className="my-5">
                 <Row>
-                    <Col data-aos="fade-up" className="mb-5">
+                    <Col data-aos="fade-up" className="m-4">
                         <h1>Ready to get away?</h1>
                         <p>
                             Not quite?? That makes sense. Trips take a lot of planning.

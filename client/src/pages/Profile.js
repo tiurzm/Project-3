@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Redirect } from "react-router"
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import Trips from "../components/trips";
 import Calender from "../components/calendar";
 
 
@@ -22,37 +21,33 @@ class Profile extends Component {
 
   render() {
 
-  if (this.state.shouldRedirectToChat) {
-    return <Redirect to="/chat"></Redirect>
-  }
-  else {
-  return (
-    <Container style={{ marginTop: "150px", marginBottom: "150px" }}>
-      <Row>
-        <Col className="col-md-6">
-          <p>Hello {this.props.username}</p>
-        </Col>
-        <Col className="col-md-6 text-right">
-          <Link to="/location">
-            <button className="btn btn-warning mr-2">
-              Location <i className="fas fa-map-pin"></i>
-            </button>
-          </Link>
-          {/* <Link to="/chat"> */}
-            <button className="btn btn-success">
-              <a href="/chat" target="_" className="text-white text-decoration-none">Chat <i class="far fa-comment-dots"></i></a>
-            </button>
-          {/* </Link> */}
-
-        </Col>
-        <Col className="col-md-12">
-          <Calender />
-        </Col>
-      </Row>
-
-    </Container>
-  )
-  }
+    if (this.state.shouldRedirectToChat) {
+      return <Redirect to="/chat"></Redirect>
+    }
+    else {
+      return (
+        <Container style={{ marginTop: "150px", marginBottom: "150px" }}>
+          <Row>
+            <Col className="col-md-6">
+              <p>Hello {this.props.username}</p>
+            </Col>
+            <Col className="col-md-6 text-right">
+              <Link to="/location">
+                <button className="btn btn-warning mr-2">
+                  Location <i className="fas fa-map-pin"></i>
+                </button>
+              </Link>
+              <button className="btn btn-success">
+                <a href="/chat" target="_" className="text-white text-decoration-none">Chat <i class="far fa-comment-dots"></i></a>
+              </button>
+            </Col>
+            <Col className="col-md-12">
+              <Calender />
+            </Col>
+          </Row>
+        </Container>
+      )
+    }
   }
 }
 
