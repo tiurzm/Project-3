@@ -38,7 +38,6 @@ class Clock extends Component {
             hours,
             minutes,
             seconds
-
         })
 
     }
@@ -46,10 +45,9 @@ class Clock extends Component {
   render() {
     return (
       <div>
-        <div className="clockDays">{this.leading0(this.state.days)} days</div>
-        <div className="clockHours">{this.leading0(this.state.hours)} hours</div>
-        <div className="clockMinutes">{this.leading0(this.state.minutes)} minutes</div>
-        <div className="clockSeconds">{this.leading0(this.state.seconds)} seconds</div>
+        <div className="clock" style={{fontSize: "20px"}} >
+          {this.leading0(this.state.days)} days, {this.leading0(this.state.hours)} hours: {this.leading0(this.state.minutes)} minutes: {this.leading0(this.state.seconds)} seconds.
+        </div>
       </div>
     );
   }

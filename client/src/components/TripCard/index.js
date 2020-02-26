@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import Clock from "../clock";
+
 // import "./style.css"
 
 export default function TripCard(props) {
@@ -76,27 +78,9 @@ export default function TripCard(props) {
                             <p className="error">{props.errorDescription}</p>
                         </div>
                     </form>
-                    {/* <div className="card" {...props}>
-                <h5 className="card-header">Trip</h5>
-                <div className="card-body">
-                    <h5 className="card-title">
-                        {props.title}
-                    </h5>
-                    <p className="card-text">
-                        <div>
-                            {props.start}
-                        </div>
-                        <div>
-                            {props.end}
-                        </div>
-                        <div>
-                            {props.description}
-                        </div>
-                    </p>
-                    <Button onClick={props.delete}
-                        variant="danger">Delete</Button>
-                </div>
-                </div> */}
+                    <div>
+                        <h4>Trip Start</h4><Clock deadline={props.start}/>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.delete}

@@ -63,27 +63,18 @@ export default class DemoApp extends React.Component {
 
 
   handleEventClick = (event) => {
+    // get the trip's id
     console.log(event);
     this.setState({
-      showCard: true,
-      title: "",
-      location:"",
-      start: new Date().getUTCHours(),
-      end: new Date().getUTCHours(),
-      description: ""
+      showCard: true
     })
     this.handleTrip(event.event.extendedProps._id); 
-   
+
   }
 
   handleTrip = (id) => {
-    // axios.getTrips().then(res => {
-    //   this.setState({
-    //     tripTitle: res.data[0].trip[0].title
-    //   })
-    //   console.log(res.data[0].trip[0].title)
-    // })
-    axios.getOneTrip(id).then(res => {
+    axios.getOneTrip(id)
+    .then(res => {
       console.log(res)
       this.setState({
         title: res.data.title,
@@ -93,6 +84,7 @@ export default class DemoApp extends React.Component {
         description: res.data.description
       })
     })
+    .catch(err => console.log(err));
   }
 
   handleDeleteTrip = () => {
@@ -140,11 +132,16 @@ export default class DemoApp extends React.Component {
     })
   }
 
-  handleDateClick = arg => {
+  handleDateClick = () => {
     this.setState({
-      startDate: new Date(arg.date),
-      showModal: true
-    });
+      // startDate: new Date(arg.date),
+      showModal: true,
+      title: "",
+      location:"",
+      start: new Date().getUTCHours(),
+      end: new Date().getUTCHours(),
+      description: ""
+    })
   };
 
   handleSaveTrip = () => {
