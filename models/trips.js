@@ -13,6 +13,10 @@ const TripSchema = new Schema({
             "Title should be longer."
           ]
     },
+    location: {
+      type: String,
+      trim: true,
+    },
     start: Date,
     end: Date,
     description: String,

@@ -40,7 +40,7 @@ class Navbar extends React.Component {
                 <Link to="/register"
                   className={window.location.pathname === "/register" ? "nav-link active" : "nav-link"}>
                   <i className="fas fa-user-plus"></i> Register
-              </Link>
+                </Link>
               </li>
               <li className="nav-item" >
                 <a className="nav-link" data-toggle="modal" data-target="#loginModal" href="#">

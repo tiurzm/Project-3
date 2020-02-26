@@ -19,7 +19,7 @@ export default function FormModal(props) {
     <Modal show={props.show} id="trip">
       <Modal.Dialog>
         <Modal.Header closeButton onClick={props.close}>
-          <Modal.Title>New Trip</Modal.Title>
+        <Modal.Title><i className="far fa-calendar-plus"></i> Make a New Trip</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form {...props}>
@@ -52,13 +52,22 @@ export default function FormModal(props) {
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {userDropdowns(props.users)}
               </div>
-
-              {/* <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> */}
-              {/* <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a> */}
-              {/* </div> */}
             </div>
+
+            <div className="form-group">
+                            <label htmlFor="location">Location</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="location"
+                                placeholder="Location"
+                                value={props.location}
+                                name="location"
+                                onChange={props.handleInputChange}
+                            />
+                            <p className="error">{props.errorLocation}</p>
+                        </div>
+
 
             <div className="form-group">
               <label htmlFor="startDate">Start Date</label>
@@ -99,14 +108,12 @@ export default function FormModal(props) {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.close} variant="secondary">
-            Close
-          </Button>
-          <Button onClick={props.save} variant="primary">
-            Save Changes
-          </Button>
+          <Button onClick={props.close} 
+          variant="secondary">Close</Button>
+          <Button onClick={props.save} 
+          variant="primary">Save Trip</Button>
         </Modal.Footer>
       </Modal.Dialog>
     </Modal>
-  );
+  )
 }

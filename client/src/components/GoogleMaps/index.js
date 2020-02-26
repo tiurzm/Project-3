@@ -12,15 +12,42 @@ function Map(){
         lat: 39.106667,
         lng: -94.676392
     });
+    const [placeId, setplaceId] = React.useState("");
     
     const center = coordinates
-    console.log(address)
     const handleSelect = async value => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
         setAddress(value);
         setCoordinates(latLng);
-    };        
+        setplaceId(results[0].place_id)
+        console.log(results[0].place_id)
+       
+    }; 
+    const map = [];
+    const request = {
+        placeId: placeId,
+        fields: ['name', 'formatted_address', 'rating', 'formatted_phone_number','geometry']
+    }  
+    const service = new window.google.maps.places.PlacesService(map)
+
+    function handlePlacesDetails() {
+        service.getDetails(request, function(place, status) {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+              var marker = new window.google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+              });
+              window.google.maps.event.addListener(marker, 'click', function() {
+                window.infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                  'Place ID: ' + place.place_id + '<br>' +
+                  place.formatted_address + '</div>');
+                window.infowindow.open(map, this);
+              });
+            }
+          });
+       
+      }   
     return(
         <div>
             <PlacesAutocomplete 
@@ -73,6 +100,7 @@ function Map(){
                         onCloseClick={() => {
                             setSelectedPlace(null);
                         }}
+                        onClick={handlePlacesDetails}
                         >
                             <div>{address}</div>
                         </InfoWindow>

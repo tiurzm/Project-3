@@ -1,24 +1,23 @@
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-import lostQuote from "./img/Not_All_Who_Wander_Are_Lost.png"
+import { Link } from "react-router-dom";
+import lostQuote from "./img/ls.png"
 
 function NoMatch() {
   return (
-    <Container className="mt-5">
+    <Container className="mt-4">
       <Row>
         <Col>
-          <div style={{ textAlign: "center" }}>
-            <h1>
-              <img src={lostQuote} />
-            </h1>
+          <div className="text-center">
+            <img src={lostQuote} />
             <h1>But ... YOU ... you're lost!</h1>
-            <hr>
-            </hr>
+            <hr/>
             <h2>404 — Page Not Found</h2>
-              <button style={{ padding: "15px", textAlign: "center", borderRadius: "12px", color: "white", backgroundColor: "#F5C85F", fontSize: "1em" }}>
-                <a href="/">Wander over to GroupAway's home page</a>
+            <Link to="/">
+              <button className="btn btn-warning mb-2" style={{fontSize: "20px"}}>
+                Wander over to GroupAway's home page
               </button>
-              <br></br>
+            </Link>
               <h6>Art by Chelsie Tamms</h6>
           </div>
         </Col>
