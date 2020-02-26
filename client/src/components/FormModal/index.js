@@ -5,12 +5,10 @@ import "./style.css";
 export default function FormModal(props) {
   function userDropdowns(users) {
     const mappedUsers = users.map(user => {
-      return (
-          <li className="dropdown-item">{user.username}</li>
-      );
+      return <option>{user.username}</option>;
     });
 
-    console.log('mappedUsers: ', mappedUsers)
+    console.log("mappedUsers: ", mappedUsers);
 
     return mappedUsers;
   }
@@ -19,7 +17,9 @@ export default function FormModal(props) {
     <Modal show={props.show} id="trip">
       <Modal.Dialog>
         <Modal.Header closeButton onClick={props.close}>
-        <Modal.Title><i className="far fa-calendar-plus"></i> Make a New Trip</Modal.Title>
+          <Modal.Title>
+            <i className="far fa-calendar-plus"></i> Make a New Trip
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form {...props}>
@@ -37,37 +37,26 @@ export default function FormModal(props) {
               <p className="error">{props.errorTitle}</p>
             </div>
 
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Guests
-              </button>
-
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {userDropdowns(props.users)}
-              </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Guest</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                {userDropdowns(props.users)}
+              </select>
             </div>
 
             <div className="form-group">
-                            <label htmlFor="location">Location</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="location"
-                                placeholder="Location"
-                                value={props.location}
-                                name="location"
-                                onChange={props.handleInputChange}
-                            />
-                            <p className="error">{props.errorLocation}</p>
-                        </div>
-
+              <label htmlFor="location">Location</label>
+              <input
+                type="text"
+                className="form-control"
+                id="location"
+                placeholder="Location"
+                value={props.location}
+                name="location"
+                onChange={props.handleInputChange}
+              />
+              <p className="error">{props.errorLocation}</p>
+            </div>
 
             <div className="form-group">
               <label htmlFor="startDate">Start Date</label>
@@ -108,12 +97,14 @@ export default function FormModal(props) {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.close} 
-          variant="secondary">Close</Button>
-          <Button onClick={props.save} 
-          variant="primary">Save Trip</Button>
+          <Button onClick={props.close} variant="secondary">
+            Close
+          </Button>
+          <Button onClick={props.save} variant="primary">
+            Save Trip
+          </Button>
         </Modal.Footer>
       </Modal.Dialog>
     </Modal>
-  )
+  );
 }
