@@ -80,7 +80,8 @@ export default class DemoApp extends React.Component {
     errorEnd: "",
     errorDescription: "",
     showCard: false,
-    users: []    
+    users: [],
+    guests: []    
   }
 
 
@@ -126,6 +127,7 @@ export default class DemoApp extends React.Component {
     let value = event.target.value;
     const name = event.target.name;
     // Updating the input's state
+    console.log(name, value)
     this.setState({
       [name]: value
     });
@@ -171,7 +173,7 @@ export default class DemoApp extends React.Component {
       this.state.title &&
       this.state.start &&
       this.state.end &&
-      this.state.description
+      this.state.description  
     ) {
       axios
         .saveTrip(this.state)

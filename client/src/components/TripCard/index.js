@@ -15,7 +15,8 @@ export default function TripCard(props) {
     return mappedUsers;
   }
 
-  console.log(props);
+  const guest = Array.isArray(props.guests) ? props.guests[0] : props.guests;
+
   return (
     <Modal show={props.show} id="trip">
       <Modal.Dialog>
@@ -42,15 +43,14 @@ export default function TripCard(props) {
 
             <div class="form-group">
     <label for="exampleFormControlSelect2">Guests</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
+    <select multiple class="form-control" name="guests" onChange={props.handleInputChange}  value={guest}>
     {userDropdowns(props.users)}
     </select>
   </div>
-
-
             <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
-              <select class="form-control" id="exampleFormControlSelect1">
+              <select class="form-control" name="guests" value={guest}
+              onChange={props.handleInputChange}>
                 {userDropdowns(props.users)}
               </select>
             </div>

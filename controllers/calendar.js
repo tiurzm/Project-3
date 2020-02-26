@@ -24,7 +24,8 @@ module.exports = {
             start: req.body.start,
             end: req.body.end,
             description: req.body.description,
-            user: req.session.passport.user
+            user: req.session.passport.user,
+            guests: [req.body.guests]
 
         };
 
