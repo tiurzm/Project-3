@@ -80,6 +80,13 @@ export default class DemoApp extends React.Component {
     this.handleDeleteTrip(this.state.id)
   }
 
+  handleUpdateClick = () => {
+    this.setState({
+      showCard: false
+    })
+    this.handleUpdateTrip(this.state.id)
+  }
+
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
@@ -212,7 +219,8 @@ export default class DemoApp extends React.Component {
         <TripCard show={this.state.showCard}
         {...this.state}
         close={this.handleCloseClick}
-        delete={this.handleDeleteClick} />
+        delete={this.handleDeleteClick}
+        save={this.handleUpdateClick} />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
