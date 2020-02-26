@@ -26,15 +26,15 @@ class Profile extends Component {
     }
     else {
       return (
-        <Container style={{ marginTop: "150px", marginBottom: "150px" }}>
-          <Row>
-            <Col className="col-md-8 text-justify">
+        <Container className="p-4" style={{marginTop: "100px", marginBottom: "100px"}}>
+          <Row className="mt-5">
+            <Col className="col-12 col-md-8 col-lg-9 text-justify order-2 order-md-1">
               <p>Welcome back, {this.props.username}!</p>
               <p>
                 Instructions here: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
               </p>
             </Col>
-            <Col className="col-md-4 text-right">
+            <Col className="col-12 col-md-4 col-lg-3 text-right order-1 order-md-2">
               <Link to="/location">
                 <button className="btn btn-warning mr-2">
                   Location <i className="fas fa-map-pin"></i>
@@ -44,6 +44,8 @@ class Profile extends Component {
                 <a href="/chat" target="_" className="text-white text-decoration-none">Chat <i class="far fa-comment-dots"></i></a>
               </button>
             </Col>
+          </Row>
+          <Row>
             <Col className="col-md-12">
               <Calender />
             </Col>

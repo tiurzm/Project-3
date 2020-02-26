@@ -103,7 +103,7 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4>Trip Start</h4>
+            <h4><i className="far fa-clock"></i> Trip Start</h4>
             <Clock deadline={props.start} />
           </div>
         </Modal.Body>
