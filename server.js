@@ -1,5 +1,6 @@
 // Dependencies
 // ==================================================
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -9,6 +10,7 @@ const mongoose = require("mongoose");
 const passport = require('passport');
 const path = require('path');
 
+
 // Next 2 needed for Chatkit:
 const cors = require('cors')
 const Chatkit = require('@pusher/chatkit-server')
@@ -17,10 +19,14 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
+const chatInstanceLocator = process.env.REACT_APP_CHAT_INSTANCE_LOCATOR;
+
+const chatKey = process.env.CHAT_KEY;
+
 // Chatkit credentials
 const chatkit = new Chatkit.default({
-  instanceLocator: 'v1:us1:d4c14810-ec52-4731-a04b-a6a95a8e9e6c',
-  key: 'b28d4a01-721e-4566-bab6-a4b61ba6bd0f:IRnfX/i/xgU98LFd5ooJIJK2+wn418YLvTnk07cZYbk=',
+  instanceLocator: chatInstanceLocator,
+  key: chatKey,
 })
 
 // Middleware

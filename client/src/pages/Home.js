@@ -1,11 +1,8 @@
 import React from "react";
 import Carousel from "../components/Carousel";
 import { Container, Row, Col } from 'react-bootstrap';
-import Map from "../components/GoogleMaps";
-
 
 function Home() {
-    const googleKey = process.env.REACT_APP_GOOGLE_KEY
     return (
         <>
             <Carousel />
@@ -28,16 +25,6 @@ function Home() {
                         <hr />
                         <h6>If you’re new, press “Register” at the top of this page (it’s free). If you already began organizing a trip, just “Log In” to resume your plans.</h6>
                     </Col >
-                    <Col data-aos="fade-up" className= "mb-5 mx-auto">
-                        <div style={{ width: '80vw', height: '80vh' }}>
-                            <Map
-                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${googleKey}&libraries=geometry,drawing,places`}
-                                loadingElement={<div style={{ height: '100%' }} />}
-                                containerElement={<div style={{ height: '100%' }} />}
-                                mapElement={<div style={{ height: '100%' }} />}
-                            />
-                        </div>
-                    </Col>
                 </Row>
             </Container>
 

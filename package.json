@@ -88,7 +88,6 @@
     "passport-session": "^1.0.2",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-google-maps": "^9.4.5",
-    "react-places-autocomplete": "^7.2.1",
-    "use-open-window": "^1.0.7"
+    "react-places-autocomplete": "^7.2.1"
   }
 }

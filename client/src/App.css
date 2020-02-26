@@ -1,3 +1,8 @@
+.btn {
+    font-family: 'Jaldi', sans-serif;
+    font-size: 18px;
+}
+
 .row, .form-group {
     font-family: 'Jaldi', sans-serif;
     font-size: 22px;

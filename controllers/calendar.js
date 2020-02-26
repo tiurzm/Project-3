@@ -3,7 +3,6 @@ const dbUsers = require("../models/user")
 
 module.exports = {
     get: function(req, res) {
-        console.log(req.session.passport.user)
         dbUsers.find({
             _id: req.session.passport.user
         })
@@ -11,7 +10,7 @@ module.exports = {
            path: "trip", populate: {path: "trip"}
         })
         .then(function(dbTrips) {
-            console.log("trips", dbTrips)
+            // console.log("trips", dbTrips)
             res.send(dbTrips);
         })
         .catch(function(err) {
@@ -21,10 +20,11 @@ module.exports = {
     add: function(req, res){
         var newTrip = {
             title: req.body.title,
+            location: req.body.location,
             start: req.body.start,
             end: req.body.end,
             description: req.body.description,
-            user: req.cookies.user_id
+            user: req.session.passport.user
 
         };
 
@@ -32,7 +32,7 @@ module.exports = {
             .then(function(trip) {
                 console.log(trip)
                return dbUsers.findOneAndUpdate(
-                    {_id: req.cookies.user_id}, 
+                    {_id: req.session.passport.user}, 
                     { $push: { trip: trip.id } }, 
                     { new: true })
                 .then(function(user){
@@ -45,7 +45,7 @@ module.exports = {
             });
     },
     delete: function(req, res) {
-        dbTrips.findByIdAndDelete(req.cookies.user_id)
+        dbTrips.findByIdAndDelete(req.body.trip.id)
             .then(function(dbTrips) {
                 console.log("deleted trip", dbTrips)
                 res.send(dbTrips);
@@ -54,8 +54,28 @@ module.exports = {
                 return err;
             });
       },
-    // update: function (req, res){
-    //     dbTrips.findOneAndUpdate({_id: req.cookies.user_id})
-    // }
+    getTrip: function(req, res){
+        console.log(req.params.id);
+        dbTrips.findById(req.params.id)
+        .then(function(dbTrips) {
+            console.log("trips", dbTrips)
+            res.send(dbTrips);
+        })
+        .catch(function(err) {
+            return err;
+        });
+    },
+    update: function (req, res){
+        dbTrips.findOneAndUpdate({
+            //_id:trip ID here
+        })
+        .then(function(dbTrips) {
+            console.log("trips", dbTrips)
+            res.send(dbTrips);
+        })
+        .catch(function(err) {
+            return err;
+        });
+    }
 
 }; 
