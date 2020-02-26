@@ -31,7 +31,11 @@ class Profile extends Component {
             <Col className="col-12 col-md-8 col-lg-9 text-justify order-2 order-md-1">
               <p>Welcome back, {this.props.username}!</p>
               <p>
-                Instructions here: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                Let's get started! 
+                <li>Click anywhere on the calendar and a box will open to input your trip details.</li>
+                <li> If your travel companions have a GroupAway account, you can list them as Guests for a particular trip. Just choose their usernames from the dropdown menu.</li>
+                <li>Explore your destination with the in-app <strong>Location</strong> feature.</li>
+                <li>Use the in-app <strong>Chat</strong> to discuss your trip with friends and family.</li>
               </p>
             </Col>
             <Col className="col-12 col-md-4 col-lg-3 text-right order-1 order-md-2">

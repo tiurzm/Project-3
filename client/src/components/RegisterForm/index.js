@@ -96,7 +96,7 @@ constructor(props) {
                <p className="error">{this.state.errorUsername}</p>
             </div>
             <div className="form-group">
-               <label htmlFor="password">Password</label>
+               <label htmlFor="password">Password (at least 6 characters long)</label>
                <input className="form-control"
                   value={this.state.password}
                   onChange={this.handleInputChange}
