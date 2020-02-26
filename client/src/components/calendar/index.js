@@ -10,30 +10,13 @@ import axios from "../../utils/API";
 import moment from "moment";
 
 export default class DemoApp extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     calendarWeekends: true,
-  //     eventSources: [],
-  //     title: "",
-  //     location: "",
-  //     start: new Date().getUTCHours(),
-  //     end: new Date().getUTCHours(),
-  //     description: "",
-  //     showModal: false,
-  //     errorTitle: "",
-  //     errorStart: "",
-  //     errorEnd: "",
-  //     errorDescription: "",
-  //     users: []
-  //   };
-  // }
 
   componentDidMount() {
     this.refreshTrips();
     this.getAllUsers();
   }
 
+  // get all users for guests list
   getAllUsers() {
     axios.getAllUsers().then(resp => {
       console.log(resp.data);
@@ -43,6 +26,7 @@ export default class DemoApp extends React.Component {
     });
   }
 
+  // display trips on the calendar
   refreshTrips() {
     axios.getTrips().then(resp => {
       this.setState(
@@ -81,12 +65,12 @@ export default class DemoApp extends React.Component {
     errorEnd: "",
     errorDescription: "",
     showCard: false,
-    users: []    
+    users: [] 
   }
 
-
+  
   handleEventClick = (event) => {
-    // get the trip's id
+    // get the trip's id to get the trip data from database
     console.log(event);
     this.setState({
       showCard: true
@@ -94,6 +78,12 @@ export default class DemoApp extends React.Component {
     this.handleTrip(event.event.extendedProps._id)
   }
 
+  handleId = (event) => {
+    console.log(event);
+
+  }
+
+  // delete trip button
   handleDeleteClick = () => {
     this.setState({
       showCard: false
@@ -101,6 +91,7 @@ export default class DemoApp extends React.Component {
     this.handleDeleteTrip(this.state.id)
   }
 
+  // upddate trip button
   handleUpdateClick = () => {
     this.setState({
       showCard: false
@@ -108,21 +99,28 @@ export default class DemoApp extends React.Component {
     this.handleUpdateTrip(this.state.id)
   }
 
+  // get trip's data from database
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
+      const dateStart = res.data.start;
+      const start = moment(dateStart).format('YYYY-MM-DD');
+      const dateEnd = res.data.end; 
+      const end = moment(dateEnd).format('YYYY-MM-DD');
+      console.log(start)
       this.setState({
         id: res.data._id,
         title: res.data.title,
         location: res.data.location,
-        start: res.data.start,
-        end: res.data.end,
+        start: start,
+        end: end,
         description: res.data.description
       })
     })
     .catch(err => console.log(err));
   }
 
+  // delete a trip
   handleDeleteTrip = (id) => {
     axios.deleteTrip(id)
     .then(() => {
@@ -132,6 +130,7 @@ export default class DemoApp extends React.Component {
 
   }
 
+  // update a trip
   handleUpdateTrip = (id) => {
     axios.update(id)
     .then(res => {
@@ -170,6 +169,7 @@ export default class DemoApp extends React.Component {
     calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
   };
 
+  // close modal and clear input
   handleCloseClick = () => {
     this.setState({
       showModal: false,
@@ -182,9 +182,9 @@ export default class DemoApp extends React.Component {
     });
   };
 
+  // click calendar
   handleDateClick = () => {
     this.setState({
-      // startDate: new Date(arg.date),
       showModal: true,
       title: "",
       location:"",
@@ -194,6 +194,7 @@ export default class DemoApp extends React.Component {
     })
   };
 
+  // save a trip to database
   handleSaveTrip = () => {
     if (
       this.state.title &&
@@ -265,6 +266,7 @@ export default class DemoApp extends React.Component {
             events={this.state.eventSources}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
+            getId={this.handleId}
           />
         </div>
       </div>
