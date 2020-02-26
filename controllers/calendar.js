@@ -45,7 +45,8 @@ module.exports = {
             });
     },
     delete: function(req, res) {
-        dbTrips.findByIdAndDelete(req.body.trip.id)
+        console.log(req.params.id)
+        dbTrips.findByIdAndDelete(req.params.id)
             .then(function(dbTrips) {
                 console.log("deleted trip", dbTrips)
                 res.send(dbTrips);
@@ -55,7 +56,6 @@ module.exports = {
             });
       },
     getTrip: function(req, res){
-        console.log(req.params.id);
         dbTrips.findById(req.params.id)
         .then(function(dbTrips) {
             console.log("trips", dbTrips)
@@ -66,9 +66,7 @@ module.exports = {
         });
     },
     update: function (req, res){
-        dbTrips.findOneAndUpdate({
-            //_id:trip ID here
-        })
+        dbTrips.findByIdAndUpdate(req.params.id)
         .then(function(dbTrips) {
             console.log("trips", dbTrips)
             res.send(dbTrips);

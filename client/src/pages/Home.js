@@ -5,7 +5,7 @@ import Map from "../components/GoogleMaps";
 
 
 function Home() {
-    const googleKey = process.env.REACT_APP_GOOGLE_KEY
+    // const googleKey = process.env.REACT_APP_GOOGLE_KEY
     return (
         <>
             <Carousel />
@@ -30,12 +30,12 @@ function Home() {
                     </Col >
                     <Col data-aos="fade-up" className= "mb-5 mx-auto">
                         <div style={{ width: '80vw', height: '80vh' }}>
-                            <Map
+                            {/* <Map
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${googleKey}&libraries=geometry,drawing,places`}
                                 loadingElement={<div style={{ height: '100%' }} />}
                                 containerElement={<div style={{ height: '100%' }} />}
                                 mapElement={<div style={{ height: '100%' }} />}
-                            />
+                            /> */}
                         </div>
                     </Col>
                 </Row>
