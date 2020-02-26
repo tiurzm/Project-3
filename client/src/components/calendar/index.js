@@ -10,24 +10,24 @@ import axios from "../../utils/API";
 import moment from "moment";
 
 export default class DemoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      calendarWeekends: true,
-      eventSources: [],
-      title: "",
-      location: "",
-      start: new Date().getUTCHours(),
-      end: new Date().getUTCHours(),
-      description: "",
-      showModal: false,
-      errorTitle: "",
-      errorStart: "",
-      errorEnd: "",
-      errorDescription: "",
-      users: []
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     calendarWeekends: true,
+  //     eventSources: [],
+  //     title: "",
+  //     location: "",
+  //     start: new Date().getUTCHours(),
+  //     end: new Date().getUTCHours(),
+  //     description: "",
+  //     showModal: false,
+  //     errorTitle: "",
+  //     errorStart: "",
+  //     errorEnd: "",
+  //     errorDescription: "",
+  //     users: []
+  //   };
+  // }
 
   componentDidMount() {
     this.refreshTrips();
