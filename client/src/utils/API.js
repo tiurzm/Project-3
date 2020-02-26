@@ -4,8 +4,8 @@ export default {
 
    // Authentication methods
    // ===============================================
-   deleteTrip: function(trip){
-      return axios.get("/api/calendar/delete", trip);
+   deleteTrip: function(){
+      return axios.get("/api/calendar/delete");
    },
 
    getTrips: function() {
@@ -17,6 +17,9 @@ export default {
    saveTrip: function (trip){
       console.log(trip)
       return axios.post("/api/calendar/add", trip);
+   },
+   update: function (){
+      return axios.post("/api/calendar/add")
    },
 
    getUser: function () {

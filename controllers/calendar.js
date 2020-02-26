@@ -65,9 +65,18 @@ module.exports = {
         .catch(function(err) {
             return err;
         });
+    },
+    update: function (req, res){
+        dbTrips.findOneAndUpdate({
+            //_id:trip ID here
+        })
+        .then(function(dbTrips) {
+            console.log("trips", dbTrips)
+            res.send(dbTrips);
+        })
+        .catch(function(err) {
+            return err;
+        });
     }
-    // update: function (req, res){
-    //     dbTrips.findOneAndUpdate({_id: req.cookies.user_id})
-    // }
 
 }; 
