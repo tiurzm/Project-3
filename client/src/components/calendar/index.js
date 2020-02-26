@@ -68,6 +68,7 @@ export default class DemoApp extends React.Component {
   state = {
     calendarWeekends: true,
     eventSources: [],
+    id: "",
     title: "",
     location: "",
     start: new Date(),
@@ -90,15 +91,28 @@ export default class DemoApp extends React.Component {
     this.setState({
       showCard: true
     })
-    this.handleTrip(event.event.extendedProps._id); 
+    this.handleTrip(event.event.extendedProps._id)
+  }
 
+  handleDeleteClick = () => {
+    this.setState({
+      showCard: false
+    })
+    this.handleDeleteTrip(this.state.id)
+  }
+
+  handleUpdateClick = () => {
+    this.setState({
+      showCard: false
+    })
+    this.handleUpdateTrip(this.state.id)
   }
 
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
-      console.log(res)
       this.setState({
+        id: res.data._id,
         title: res.data.title,
         location: res.data.location,
         start: res.data.start,
@@ -109,18 +123,32 @@ export default class DemoApp extends React.Component {
     .catch(err => console.log(err));
   }
 
-  handleDeleteTrip = () => {
-    axios
-      .deleteTrip(this.state)
-      .then(() => {
-        this.refreshTrips();
-        this.setState({
-          showCard: false
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  handleDeleteTrip = (id) => {
+    axios.deleteTrip(id)
+    .then(() => {
+      this.refreshTrips();
+    })
+  .catch(err => console.log(err));
 
+  }
+
+  handleUpdateTrip = (id) => {
+    axios.update(id)
+    .then(res => {
+      console.log(res)
+      this.setState({
+        title: res.data.title,
+        location: res.data.location,
+        start: res.data.start,
+        end: res.data.end,
+        description: res.data.description,
+        showCard: false
+      })
+      this.refreshTrips();
+    })
+    .catch(err => console.log(err));
+  }
+ 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -207,29 +235,21 @@ export default class DemoApp extends React.Component {
 
   render() {
     return (
-      <div className="demo-app">
-        <TripForm
-          show={this.state.showModal}
-          {...this.state}
-          close={this.handleCloseClick}
-          save={this.handleSaveTrip}
-          handleInputChange={this.handleInputChange}
-        />
-        <TripCard
-          show={this.state.showCard}
-          {...this.state}
-          close={this.handleCloseClick}
-          delete={this.handleDeleteTrip}
-        />
-        <div className="demo-app-top my-5">
-          <button onClick={this.toggleWeekends} className="btn btn-info">
-            toggle weekends
-          </button>
-          &nbsp;
-          <button onClick={this.gotoPast} className="btn btn-dark">
-            go to a date in the past
-          </button>
-          &nbsp; (also, click a date/time to add an event)
+      <div className='demo-app'>
+        <TripForm show={this.state.showModal}
+        {...this.state}
+        close={this.handleCloseClick} 
+        save={this.handleSaveTrip}  
+        handleInputChange={this.handleInputChange} />
+        <TripCard show={this.state.showCard}
+        {...this.state}
+        close={this.handleCloseClick}
+        delete={this.handleDeleteClick}
+        save={this.handleUpdateClick} />
+        <div className='demo-app-top my-5'>
+          <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
+          <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
+          (also, click a date/time to add an event)
         </div>
         <div className="demo-app-calendar">
           <FullCalendar

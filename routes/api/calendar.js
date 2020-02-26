@@ -14,13 +14,13 @@ router.post("/add",
     tripsController.add
 )
 
-router.post("/delete",
+router.post("/delete/:id",
     tripsController.delete
 )
 router.get("/trip/:id",
     tripsController.getTrip
 )
-router.post("/update",
+router.post("/update/:id",
     tripsController.update
 )
 
