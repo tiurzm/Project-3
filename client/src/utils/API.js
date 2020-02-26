@@ -20,6 +20,9 @@ export default {
       return axios.get("/auth/user");
    },
 
+   getAllUsers: function () {
+      return axios.get("/api/users")
+   },
    logout: function () {
       return axios.get("/auth/logout")
    }
