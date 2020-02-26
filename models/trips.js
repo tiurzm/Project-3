@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const moment = require('moment-timezone');
-
-const dateDenver = moment.tz(Date.now(), "America/Denver")
-console.log(dateDenver)
 
 const TripSchema = new Schema({
     title: {
@@ -17,23 +13,14 @@ const TripSchema = new Schema({
             "Title should be longer."
           ]
     },
-    start: {
-      type: Date,
-      default: dateDenver
-    },
-    end:{
-      type: Date,
-      default: dateDenver
-    }, 
+    start: Date,
+    end: Date,
     description: String,
     created: {
       type: Date,
-      default: dateDenver
+      default: Date.now
     },
-    lastUpdate: {
-      type: Date,
-      default: dateDenver
-    },
+    lastUpdate:Date,
     user: {
       type: Schema.Types.ObjectId,
       ref: "User"
@@ -55,10 +42,6 @@ TripSchema.methods.lastUpdatedDate = function() {
   // Return this new date
   return this.lastUpdated;
 };
-TripSchema.methods.timeZone = function(){
-  this.start = Date+dateDenver
-  return this.start
-}
 
 const Trip = mongoose.model("Trip", TripSchema);
 

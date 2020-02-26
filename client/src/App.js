@@ -6,11 +6,10 @@ import Register from "./pages/Register";
 import Modal from "./components/Modal";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar"
-import Confirm from "./pages/Confirm";
+import Location from "./pages/Location";
 import Chat from "./pages/Chat";
 import NoMatch from "./pages/NoMatch";
 import API from "./utils/API";
-import ls from 'local-storage';
 import "./App.css";
 
 
@@ -27,8 +26,6 @@ class App extends Component{
   logIn = () => {
     return API.getUser()
     .then(user => {
-      console.log(user);
-      console.log(user.data.loggedIn);
       this.setState({
         isLoggedIn: user.data.loggedIn,
         username: user.data.username
@@ -59,8 +56,7 @@ class App extends Component{
           <Route exact path="/register"
           render={(props) => <Register {...props} login={this.logIn}/>}
           />
-         
-          <Route exact path="/confirm" component={Confirm}/>
+          <Route exact path="/location" component={Location}/>
           <Route exact path="/chat" component={Chat}/>
           <Route component={NoMatch} />
         </Switch>

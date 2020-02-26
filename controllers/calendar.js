@@ -24,7 +24,7 @@ module.exports = {
             start: req.body.start,
             end: req.body.end,
             description: req.body.description,
-            user: req.cookies.user_id
+            user: req.session.passport.user
 
         };
 
@@ -32,7 +32,7 @@ module.exports = {
             .then(function(trip) {
                 console.log(trip)
                return dbUsers.findOneAndUpdate(
-                    {_id: req.cookies.user_id}, 
+                    {_id: req.session.passport.user}, 
                     { $push: { trip: trip.id } }, 
                     { new: true })
                 .then(function(user){
@@ -45,7 +45,8 @@ module.exports = {
             });
     },
     delete: function(req, res) {
-        dbTrips.findByIdAndDelete(req.cookies.user_id)
+        dbTrips.findByIdAndDelete(req.body.trip.id)
+            console.log(req.body)
             .then(function(dbTrips) {
                 console.log("deleted trip", dbTrips)
                 res.send(dbTrips);

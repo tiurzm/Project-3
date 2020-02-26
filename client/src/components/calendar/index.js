@@ -1,12 +1,15 @@
-import React from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import TripForm from "components/FormModal";
-import "./main.scss";
-import axios from "../../utils/API";
-import moment from "moment";
+import React from 'react'
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin from '@fullcalendar/interaction'
+import TripForm from 'components/FormModal'
+import TripCard from 'components/TripCard'
+import './main.scss'
+import axios from '../../utils/API'
+import moment from 'moment';
+
+
 
 export default class DemoApp extends React.Component {
   constructor(props) {
@@ -31,33 +34,64 @@ export default class DemoApp extends React.Component {
   }
 
   refreshTrips() {
-    axios.getTrips().then(resp => {
-      this.setState(
-        {
-          eventSources: resp.data[0].trip.map(e => ({
-            ...e,
-            start: moment(e.start)
-              .add(1, "days")
-              .format(),
-            end: moment(e.end)
-              .add(2, "days")
-              .format()
-          }))
-        },
-        function() {
-          console.log(this.state.eventSources);
-        }
-      );
-    });
-
-    this.props.detectChange(true);
+    axios.getTrips().then((resp) => {
+      this.setState({
+        eventSources: resp.data[0].trip.map(e => ({
+          ...e,
+          start: moment(e.start).add(1, 'days').format(),
+          end: moment(e.end).add(2, 'days').format(),
+        }))
+      }, function() {console.log(this.state.eventSources)})
+    })
   }
-  calendarComponentRef = React.createRef();
 
-  handleEventClick = info => {
-    alert("Event: " + info.event.title);
-  };
+  calendarComponentRef = React.createRef()
+  state = {
+    calendarWeekends: true,
+    eventSources: [],
+    title: "",
+    start: new Date().getUTCHours(),
+    end: new Date().getUTCHours(),
+    description: "",
+    showModal: false,
+    errorTitle: "",
+    errorStart: "",
+    errorEnd: "",
+    errorDescription: "",
+    showCard: false,
+    tripTitle: ""
+    
+  }
 
+  handleEventClick = () => {
+    this.setState({
+      showCard: true
+    })
+    this.handleTrip(); 
+   
+  }
+
+  handleTrip = () => {
+    axios.getTrips().then(res => {
+      this.setState({
+        tripTitle: res.data[0].trip[0].title
+      })
+      console.log(res.data[0].trip[0].title)
+    })
+  }
+
+  handleDeleteTrip = () => {
+    axios.deleteTrip(this.state)
+    .then(() => {
+      this.refreshTrips();
+      this.setState({
+        showCard:false
+      })
+    })
+  .catch(err => console.log(err));
+
+  }
+ 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -81,9 +115,14 @@ export default class DemoApp extends React.Component {
 
   handleCloseClick = () => {
     this.setState({
-      showModal: false
-    });
-  };
+      showModal: false,
+      showCard: false,
+      errorTitle: "",
+      errorStart: "",
+      errorEnd: "",
+      errorDescription: ""
+    })
+  }
 
   handleDateClick = arg => {
     this.setState({
@@ -124,25 +163,18 @@ export default class DemoApp extends React.Component {
     }
   }
 
-  // handleSaveTrip =() => {
-  //   axios.saveTrip(this.state)
-  //   .then(() => {
-  //     this.refreshTrips();
-  //     this.setState({
-  //       showModal: false
-  //     })
-  //   })
-  // .catch(err => console.log(err));
-  // }
-
   render() {
     return (
       <div className='demo-app'>
         <TripForm show={this.state.showModal}
-          {...this.state}
-          close={this.handleCloseClick}
-          save={this.handleSaveTrip}
-          handleInputChange={this.handleInputChange} />
+        {...this.state}
+        close={this.handleCloseClick} 
+        save={this.handleSaveTrip}  
+        handleInputChange={this.handleInputChange} />
+        <TripCard show={this.state.showCard}
+        {...this.state}
+        close={this.handleCloseClick}
+        delete={this.handleDeleteTrip} />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
