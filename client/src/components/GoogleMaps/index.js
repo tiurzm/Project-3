@@ -12,14 +12,17 @@ function Map(){
         lat: 39.106667,
         lng: -94.676392
     });
+    const [placeId, setplaceId] = React.useState("");
     
     const center = coordinates
-    console.log(address)
     const handleSelect = async value => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
         setAddress(value);
         setCoordinates(latLng);
+        setplaceId(results[0].place_id)
+        console.log(results[0].place_id)
+       
     };        
     return(
         <div>

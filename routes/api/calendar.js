@@ -17,5 +17,8 @@ router.post("/add",
 router.post("/delete",
     tripsController.delete
 )
+router.get("/trip/:id",
+    tripsController.getTrip
+)
 
     module.exports = router;

@@ -11,8 +11,11 @@ export default {
    getTrips: function() {
       return axios.get("/api/calendar/populated");
    },
-   
+   getOneTrip: function(id){
+      return axios.get(`/api/calendar/trip/${id}`);
+   },
    saveTrip: function (trip){
+      console.log(trip)
       return axios.post("/api/calendar/add", trip);
    },
 
