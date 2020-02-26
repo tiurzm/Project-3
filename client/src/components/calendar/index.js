@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -17,6 +16,7 @@ export default class DemoApp extends React.Component {
       calendarWeekends: true,
       eventSources: [],
       title: "",
+      location: "",
       start: new Date().getUTCHours(),
       end: new Date().getUTCHours(),
       description: "",
@@ -28,37 +28,6 @@ export default class DemoApp extends React.Component {
       users: []
     };
   }
-=======
-import React from 'react'
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import TripForm from 'components/FormModal'
-import TripCard from 'components/TripCard'
-import './main.scss'
-import axios from '../../utils/API'
-import moment from 'moment';
-
-export default class DemoApp extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     calendarWeekends: true,
-  //     eventSources: [],
-  //     title: "",
-  //     location: "",
-  //     start: new Date(),
-  //     end: new Date(),
-  //     description: "",
-  //     showModal: false,
-  //     errorTitle: "",
-  //     errorStart: "",
-  //     errorEnd: "",
-  //     errorDescription: ""
-  //   };
-  // }
->>>>>>> a49066e6d11adf86dc495d432f6dade895e1d7ed
 
   componentDidMount() {
     this.refreshTrips();
@@ -100,6 +69,7 @@ export default class DemoApp extends React.Component {
     calendarWeekends: true,
     eventSources: [],
     title: "",
+    location: "",
     start: new Date(),
     end: new Date(),
     description: "",
@@ -109,14 +79,9 @@ export default class DemoApp extends React.Component {
     errorStart: "",
     errorEnd: "",
     errorDescription: "",
-<<<<<<< HEAD
     showCard: false,
-    tripTitle: ""
-  };
-=======
-    showCard: false    
+    users: []    
   }
->>>>>>> a49066e6d11adf86dc495d432f6dade895e1d7ed
 
 
   handleEventClick = (event) => {
@@ -124,29 +89,16 @@ export default class DemoApp extends React.Component {
     console.log(event);
     this.setState({
       showCard: true
-<<<<<<< HEAD
-    });
-    this.handleTrip();
-  };
-=======
     })
     this.handleTrip(event.event.extendedProps._id); 
 
   }
->>>>>>> a49066e6d11adf86dc495d432f6dade895e1d7ed
 
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
       console.log(res)
       this.setState({
-<<<<<<< HEAD
-        tripTitle: res.data[0].trip[0].title
-      });
-      console.log(res.data[0].trip[0].title);
-    });
-  };
-=======
         title: res.data.title,
         location: res.data.location,
         start: res.data.start,
@@ -156,7 +108,6 @@ export default class DemoApp extends React.Component {
     })
     .catch(err => console.log(err));
   }
->>>>>>> a49066e6d11adf86dc495d432f6dade895e1d7ed
 
   handleDeleteTrip = () => {
     axios
