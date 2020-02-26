@@ -38,6 +38,12 @@ export default function FormModal(props) {
             </div>
 
             <div class="form-group">
+    <label for="exampleFormControlSelect2">Guests</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+    {userDropdowns(props.users)}
+    </select>
+  </div>
+            <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
               <select class="form-control" id="exampleFormControlSelect1">
                 {userDropdowns(props.users)}
