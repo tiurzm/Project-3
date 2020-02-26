@@ -20,5 +20,8 @@ router.post("/delete",
 router.get("/trip/:id",
     tripsController.getTrip
 )
+router.post("/update",
+    tripsController.update
+)
 
     module.exports = router;
