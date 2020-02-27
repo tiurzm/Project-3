@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends Component {
     state = {
@@ -31,22 +31,22 @@ class LoginForm extends Component {
                     "Content-Type": "application/json"
                 })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
-                this.props.login().then( () => {
-                    global.$("#loginModal").modal("hide");
-                    this.props.history.push('/profile')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    this.props.login().then(() => {
+                        global.$("#loginModal").modal("hide");
+                        this.props.history.push('/profile')
+                    })
+
                 })
-                    
-            })
-            .catch(err => {
-                this.setState({
-                    errorUsername: "",
-                    errorPassword: "Incorrect Username or Password. Please try again."
-                })
-            });
+                .catch(err => {
+                    this.setState({
+                        errorUsername: "",
+                        errorPassword: "Incorrect Username or Password. Please try again."
+                    })
+                });
 
             this.setState({
                 username: "",
@@ -55,7 +55,7 @@ class LoginForm extends Component {
                 errorPassword: ""
             });
         } else {
-            this.setState ({
+            this.setState({
                 errorUsername: "*Please fill out your username",
                 errorPassword: "*Please fill out your password"
             })
@@ -76,7 +76,7 @@ class LoginForm extends Component {
                         type="text"
                         placeholder="Username"
                     />
-                    <p style={{color: "red", fontSize: "20px"}}>{this.state.errorUsername}</p>
+                    <p style={{ color: "red", fontSize: "20px" }}>{this.state.errorUsername}</p>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
@@ -87,11 +87,11 @@ class LoginForm extends Component {
                         type="password"
                         placeholder="Password"
                     />
-                    <p style={{color: "red", fontSize: "20px"}}>{this.state.errorPassword}</p>
+                    <p style={{ color: "red", fontSize: "20px" }}>{this.state.errorPassword}</p>
                 </div>
                 <button type="button" onClick={this.handleFormSubmit}
                     className="btn btn-primary"
-                    > Log In
+                > Log In
                 </button>
             </form>
         )

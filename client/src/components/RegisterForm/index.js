@@ -15,7 +15,7 @@ constructor(props) {
       errorUsername: "",
       errorPassword: "",
       errorConfirm: "",
-      toConfirm: false
+      errorRequest:""
    }
 
    componentDidMount() {
@@ -63,11 +63,19 @@ constructor(props) {
             })
          })
          .then(response => {
+            if (!response.ok) {
+               response.text().then((body) => {
+                  this.setState({
+                     errorRequest: body + " Please enter different username."
+                  })
+               })
+               return;
+            }
             this.props.login().then( () => {
                this.props.history.push('/profile')
             })
          })
-            .catch(err => console.log(err));
+         .catch(err => console.log(err));
 
          this.setState({
             username: "",
@@ -96,7 +104,7 @@ constructor(props) {
                <p className="error">{this.state.errorUsername}</p>
             </div>
             <div className="form-group">
-               <label htmlFor="password">Password</label>
+               <label htmlFor="password">Password (at least 6 characters long)</label>
                <input className="form-control"
                   value={this.state.password}
                   onChange={this.handleInputChange}
@@ -117,9 +125,10 @@ constructor(props) {
                />
                <p className="error">{this.state.errorConfirm}</p>
             </div>
+            <p className="error">{this.state.errorRequest}</p>
             <button className="btn btn-primary" onClick={this.handleFormSubmit}>
                Sign Up
-               </button>
+            </button>
          </form>
       )
    }

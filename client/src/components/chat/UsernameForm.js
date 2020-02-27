@@ -27,6 +27,7 @@ class UsernameForm extends Component {
         <Row>
           <Col>
             <h2>What name do you want to use to chat?</h2>
+            <h6>You will see who else is online once you're in the chat window.</h6>
             <form onSubmit={this.onSubmit}>
               <div className="form-group" style={{maxWidth: "400px", width: "100%"}}>
                 <input className="form-control mb-2" 
