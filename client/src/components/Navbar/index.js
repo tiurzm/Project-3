@@ -53,7 +53,7 @@ class Navbar extends React.Component {
 
     } else {
       return (
-        <nav className="navbar navbar-expand-lg fixed-top navbar-white bg-white py-0">
+        <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-white py-0">
           <Link className="navbar-brand text-body" to="/profile">
             GroupAway
           </Link>

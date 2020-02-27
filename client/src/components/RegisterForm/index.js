@@ -15,7 +15,7 @@ constructor(props) {
       errorUsername: "",
       errorPassword: "",
       errorConfirm: "",
-      toConfirm: false
+      errorRequest:""
    }
 
    componentDidMount() {
@@ -63,11 +63,19 @@ constructor(props) {
             })
          })
          .then(response => {
+            if (!response.ok) {
+               response.text().then((body) => {
+                  this.setState({
+                     errorRequest: "Registration failed. " + body
+                  })
+               })
+               return;
+            }
             this.props.login().then( () => {
                this.props.history.push('/profile')
             })
          })
-            .catch(err => console.log(err));
+         .catch(err => console.log(err));
 
          this.setState({
             username: "",
@@ -117,9 +125,10 @@ constructor(props) {
                />
                <p className="error">{this.state.errorConfirm}</p>
             </div>
+            <p className="error">{this.state.errorRequest}</p>
             <button className="btn btn-primary" onClick={this.handleFormSubmit}>
                Sign Up
-               </button>
+            </button>
          </form>
       )
    }
