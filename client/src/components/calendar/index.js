@@ -8,6 +8,7 @@ import TripCard from "components/TripCard";
 import "./main.scss";
 import axios from "../../utils/API";
 import moment from "moment";
+import { ResponsiveEmbed } from "react-bootstrap";
 
 export default class DemoApp extends React.Component {
 
@@ -19,7 +20,6 @@ export default class DemoApp extends React.Component {
   // get all users for guests list
   getAllUsers() {
     axios.getAllUsers().then(resp => {
-      console.log(resp.data);
       this.setState({
         users: resp.data
       });
@@ -65,12 +65,8 @@ export default class DemoApp extends React.Component {
     errorEnd: "",
     errorDescription: "",
     showCard: false,
-<<<<<<< HEAD
     users: [],
     guests: []    
-=======
-    users: []
->>>>>>> 0e040d5cc3e43bb851f51b6f074ebbd8f95ff73f
   }
 
 
@@ -114,7 +110,8 @@ export default class DemoApp extends React.Component {
           location: res.data.location,
           start: start,
           end: end,
-          description: res.data.description
+          description: res.data.description,
+          guests: res.data.guests
         })
       })
       .catch(err => console.log(err));
@@ -195,6 +192,18 @@ export default class DemoApp extends React.Component {
     })
   };
 
+  handleGuestsChange = (event) => {
+    let asArr = Array.prototype.slice.call(event.target.options);
+    let guestIds = asArr
+      .filter(option => option.selected)
+      .map(option => option.value);
+
+    this.setState({
+      guests: guestIds
+    })
+  }
+
+
   // save a trip to database
   handleSaveTrip = () => {
     if (
@@ -222,7 +231,8 @@ export default class DemoApp extends React.Component {
         errorLocation: "",
         errorStart: "",
         errorEnd: "",
-        errorDescription: ""
+        errorDescription: "",
+        guests: []
       });
     } else {
       this.setState({
@@ -243,13 +253,14 @@ export default class DemoApp extends React.Component {
           close={this.handleCloseClick}
           save={this.handleSaveTrip}
           handleInputChange={this.handleInputChange}
-        />
+          handleGuestsChange={this.handleGuestsChange} />
         <TripCard show={this.state.showCard}
           {...this.state}
           close={this.handleCloseClick}
           delete={this.handleDeleteClick}
           save={this.handleUpdateClick}
           handleInputChange={this.handleInputChange}
+          handleGuestsChange={this.handleGuestsChange} 
         />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;

@@ -40,20 +40,11 @@ export default function TripCard(props) {
             </div>
 
             <div class="form-group">
-<<<<<<< HEAD
     <label for="exampleFormControlSelect2">Guests</label>
     <select multiple class="form-control" name="guests" onChange={props.handleInputChange}  value={guest}>
     {userDropdowns(props.users)}
     </select>
   </div>
-=======
-              <label for="exampleFormControlSelect2">Guests</label>
-              <select multiple class="form-control" id="exampleFormControlSelect2">
-                {userDropdowns(props.users)}
-              </select>
-            </div>
-
->>>>>>> 0e040d5cc3e43bb851f51b6f074ebbd8f95ff73f
             <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
               <select class="form-control" name="guests" value={guest}
