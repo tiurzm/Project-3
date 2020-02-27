@@ -11,30 +11,12 @@ import moment from "moment";
 import { ResponsiveEmbed } from "react-bootstrap";
 
 export default class DemoApp extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     calendarWeekends: true,
-  //     eventSources: [],
-  //     title: "",
-  //     location: "",
-  //     start: new Date().getUTCHours(),
-  //     end: new Date().getUTCHours(),
-  //     description: "",
-  //     showModal: false,
-  //     errorTitle: "",
-  //     errorStart: "",
-  //     errorEnd: "",
-  //     errorDescription: "",
-  //     users: []
-  //   };
-  // }
-
   componentDidMount() {
     this.refreshTrips();
     this.getAllUsers();
   }
 
+  // get all users for guests list
   getAllUsers() {
     axios.getAllUsers().then(resp => {
       console.log(resp.data);
@@ -44,6 +26,7 @@ export default class DemoApp extends React.Component {
     });
   }
 
+  // display trip on calendar
   refreshTrips() {
     axios.getTrips().then(resp => {
       this.setState(
@@ -86,9 +69,9 @@ export default class DemoApp extends React.Component {
     guests: []    
   }
 
-
+  // show trip card
   handleEventClick = (event) => {
-    // get the trip's id
+    // get the trip's id from database
     console.log(event);
     this.setState({
       showCard: true
@@ -96,6 +79,7 @@ export default class DemoApp extends React.Component {
     this.handleTrip(event.event.extendedProps._id)
   }
 
+  // trip's delete button
   handleDeleteClick = () => {
     this.setState({
       showCard: false
@@ -103,6 +87,7 @@ export default class DemoApp extends React.Component {
     this.handleDeleteTrip(this.state.id)
   }
 
+  // trip's save changes button
   handleUpdateClick = () => {
     this.setState({
       showCard: false
@@ -110,22 +95,28 @@ export default class DemoApp extends React.Component {
     this.handleUpdateTrip(this.state.id)
   }
 
+  // get trip's data from database
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
+      const dateStart = res.data.start;
+      const start = moment(dateStart).format('YYYY-MM-DD');
+      const dateEnd = res.data.end;
+      const end = moment(dateEnd).format('YYYY-MM-DD');
+      console.log(start)
       this.setState({
         id: res.data._id,
         title: res.data.title,
         location: res.data.location,
-        start: res.data.start,
-        end: res.data.end,
-        description: res.data.description,
-        guests: res.data.guests
+        start: start,
+        end: end,
+        description: res.data.description
       })
     })
     .catch(err => console.log(err));
   }
 
+  // delete a trip
   handleDeleteTrip = (id) => {
     axios.deleteTrip(id)
     .then(() => {
@@ -135,6 +126,7 @@ export default class DemoApp extends React.Component {
 
   }
 
+  // update a trip
   handleUpdateTrip = (id) => {
     axios.update(id, this.state)
     .then(res => {
@@ -161,6 +153,7 @@ export default class DemoApp extends React.Component {
       [name]: value
     });
   };
+
   toggleWeekends = () => {
     this.setState({
       // update a property
@@ -173,6 +166,7 @@ export default class DemoApp extends React.Component {
     calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
   };
 
+  // close modal and clear input
   handleCloseClick = () => {
     this.setState({
       showModal: false,
@@ -185,6 +179,7 @@ export default class DemoApp extends React.Component {
     });
   };
 
+  // click calendar
   handleDateClick = () => {
     this.setState({
       // startDate: new Date(arg.date),
@@ -197,6 +192,7 @@ export default class DemoApp extends React.Component {
     })
   };
 
+  // guests list
   handleGuestsChange = (event) => {
     //Can't do filter and map on HTMLCollections
     let asArr = Array.prototype.slice.call(event.target.options);
@@ -209,6 +205,7 @@ export default class DemoApp extends React.Component {
     })
   }
 
+  // save a new trip
   handleSaveTrip = () => {
     if (
       this.state.title &&
@@ -264,8 +261,8 @@ export default class DemoApp extends React.Component {
         save={this.handleUpdateClick}
         handleInputChange={this.handleInputChange}
         handleGuestsChange={this.handleGuestsChange} />
-        <div className='demo-app-top my-5'>
-          <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
+        <div className='demo-app-top mb-4'>
+          <button onClick={this.toggleWeekends} className="btn btn-dark">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
           (also, click a date/time to add an event)
         </div>

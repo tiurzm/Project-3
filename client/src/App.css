@@ -11,3 +11,13 @@
 .row h1 {
     font-family: 'Signika', sans-serif;
 }
+
+#profile {
+    background: url(./pages/img/pf.jpeg)no-repeat center center fixed;
+    background-size: cover;
+}
+
+#text-profile, #calendar-profile{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}

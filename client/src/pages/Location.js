@@ -1,8 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import Map from "../components/GoogleMaps";
-import { Link } from "react-router-dom";
-
 
 function Location() {
     const googleKey = process.env.REACT_APP_GOOGLE_KEY
@@ -15,13 +13,13 @@ function Location() {
                         Choose "Map" or "Satellite" view (buttons top left of map). <br/>Display "Full Screen" (button top right of map). Happy exploring!
                     </p>
                 </Col>
-                <Col className="col-12 col-md-4 col-lg-3 text-right order-1 mb-3 order-md-2">
+                {/* <Col className="col-12 col-md-4 col-lg-3 text-right order-1 mb-3 order-md-2">
                     <Link to="/profile">
                         <button className="btn btn-info mb-2 ">
                             Back to Calendar <i className="far fa-calendar-alt"></i>
                         </button>
                     </Link>
-                </Col>
+                </Col> */}
             </Row>
             <Row className="mx-auto p-0 my-3">
                 <Col data-aos="fade-up" className="mb-5 col-md-12">
