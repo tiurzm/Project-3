@@ -66,7 +66,7 @@ constructor(props) {
             if (!response.ok) {
                response.text().then((body) => {
                   this.setState({
-                     errorRequest: body + " Please enter difference username."
+                     errorRequest: body + " Please enter different username."
                   })
                })
                return;
