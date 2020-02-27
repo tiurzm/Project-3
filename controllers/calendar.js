@@ -1,6 +1,19 @@
 const dbTrips = require("../models/trips");
 const dbUsers = require("../models/user")
 
+const assignUsersToTrip = (user, guests, tripId) => {
+    let userIds = [user, ...guests];
+    return dbUsers.updateMany(
+        {}, 
+        { $pull: { trip: tripId} })
+        .then(() => {
+        return dbUsers.updateMany(
+            {_id: { $in : userIds } }, 
+            { $push: { trip: tripId} }, 
+            { new: true });
+    })
+}
+
 module.exports = {
     get: function(req, res) {
         dbUsers.find({
@@ -24,20 +37,13 @@ module.exports = {
             start: req.body.start,
             end: req.body.end,
             description: req.body.description,
-            user: req.session.passport.user
-
+            user: req.session.passport.user,
+            guests: req.body.guests
         };
-
         dbTrips.create(newTrip) 
             .then(function(trip) {
-                console.log(trip)
-               return dbUsers.findOneAndUpdate(
-                    {_id: req.session.passport.user}, 
-                    { $push: { trip: trip.id } }, 
-                    { new: true })
-                .then(function(user){
-                    res.json(user)
-                })
+                assignUsersToTrip(req.session.passport.user,req.body.guests, trip.id)
+                .then(users => res.json(trip));
             })
             .catch(function(err) {
                 console.log(err)
@@ -72,17 +78,20 @@ module.exports = {
             start: req.body.start,
             end: req.body.end,
             description: req.body.description,
-            user: req.session.passport.user
-
+            user: req.session.passport.user,
+            guests: req.body.guests
         };
         dbTrips.findByIdAndUpdate(req.params.id, updatedTrip)
         .then(function(dbTrips) {
-            console.log("trips", dbTrips)
-            res.send(dbTrips);
+            assignUsersToTrip(req.session.passport.user,req.body.guests, req.params.id)
+            .then(users => {
+                console.log(dbTrips);
+                res.send(dbTrips);
+            });
         })
         .catch(function(err) {
             return err;
-        });
+        });    
     }
 
 }; 

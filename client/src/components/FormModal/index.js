@@ -3,13 +3,11 @@ import { Modal, Button } from "react-bootstrap";
 import "./style.css";
 
 export default function FormModal(props) {
-  function userDropdowns(users) {
+  function userDropdowns(users, guests) {
     const mappedUsers = users.map(user => {
-      return <option>{user.username}</option>;
+      const selected = guests.find(guest => guest === user._id) ? true: false;
+      return <option value={user._id} selected={selected}>{user.username}</option>;
     });
-
-    console.log("mappedUsers: ", mappedUsers);
-
     return mappedUsers;
   }
 
@@ -38,15 +36,15 @@ export default function FormModal(props) {
             </div>
 
             <div class="form-group">
-              <label for="exampleFormControlSelect2">Guests</label>
-              <select multiple class="form-control" id="exampleFormControlSelect2">
-                {userDropdowns(props.users)}
-              </select>
-            </div>
+    <label for="exampleFormControlSelect2">Guests</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" onChange={props.handleGuestsChange}>
+    {userDropdowns(props.users, props.guests)}
+    </select>
+  </div>
             <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
               <select class="form-control" id="exampleFormControlSelect1">
-                {userDropdowns(props.users)}
+                {userDropdowns(props.users, props.guests)}
               </select>
             </div>
 

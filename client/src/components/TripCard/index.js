@@ -2,13 +2,14 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
 
-export default function TripCard(props) {
-  function userDropdowns(users) {
-    const mappedUsers = users.map(user => {
-      return <option>{user.username}</option>;
-    });
+// import "./style.css"
 
-    console.log("mappedUsers: ", mappedUsers);
+export default function TripCard(props) {
+  function userDropdowns(users, guests) {
+    const mappedUsers = users.map(user => {
+      const selected = guests.find(guest => guest === user._id) ? true: false;
+      return <option value={user._id} selected={selected}>{user.username}</option>;
+    });
 
     return mappedUsers;
   }
@@ -39,16 +40,17 @@ export default function TripCard(props) {
             </div>
 
             <div class="form-group">
-              <label for="exampleFormControlSelect2">Guests</label>
-              <select multiple class="form-control" id="exampleFormControlSelect2">
-                {userDropdowns(props.users)}
-              </select>
-            </div>
+    <label for="exampleFormControlSelect2">Guests</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" onChange={props.handleGuestsChange}>
+    {userDropdowns(props.users, props.guests)}
+    </select>
+  </div>
+
 
             <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
               <select class="form-control" id="exampleFormControlSelect1">
-                {userDropdowns(props.users)}
+                {userDropdowns(props.users, props.guests)}
               </select>
             </div>
 
@@ -103,7 +105,7 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4><i className="far fa-clock"></i> Trip Start</h4>
+            <h4>Trip Start</h4>
             <Clock deadline={props.start} />
           </div>
         </Modal.Body>
