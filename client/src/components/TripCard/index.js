@@ -2,22 +2,19 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
 
+// import "./style.css"
+
 export default function TripCard(props) {
   function userDropdowns(users, guests) {
     const mappedUsers = users.map(user => {
-      const selected = guests.find(guest => guest === user._id) ? true : false;
-      return (
-        <option value={user._id} selected={selected}>
-          {user.username}
-        </option>
-      );
+      const selected = guests.find(guest => guest === user._id) ? true: false;
+      return <option value={user._id} selected={selected}>{user.username}</option>;
     });
 
     return mappedUsers;
   }
 
-  // const guest = Array.isArray(props.guests) ? props.guests[0] : props.guests;
-
+  console.log(props);
   return (
     <Modal show={props.show} id="trip">
       <Modal.Dialog>
@@ -42,42 +39,13 @@ export default function TripCard(props) {
               <p className="error">{props.errorTitle}</p>
             </div>
 
-            {/* <div class="form-group">
-              <label for="exampleFormControlSelect2">Guests</label>
-              <select
-                multiple
-                class="form-control"
-                name="guests"
-                onChange={props.handleInputChange}
-                value={guest}
-              >
-                {userDropdowns(props.users)}
-              </select>
-            </div> */}
-
             <div class="form-group">
-              <label for="exampleFormControlSelect2">Guests</label>
-              <select
-                multiple
-                class="form-control"
-                id="exampleFormControlSelect2"
-                onChange={props.handleGuestsChange}
-              >
-                {userDropdowns(props.users, props.guests)}
-              </select>
-            </div>
+    <label for="exampleFormControlSelect2">Guests</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" onChange={props.handleGuestsChange}>
+    {userDropdowns(props.users, props.guests)}
+    </select>
+  </div>
 
-            {/* <div class="form-group">
-              <label for="exampleFormControlSelect1">Guest</label>
-              <select
-                class="form-control"
-                name="guests"
-                value={guest}
-                onChange={props.handleInputChange}
-              >
-                {userDropdowns(props.users)}
-              </select>
-            </div> */}
 
             <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
@@ -137,9 +105,7 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4>
-              <i className="far fa-clock"></i> Trip Start
-            </h4>
+            <h4>Trip Start</h4>
             <Clock deadline={props.start} />
           </div>
         </Modal.Body>
