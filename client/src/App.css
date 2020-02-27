@@ -17,7 +17,7 @@
     background-size: cover;
 }
 
-#text-profile, #calendar-profile{
+.text-profile, #calendar-profile{
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
 }

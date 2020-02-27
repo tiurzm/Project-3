@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router"
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Calender from "../components/calendar";
 
 
@@ -27,8 +26,8 @@ class Profile extends Component {
     else {
       return (
         <Container fluid id="profile" className="m-0 p-0">
-          <Container className="p-5" style={{ marginTop: "50px"}} >
-            <Row className="text-justify" id="text-profile">
+          <Container className="px-5" style={{ marginTop: "50px", paddingTop: "50px", paddingBottom: "100px"}} >
+            <Row className="text-justify text-profile">
               <Col className="col-md-12 p-4">
                 <p>Welcome back, {this.props.username}!</p>
                 <p>
