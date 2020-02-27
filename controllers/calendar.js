@@ -1,6 +1,19 @@
 const dbTrips = require("../models/trips");
 const dbUsers = require("../models/user");
 
+const assignUsersToTrip = (user, guests, tripId) => {
+    let userIds = [user, ...guests];
+    return dbUsers.updateMany(
+        {}, 
+        { $pull: { trip: tripId} })
+        .then(() => {
+        return dbUsers.updateMany(
+            {_id: { $in : userIds } }, 
+            { $push: { trip: tripId} }, 
+            { new: true });
+    })
+}
+
 module.exports = {
   get: function(req, res) {
     dbUsers
@@ -40,8 +53,10 @@ module.exports = {
             { $push: { trip: trip.id } },
             { new: true }
           )
-          .then(function(user) {
-            res.json(user);
+          .then(function(trip) {
+            // res.json(user);
+            assignUsersToTrip(req.session.passport.user,req.body.guests, trip.id)
+            .then(users => res.json(trip));
           });
       })
       .catch(function(err) {
@@ -79,11 +94,13 @@ module.exports = {
       start: req.body.start,
       end: req.body.end,
       description: req.body.description,
-      user: req.session.passport.user
+      user: req.session.passport.user,
+      guests: req.body.guests
     };
     dbTrips
       .findByIdAndUpdate(req.params.id, updatedTrip)
       .then(function(dbTrips) {
+        assignUsersToTrip(req.session.passport.user,req.body.guests, req.params.id)
         console.log("trips", dbTrips);
         res.send(dbTrips);
       })
