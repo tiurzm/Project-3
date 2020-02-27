@@ -37,27 +37,26 @@ router.get("/user", (req, res) => {
 
 router.post("/signup", (req, res, next) => {
 
-   passport.authenticate("local-signup", (err, user) => {
+   passport.authenticate("local-signup", (err, user, opts) => {
       if (err) {
          console.log("Error: ", err);
-         return next(err);
+         return res.status(401).send("Error occurred");
       }
 
       if (!user) {
          console.log("Not a user.")
-         return res.send("Please re-enter your username and password.");
+         return res.status(401).send(opts.message);
       }
 
       req.login(user, err => {
          if (err) {
             console.log("auth error")
-            return next(err);
+            return res.status(401).send("Signup failed");
          }
 
          res.cookie("username", req.user.username);
          res.cookie("user_id", req.user.id);
          return res.redirect("/");
-         // user res.send not res.redirect
       });
 
    })(req, res, next);

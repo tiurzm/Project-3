@@ -2,8 +2,6 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
 
-// import "./style.css"
-
 export default function TripCard(props) {
   function userDropdowns(users) {
     const mappedUsers = users.map(user => {
@@ -41,12 +39,11 @@ export default function TripCard(props) {
             </div>
 
             <div class="form-group">
-    <label for="exampleFormControlSelect2">Guests</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-    {userDropdowns(props.users)}
-    </select>
-  </div>
-
+              <label for="exampleFormControlSelect2">Guests</label>
+              <select multiple class="form-control" id="exampleFormControlSelect2">
+                {userDropdowns(props.users)}
+              </select>
+            </div>
 
             <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
@@ -106,7 +103,7 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4>Trip Start</h4>
+            <h4><i className="far fa-clock"></i> Trip Start</h4>
             <Clock deadline={props.start} />
           </div>
         </Modal.Body>
