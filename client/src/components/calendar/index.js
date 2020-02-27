@@ -41,7 +41,7 @@ export default class DemoApp extends React.Component {
               .format()
           }))
         },
-        function() {
+        function () {
           console.log(this.state.eventSources);
         }
       );
@@ -65,10 +65,10 @@ export default class DemoApp extends React.Component {
     errorEnd: "",
     errorDescription: "",
     showCard: false,
-    users: [] 
+    users: []
   }
 
-  
+
   handleEventClick = (event) => {
     // get the trip's id to get the trip data from database
     console.log(event);
@@ -76,11 +76,6 @@ export default class DemoApp extends React.Component {
       showCard: true
     })
     this.handleTrip(event.event.extendedProps._id)
-  }
-
-  handleId = (event) => {
-    console.log(event);
-
   }
 
   // delete trip button
@@ -102,52 +97,52 @@ export default class DemoApp extends React.Component {
   // get trip's data from database
   handleTrip = (id) => {
     axios.getOneTrip(id)
-    .then(res => {
-      const dateStart = res.data.start;
-      const start = moment(dateStart).format('YYYY-MM-DD');
-      const dateEnd = res.data.end; 
-      const end = moment(dateEnd).format('YYYY-MM-DD');
-      console.log(start)
-      this.setState({
-        id: res.data._id,
-        title: res.data.title,
-        location: res.data.location,
-        start: start,
-        end: end,
-        description: res.data.description
+      .then(res => {
+        const dateStart = res.data.start;
+        const start = moment(dateStart).format('YYYY-MM-DD');
+        const dateEnd = res.data.end;
+        const end = moment(dateEnd).format('YYYY-MM-DD');
+        console.log(start)
+        this.setState({
+          id: res.data._id,
+          title: res.data.title,
+          location: res.data.location,
+          start: start,
+          end: end,
+          description: res.data.description
+        })
       })
-    })
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
   }
 
   // delete a trip
   handleDeleteTrip = (id) => {
     axios.deleteTrip(id)
-    .then(() => {
-      this.refreshTrips();
-    })
-  .catch(err => console.log(err));
+      .then(() => {
+        this.refreshTrips();
+      })
+      .catch(err => console.log(err));
 
   }
 
   // update a trip
   handleUpdateTrip = (id) => {
     axios.update(id, this.state)
-    .then(res => {
-      console.log(res)
-      this.setState({
-        title: res.data.title,
-        location: res.data.location,
-        start: res.data.start,
-        end: res.data.end,
-        description: res.data.description,
-        showCard: false
+      .then(res => {
+        console.log(res)
+        this.setState({
+          title: res.data.title,
+          location: res.data.location,
+          start: res.data.start,
+          end: res.data.end,
+          description: res.data.description,
+          showCard: false
+        })
+        this.refreshTrips();
       })
-      this.refreshTrips();
-    })
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
   }
- 
+
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -187,7 +182,7 @@ export default class DemoApp extends React.Component {
     this.setState({
       showModal: true,
       title: "",
-      location:"",
+      location: "",
       start: new Date().getUTCHours(),
       end: new Date().getUTCHours(),
       description: ""
@@ -213,7 +208,7 @@ export default class DemoApp extends React.Component {
         .catch(err => console.log(err));
       this.setState({
         title: "",
-        location:"",
+        location: "",
         start: new Date().getUTCHours(),
         end: new Date().getUTCHours(),
         description: "",
@@ -238,18 +233,18 @@ export default class DemoApp extends React.Component {
     return (
       <div className='demo-app'>
         <TripForm show={this.state.showModal}
-        {...this.state}
-        close={this.handleCloseClick} 
-        save={this.handleSaveTrip}  
-        handleInputChange={this.handleInputChange}
-         />
+          {...this.state}
+          close={this.handleCloseClick}
+          save={this.handleSaveTrip}
+          handleInputChange={this.handleInputChange}
+        />
         <TripCard show={this.state.showCard}
-        {...this.state}
-        close={this.handleCloseClick}
-        delete={this.handleDeleteClick}
-        save={this.handleUpdateClick}
-        handleInputChange={this.handleInputChange}
-         />
+          {...this.state}
+          close={this.handleCloseClick}
+          delete={this.handleDeleteClick}
+          save={this.handleUpdateClick}
+          handleInputChange={this.handleInputChange}
+        />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
@@ -269,7 +264,6 @@ export default class DemoApp extends React.Component {
             events={this.state.eventSources}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
-            getId={this.handleId}
           />
         </div>
       </div>

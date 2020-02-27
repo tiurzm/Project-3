@@ -66,7 +66,7 @@ constructor(props) {
             if (!response.ok) {
                response.text().then((body) => {
                   this.setState({
-                     errorRequest: "Registration failed. " + body
+                     errorRequest: body + " Please enter difference username."
                   })
                })
                return;
