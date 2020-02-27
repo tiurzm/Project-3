@@ -11,7 +11,6 @@ import moment from "moment";
 import { ResponsiveEmbed } from "react-bootstrap";
 
 export default class DemoApp extends React.Component {
-
   componentDidMount() {
     this.refreshTrips();
     this.getAllUsers();
@@ -41,7 +40,7 @@ export default class DemoApp extends React.Component {
               .format()
           }))
         },
-        function () {
+        function() {
           console.log(this.state.eventSources);
         }
       );
@@ -66,44 +65,44 @@ export default class DemoApp extends React.Component {
     errorDescription: "",
     showCard: false,
     users: [],
-    guests: []    
-  }
+    guests: []
+  };
 
-
-  handleEventClick = (event) => {
+  handleEventClick = event => {
     // get the trip's id to get the trip data from database
     console.log(event);
     this.setState({
       showCard: true
-    })
-    this.handleTrip(event.event.extendedProps._id)
-  }
+    });
+    this.handleTrip(event.event.extendedProps._id);
+  };
 
   // delete trip button
   handleDeleteClick = () => {
     this.setState({
       showCard: false
-    })
-    this.handleDeleteTrip(this.state.id)
-  }
+    });
+    this.handleDeleteTrip(this.state.id);
+  };
 
   // upddate trip button
   handleUpdateClick = () => {
     this.setState({
       showCard: false
-    })
-    this.handleUpdateTrip(this.state.id)
-  }
+    });
+    this.handleUpdateTrip(this.state.id);
+  };
 
   // get trip's data from database
-  handleTrip = (id) => {
-    axios.getOneTrip(id)
+  handleTrip = id => {
+    axios
+      .getOneTrip(id)
       .then(res => {
         const dateStart = res.data.start;
-        const start = moment(dateStart).format('YYYY-MM-DD');
+        const start = moment(dateStart).format("YYYY-MM-DD");
         const dateEnd = res.data.end;
-        const end = moment(dateEnd).format('YYYY-MM-DD');
-        console.log(start)
+        const end = moment(dateEnd).format("YYYY-MM-DD");
+        console.log(start);
         this.setState({
           id: res.data._id,
           title: res.data.title,
@@ -112,26 +111,27 @@ export default class DemoApp extends React.Component {
           end: end,
           description: res.data.description,
           guests: res.data.guests
-        })
+        });
       })
       .catch(err => console.log(err));
-  }
+  };
 
   // delete a trip
-  handleDeleteTrip = (id) => {
-    axios.deleteTrip(id)
+  handleDeleteTrip = id => {
+    axios
+      .deleteTrip(id)
       .then(() => {
         this.refreshTrips();
       })
       .catch(err => console.log(err));
-
-  }
+  };
 
   // update a trip
-  handleUpdateTrip = (id) => {
-    axios.update(id, this.state)
+  handleUpdateTrip = id => {
+    axios
+      .update(id, this.state)
       .then(res => {
-        console.log(res)
+        console.log(res);
         this.setState({
           title: res.data.title,
           location: res.data.location,
@@ -139,18 +139,18 @@ export default class DemoApp extends React.Component {
           end: res.data.end,
           description: res.data.description,
           showCard: false
-        })
+        });
         this.refreshTrips();
       })
       .catch(err => console.log(err));
-  }
+  };
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
     const name = event.target.name;
     // Updating the input's state
-    console.log(name, value)
+    console.log(name, value);
     this.setState({
       [name]: value
     });
@@ -189,10 +189,10 @@ export default class DemoApp extends React.Component {
       start: new Date().getUTCHours(),
       end: new Date().getUTCHours(),
       description: ""
-    })
+    });
   };
 
-  handleGuestsChange = (event) => {
+  handleGuestsChange = event => {
     let asArr = Array.prototype.slice.call(event.target.options);
     let guestIds = asArr
       .filter(option => option.selected)
@@ -200,9 +200,8 @@ export default class DemoApp extends React.Component {
 
     this.setState({
       guests: guestIds
-    })
-  }
-
+    });
+  };
 
   // save a trip to database
   handleSaveTrip = () => {
@@ -210,7 +209,7 @@ export default class DemoApp extends React.Component {
       this.state.title &&
       this.state.start &&
       this.state.end &&
-      this.state.description  
+      this.state.description
     ) {
       axios
         .saveTrip(this.state)
@@ -247,25 +246,33 @@ export default class DemoApp extends React.Component {
 
   render() {
     return (
-      <div className='demo-app'>
-        <TripForm show={this.state.showModal}
+      <div className="demo-app">
+        <TripForm
+          show={this.state.showModal}
           {...this.state}
           close={this.handleCloseClick}
           save={this.handleSaveTrip}
           handleInputChange={this.handleInputChange}
-          handleGuestsChange={this.handleGuestsChange} />
-        <TripCard show={this.state.showCard}
+          handleGuestsChange={this.handleGuestsChange}
+        />
+        <TripCard
+          show={this.state.showCard}
           {...this.state}
           close={this.handleCloseClick}
           delete={this.handleDeleteClick}
           save={this.handleUpdateClick}
           handleInputChange={this.handleInputChange}
-          handleGuestsChange={this.handleGuestsChange} 
+          handleGuestsChange={this.handleGuestsChange}
         />
-        <div className='demo-app-top my-5'>
-          <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
-          <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
-          (also, click a date/time to add an event)
+        <div className="demo-app-top my-5">
+          <button onClick={this.toggleWeekends} className="btn btn-info">
+            toggle weekends
+          </button>
+          &nbsp;
+          <button onClick={this.gotoPast} className="btn btn-dark">
+            go to a date in the past
+          </button>
+          &nbsp; (also, click a date/time to add an event)
         </div>
         <div className="demo-app-calendar">
           <FullCalendar

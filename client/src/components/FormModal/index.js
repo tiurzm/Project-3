@@ -3,17 +3,20 @@ import { Modal, Button } from "react-bootstrap";
 import "./style.css";
 
 export default function FormModal(props) {
-  function userDropdowns(users) {
+  function userDropdowns(users, guests) {
     const mappedUsers = users.map(user => {
-      return <option value={user._id}>{user.username}</option>;
+      const selected = guests.find(guest => guest === user._id) ? true : false;
+      return (
+        <option value={user._id} selected={selected}>
+          {user.username}
+        </option>
+      );
     });
-
-    console.log("mappedUsers: ", mappedUsers);
 
     return mappedUsers;
   }
 
-  const guest = Array.isArray(props.guests) ? props.guests[0] : props.guests;
+  // const guest = Array.isArray(props.guests) ? props.guests[0] : props.guests;
 
   return (
     <Modal show={props.show} id="trip">
@@ -40,16 +43,30 @@ export default function FormModal(props) {
             </div>
 
             <div class="form-group">
-    <label for="exampleFormControlSelect2">Guests</label>
-    <select multiple class="form-control" name="guests" onChange={props.handleInputChange}  value={guest}>
-    {userDropdowns(props.users)}
-    </select>
-  </div>
-            <div class="form-group">
+              <label for="exampleFormControlSelect2">Guests</label>
+              {/* <select multiple class="form-control" name="guests" onChange={props.handleInputChange}  value={guest}>
+    {userDropdowns(props.users)} */}
+              <select
+                multiple
+                class="form-control"
+                id="exampleFormControlSelect2"
+                onChange={props.handleGuestsChange}
+              >
+                {userDropdowns(props.users, props.guests)}
+              </select>
+            </div>
+            {/* <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
               <select class="form-control" name="guests" value={guest}
               onChange={props.handleInputChange}>
                 {userDropdowns(props.users)}
+              </select>
+            </div> */}
+
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Guest</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                {userDropdowns(props.users, props.guests)}
               </select>
             </div>
 

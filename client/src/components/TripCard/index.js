@@ -40,15 +40,25 @@ export default function TripCard(props) {
             </div>
 
             <div class="form-group">
-    <label for="exampleFormControlSelect2">Guests</label>
-    <select multiple class="form-control" name="guests" onChange={props.handleInputChange}  value={guest}>
-    {userDropdowns(props.users)}
-    </select>
-  </div>
+              <label for="exampleFormControlSelect2">Guests</label>
+              <select
+                multiple
+                class="form-control"
+                name="guests"
+                onChange={props.handleInputChange}
+                value={guest}
+              >
+                {userDropdowns(props.users)}
+              </select>
+            </div>
             <div class="form-group">
               <label for="exampleFormControlSelect1">Guest</label>
-              <select class="form-control" name="guests" value={guest}
-              onChange={props.handleInputChange}>
+              <select
+                class="form-control"
+                name="guests"
+                value={guest}
+                onChange={props.handleInputChange}
+              >
                 {userDropdowns(props.users)}
               </select>
             </div>
@@ -104,7 +114,9 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4><i className="far fa-clock"></i> Trip Start</h4>
+            <h4>
+              <i className="far fa-clock"></i> Trip Start
+            </h4>
             <Clock deadline={props.start} />
           </div>
         </Modal.Body>
