@@ -66,7 +66,16 @@ module.exports = {
         });
     },
     update: function (req, res){
-        dbTrips.findByIdAndUpdate(req.params.id)
+        var updatedTrip = {
+            title: req.body.title,
+            location: req.body.location,
+            start: req.body.start,
+            end: req.body.end,
+            description: req.body.description,
+            user: req.session.passport.user
+
+        };
+        dbTrips.findByIdAndUpdate(req.params.id, updatedTrip)
         .then(function(dbTrips) {
             console.log("trips", dbTrips)
             res.send(dbTrips);

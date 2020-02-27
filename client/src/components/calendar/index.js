@@ -132,7 +132,7 @@ export default class DemoApp extends React.Component {
 
   // update a trip
   handleUpdateTrip = (id) => {
-    axios.update(id)
+    axios.update(id, this.state)
     .then(res => {
       console.log(res)
       this.setState({
@@ -241,12 +241,15 @@ export default class DemoApp extends React.Component {
         {...this.state}
         close={this.handleCloseClick} 
         save={this.handleSaveTrip}  
-        handleInputChange={this.handleInputChange} />
+        handleInputChange={this.handleInputChange}
+         />
         <TripCard show={this.state.showCard}
         {...this.state}
         close={this.handleCloseClick}
         delete={this.handleDeleteClick}
-        save={this.handleUpdateClick} />
+        save={this.handleUpdateClick}
+        handleInputChange={this.handleInputChange}
+         />
         <div className='demo-app-top my-5'>
           <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
