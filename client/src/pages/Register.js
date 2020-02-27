@@ -9,10 +9,10 @@ function Register(props) {
         <Carousel/>
         <Container className="my-5">
              <Row>
-                <Col data-aos="fade-zoom-in">
+                <Col data-aos="fade-zoom-in" className="m-2">
                     <CreateUser {...props}/>
                 </Col>
-                <Col data-aos="fade-zoom-in">
+                <Col data-aos="fade-zoom-in" className="m-2">
                     <h1 style={{textAlign:"center", paddingTop: "100px",}}>Join GroupAway to get started!</h1>
                 </Col>
             </Row>
