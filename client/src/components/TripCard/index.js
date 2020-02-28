@@ -22,7 +22,7 @@ export default function TripCard(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form autocomplete="off">
             <div className="form-group">
               <label htmlFor="title">Trip Name</label>
               <input

@@ -20,7 +20,7 @@ export default function FormModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form {...props}>
+          <form {...props} autocomplete="off">
             <div className="form-group">
               <label htmlFor="title">Trip Name</label>
               <input
