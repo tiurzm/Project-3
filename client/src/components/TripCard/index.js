@@ -22,7 +22,7 @@ export default function TripCard(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form autocomplete="off">
             <div className="form-group">
               <label htmlFor="title">Trip Name</label>
               <input
@@ -57,7 +57,7 @@ export default function TripCard(props) {
                 name="location"
                 onChange={props.handleInputChange}
               />
-              <p className="error">{props.errorTitle}</p>
+              <p className="error">{props.errorLocation}</p>
             </div>
             <div className="form-group">
               <label htmlFor="startDate">Start Date</label>

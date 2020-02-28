@@ -3,6 +3,10 @@
     font-size: 18px;
 }
 
+.default {
+    cursor: default;
+}
+
 .row, .form-group {
     font-family: 'Jaldi', sans-serif;
     font-size: 22px;
@@ -20,4 +24,5 @@
 .text-profile, #calendar-profile{
     background: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
+    cursor: default;
 }

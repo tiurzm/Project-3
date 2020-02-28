@@ -82,11 +82,33 @@ export default class DemoApp extends React.Component {
 
   // trip's save changes button
   handleUpdateClick = () => {
-    this.setState({
-      showCard: false
-    })
-    this.handleUpdateTrip(this.state.id)
-  }
+    if (
+      this.state.title &&
+      this.state.start &&
+      this.state.end &&
+      this.state.description
+      ) {
+        this.setState({
+          showCard: false
+        })
+        this.handleUpdateTrip(this.state.id)
+        this.setState({
+          errorTitle: "",
+          errorLocation: "",
+          errorStart: "",
+          errorEnd: "",
+          errorDescription: "",
+        })
+      } else {
+        this.setState({
+          errorTitle: "*Please enter your trip name",
+          errorLocation: "*Please enter your trip location",
+          errorStart: "*Please enter the start date",
+          errorEnd: "*Please enter the end date",
+          errorDescription: "*Please enter the description"
+        });
+      }
+  };
 
   // get trip's data from database
   handleTrip = (id) => {
