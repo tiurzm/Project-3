@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
+import moment from "moment"
 
 // import "./style.css"
 
@@ -105,8 +106,11 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4>Trip Start</h4>
-            <Clock deadline={props.start} />
+            
+            {moment(props.start).isSameOrAfter(moment()) &&  <h4><i className="far fa-clock"></i> Trip Start</h4>}
+
+          {moment(props.start).isSameOrAfter(moment()) &&  <Clock deadline={props.start} />}
+           
           </div>
         </Modal.Body>
         <Modal.Footer>

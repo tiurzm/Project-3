@@ -113,6 +113,10 @@ export default class DemoApp extends React.Component {
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
+      const dateStart = res.data.start;
+      const start = moment(dateStart).format('YYYY-MM-DD');
+      const dateEnd = res.data.end;
+      const end = moment(dateEnd).format('YYYY-MM-DD');
       this.setState({
         id: res.data._id,
         title: res.data.title,
