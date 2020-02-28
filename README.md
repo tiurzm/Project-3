@@ -8,7 +8,7 @@ ____________
 
 The target audience for the GroupAway app are users who are planning a trip with a group of friends or family members.This fullstack MERN app allows a group to create a trip and add it to both the user's and all the guests' calendars, update the details of a trip, and delete a trip. So it Creates, Reads, Updates, and Deletes the data from the Mongo database. The app was created with Mongo, Express, React, and Node. It was built using Passport.js, FullCalendar API, Google Maps API, and Pusher's Chatkit.
 
-GroupAway deployed on Heroku. See the links below.
+GroupAway is deployed on Heroku. See the links below.
 
 - - - -
 Heroku-deployed app: https://groupaway-3.herokuapp.com/
@@ -93,7 +93,9 @@ And finally, this 404 page will display if the page the user requested is not fo
 
 <strong>To create the app from the files in our team's GitHub repository:</strong> 
 
-First, clone the GitHub repository. You will need to have installed:
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).(The second README file in the Client folder of this project has further details.)
+
+To begin from our project folder, first clone the GitHub repository. You will need to have installed:
 
 * Node
 
@@ -143,7 +145,7 @@ Then run the script "npm start" at the command line to begin the server, and the
 
 ### Why the Project is Useful ### 
 
-The app fulfilled a project assignment for University of Kansas Coding Boot Camp, August 2019 to February 2020. It provided us with the opportunity to work with the following technologies:
+The app fulfilled a project assignment for University of Kansas Coding Boot Camp, August 2019 to February 2020. It provided us with the opportunity to work more with the following technologies:
 
 * Mongo database, Mongod, and mongoose
 * Express web server
@@ -163,21 +165,6 @@ The app fulfilled a project assignment for University of Kansas Coding Boot Camp
 * Favicon & App Icon Generator
 * Git version-control system
 * Slack messaging platform
-
-Dev Dependencies also included:
-* chai: 4.2.0
-* chai-http: 4.3.0
-* concurrently: 5.1.0
-* coveralls: 3.0.9
-* eslint: 6.8.0
-* eslint-config-airbnb-base: 14.0.0
-* eslint-plugin-import: 2.20.0
-* kill-port: 1.6.0
-* mocha: 7.0.1
-* mocha-lcov-reporter: 1.3.0
-* nodemon: 2.0.2
-* nyc: 15.0.0
-* supertest: 4.0.2
 
 ### Who Maintains and Contributes to the Project ###
 
