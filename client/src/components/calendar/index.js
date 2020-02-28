@@ -8,7 +8,6 @@ import TripCard from "components/TripCard";
 import "./main.scss";
 import axios from "../../utils/API";
 import moment from "moment";
-import { ResponsiveEmbed } from "react-bootstrap";
 
 export default class DemoApp extends React.Component {
   componentDidMount() {
@@ -33,11 +32,8 @@ export default class DemoApp extends React.Component {
         {
           eventSources: resp.data[0].trip.map(e => ({
             ...e,
-            start: moment(e.start)
-              .add(1, "days")
-              .format(),
             end: moment(e.end)
-              .add(2, "days")
+              .add(1, "days")
               .format()
           }))
         },

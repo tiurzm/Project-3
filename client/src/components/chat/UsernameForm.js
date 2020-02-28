@@ -26,7 +26,7 @@ class UsernameForm extends Component {
       <Container fluid id="profile" className="m-0 p-0">
       <Container className="p-5" style={{ marginTop: "50px", height: "800px"}}>
         <Row>
-          <Col className="col-md-6 p-4 text-profile">
+          <Col className="col-md-6 p-3 text-profile">
             <h2>What name do you want to use to chat?</h2>
             <h6>You will see who else is online once you're in the chat window.</h6>
             <form onSubmit={this.onSubmit}>

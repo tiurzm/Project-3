@@ -1,3 +1,4 @@
+const moment = require("moment");
 const dbTrips = require("../models/trips");
 const dbUsers = require("../models/user")
 
@@ -31,11 +32,12 @@ module.exports = {
         });
     },
     add: function(req, res){
+        console.log(req.body)
         var newTrip = {
             title: req.body.title,
             location: req.body.location,
-            start: req.body.start,
-            end: req.body.end,
+            start: moment(req.body.start),
+            end: moment(req.body.end).endOf('day'),
             description: req.body.description,
             user: req.session.passport.user,
             guests: req.body.guests
