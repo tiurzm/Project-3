@@ -102,7 +102,8 @@ export default class DemoApp extends React.Component {
         location: res.data.location,
         start: start,
         end: end,
-        description: res.data.description
+        description: res.data.description,
+        guests: res.data.guests
       })
     })
     .catch(err => console.log(err));

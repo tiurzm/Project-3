@@ -42,6 +42,7 @@ module.exports = {
         };
         dbTrips.create(newTrip) 
             .then(function(trip) {
+                
                 assignUsersToTrip(req.session.passport.user,req.body.guests, trip.id)
                 .then(users => res.json(trip));
             })

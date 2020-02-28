@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
+import moment from "moment"
 
 export default function TripCard(props) {
   function userDropdowns(users, guests) {
@@ -44,12 +45,6 @@ export default function TripCard(props) {
   </div>
 
 
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Guest</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                {userDropdowns(props.users, props.guests)}
-              </select>
-            </div>
 
             <div className="form-group">
               <label htmlFor="location">Location</label>
@@ -102,8 +97,11 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4><i className="far fa-clock"></i> Trip Start</h4>
-            <Clock deadline={props.start} />
+            
+            {moment(props.start).isSameOrAfter(moment()) &&  <h4><i className="far fa-clock"></i> Trip Start</h4>}
+
+          {moment(props.start).isSameOrAfter(moment()) &&  <Clock deadline={props.start} />}
+           
           </div>
         </Modal.Body>
         <Modal.Footer>
