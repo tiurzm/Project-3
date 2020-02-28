@@ -1,19 +1,18 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
+import moment from "moment"
 
 export default function TripCard(props) {
-  function userDropdowns(users) {
+  function userDropdowns(users, guests) {
     const mappedUsers = users.map(user => {
-      return <option>{user.username}</option>;
+      const selected = guests.find(guest => guest === user._id) ? true: false;
+      return <option value={user._id} selected={selected}>{user.username}</option>;
     });
-
-    console.log("mappedUsers: ", mappedUsers);
 
     return mappedUsers;
   }
 
-  console.log(props);
   return (
     <Modal show={props.show} id="trip">
       <Modal.Dialog>
@@ -39,18 +38,13 @@ export default function TripCard(props) {
             </div>
 
             <div class="form-group">
-              <label for="exampleFormControlSelect2">Guests</label>
-              <select multiple class="form-control" id="exampleFormControlSelect2">
-                {userDropdowns(props.users)}
-              </select>
-            </div>
+    <label for="exampleFormControlSelect2">Guests</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" onChange={props.handleGuestsChange}>
+    {userDropdowns(props.users, props.guests)}
+    </select>
+  </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Guest</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                {userDropdowns(props.users)}
-              </select>
-            </div>
+
 
             <div className="form-group">
               <label htmlFor="location">Location</label>
@@ -103,8 +97,11 @@ export default function TripCard(props) {
             </div>
           </form>
           <div>
-            <h4><i className="far fa-clock"></i> Trip Start</h4>
-            <Clock deadline={props.start} />
+            
+            {moment(props.start).isSameOrAfter(moment()) &&  <h4><i className="far fa-clock"></i> Trip Start</h4>}
+
+          {moment(props.start).isSameOrAfter(moment()) &&  <Clock deadline={props.start} />}
+           
           </div>
         </Modal.Body>
         <Modal.Footer>

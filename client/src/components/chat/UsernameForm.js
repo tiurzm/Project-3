@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import "./UsernameForm.css";
+// import "./UsernameForm.css";
 
 class UsernameForm extends Component {
   constructor(props) {
@@ -23,13 +23,14 @@ class UsernameForm extends Component {
 
   render() {
     return (
-      <Container style={{marginTop: "100px", marginBottom: "100px"}}>
+      <Container fluid id="profile" className="m-0 p-0">
+      <Container className="p-5" style={{ marginTop: "50px", height: "800px"}}>
         <Row>
-          <Col>
+          <Col className="col-md-6 p-3 text-profile">
             <h2>What name do you want to use to chat?</h2>
             <h6>You will see who else is online once you're in the chat window.</h6>
             <form onSubmit={this.onSubmit}>
-              <div className="form-group" style={{maxWidth: "400px", width: "100%"}}>
+              <div className="form-group m-0" style={{maxWidth: "400px", width: "100%"}}>
                 <input className="form-control mb-2" 
                   type="text"
                   placeholder="Your Chat Name"
@@ -41,6 +42,8 @@ class UsernameForm extends Component {
           </Col>
         </Row>
       </Container>
+      </Container>
+
     )
   }
 }
