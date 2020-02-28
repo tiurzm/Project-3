@@ -1,3 +1,4 @@
+const moment = require("moment");
 const dbTrips = require("../models/trips");
 const dbUsers = require("../models/user")
 
@@ -23,7 +24,6 @@ module.exports = {
            path: "trip", populate: {path: "trip"}
         })
         .then(function(dbTrips) {
-            // console.log("trips", dbTrips)
             res.send(dbTrips);
         })
         .catch(function(err) {
@@ -34,8 +34,8 @@ module.exports = {
         var newTrip = {
             title: req.body.title,
             location: req.body.location,
-            start: req.body.start,
-            end: req.body.end,
+            start: moment(req.body.start),
+            end: moment(req.body.end).endOf('day'),
             description: req.body.description,
             user: req.session.passport.user,
             guests: req.body.guests
@@ -52,10 +52,9 @@ module.exports = {
             });
     },
     delete: function(req, res) {
-        console.log(req.params.id)
+        // console.log(req.params.id)
         dbTrips.findByIdAndDelete(req.params.id)
             .then(function(dbTrips) {
-                console.log("deleted trip", dbTrips)
                 res.send(dbTrips);
             })
             .catch(function(err) {
@@ -65,7 +64,6 @@ module.exports = {
     getTrip: function(req, res){
         dbTrips.findById(req.params.id)
         .then(function(dbTrips) {
-            console.log("trips", dbTrips)
             res.send(dbTrips);
         })
         .catch(function(err) {
@@ -76,8 +74,8 @@ module.exports = {
         var updatedTrip = {
             title: req.body.title,
             location: req.body.location,
-            start: req.body.start,
-            end: req.body.end,
+            start: moment(req.body.start, 'YYYY-MM-DD'),
+            end: moment(req.body.end, 'YYYY-MM-DD'),
             description: req.body.description,
             user: req.session.passport.user,
             guests: req.body.guests
@@ -86,8 +84,7 @@ module.exports = {
         .then(function(dbTrips) {
             assignUsersToTrip(req.session.passport.user,req.body.guests, req.params.id)
             .then(users => {
-                console.log(dbTrips);
-                res.send(dbTrips);
+                res.json(dbTrips);
             });
         })
         .catch(function(err) {

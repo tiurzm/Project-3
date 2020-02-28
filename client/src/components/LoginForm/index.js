@@ -90,7 +90,7 @@ class LoginForm extends Component {
                     <p style={{ color: "red", fontSize: "20px" }}>{this.state.errorPassword}</p>
                 </div>
                 <button type="button" onClick={this.handleFormSubmit}
-                    className="btn btn-primary"
+                    className="btn btn-primary w-100"
                 > Log In
                 </button>
             </form>

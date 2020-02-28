@@ -8,60 +8,37 @@ import TripCard from "components/TripCard";
 import "./main.scss";
 import axios from "../../utils/API";
 import moment from "moment";
-import { ResponsiveEmbed } from "react-bootstrap";
 
 export default class DemoApp extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     calendarWeekends: true,
-  //     eventSources: [],
-  //     title: "",
-  //     location: "",
-  //     start: new Date().getUTCHours(),
-  //     end: new Date().getUTCHours(),
-  //     description: "",
-  //     showModal: false,
-  //     errorTitle: "",
-  //     errorStart: "",
-  //     errorEnd: "",
-  //     errorDescription: "",
-  //     users: []
-  //   };
-  // }
-
   componentDidMount() {
     this.refreshTrips();
     this.getAllUsers();
   }
 
+  // get all users for guests list
   getAllUsers() {
     axios.getAllUsers().then(resp => {
-      console.log(resp.data);
       this.setState({
         users: resp.data
       });
     });
   }
 
+  // display trip on calendar
   refreshTrips() {
     axios.getTrips().then(resp => {
       this.setState(
         {
           eventSources: resp.data[0].trip.map(e => ({
             ...e,
-            start: moment(e.start)
-              .add(1, "days")
-              .format(),
+            // start: moment(e.strat)
+            //   .add(1, "days")
+            //   .format(),
             end: moment(e.end)
-              .add(2, "days")
+              .add(1, "days")
               .format()
           }))
-        },
-        function() {
-          console.log(this.state.eventSources);
-        }
-      );
+        });
     });
   }
 
@@ -86,16 +63,16 @@ export default class DemoApp extends React.Component {
     guests: []    
   }
 
-
+  // show trip card
   handleEventClick = (event) => {
-    // get the trip's id
-    console.log(event);
+    // get the trip's id from database
     this.setState({
       showCard: true
     })
     this.handleTrip(event.event.extendedProps._id)
   }
 
+  // trip's delete button
   handleDeleteClick = () => {
     this.setState({
       showCard: false
@@ -103,6 +80,7 @@ export default class DemoApp extends React.Component {
     this.handleDeleteTrip(this.state.id)
   }
 
+  // trip's save changes button
   handleUpdateClick = () => {
     this.setState({
       showCard: false
@@ -110,6 +88,7 @@ export default class DemoApp extends React.Component {
     this.handleUpdateTrip(this.state.id)
   }
 
+  // get trip's data from database
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
@@ -130,6 +109,7 @@ export default class DemoApp extends React.Component {
     .catch(err => console.log(err));
   }
 
+  // delete a trip
   handleDeleteTrip = (id) => {
     axios.deleteTrip(id)
     .then(() => {
@@ -139,18 +119,11 @@ export default class DemoApp extends React.Component {
 
   }
 
+  // update a trip
   handleUpdateTrip = (id) => {
+    // console.log(this.state);
     axios.update(id, this.state)
     .then(res => {
-      console.log(res)
-      this.setState({
-        title: res.data.title,
-        location: res.data.location,
-        start: res.data.start,
-        end: res.data.end,
-        description: res.data.description,
-        showCard: false
-      })
       this.refreshTrips();
     })
     .catch(err => console.log(err));
@@ -165,6 +138,7 @@ export default class DemoApp extends React.Component {
       [name]: value
     });
   };
+
   toggleWeekends = () => {
     this.setState({
       // update a property
@@ -177,6 +151,7 @@ export default class DemoApp extends React.Component {
     calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
   };
 
+  // close modal and clear input
   handleCloseClick = () => {
     this.setState({
       showModal: false,
@@ -189,6 +164,7 @@ export default class DemoApp extends React.Component {
     });
   };
 
+  // click calendar
   handleDateClick = () => {
     this.setState({
       // startDate: new Date(arg.date),
@@ -201,6 +177,7 @@ export default class DemoApp extends React.Component {
     })
   };
 
+  // guests list
   handleGuestsChange = (event) => {
     //Can't do filter and map on HTMLCollections
     let asArr = Array.prototype.slice.call(event.target.options);
@@ -213,6 +190,7 @@ export default class DemoApp extends React.Component {
     })
   }
 
+  // save a new trip
   handleSaveTrip = () => {
     if (
       this.state.title &&
@@ -268,8 +246,8 @@ export default class DemoApp extends React.Component {
         save={this.handleUpdateClick}
         handleInputChange={this.handleInputChange}
         handleGuestsChange={this.handleGuestsChange} />
-        <div className='demo-app-top my-5'>
-          <button onClick={this.toggleWeekends} className="btn btn-info">toggle weekends</button>&nbsp;
+        <div className='demo-app-top mb-4'>
+          <button onClick={this.toggleWeekends} className="btn btn-dark">toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast} className="btn btn-dark">go to a date in the past</button>&nbsp;
           (also, click a date/time to add an event)
         </div>
