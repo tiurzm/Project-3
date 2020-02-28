@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import "./UsernameForm.css";
+// import "./UsernameForm.css";
 
 class UsernameForm extends Component {
   constructor(props) {

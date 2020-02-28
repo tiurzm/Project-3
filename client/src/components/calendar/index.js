@@ -18,7 +18,6 @@ export default class DemoApp extends React.Component {
   // get all users for guests list
   getAllUsers() {
     axios.getAllUsers().then(resp => {
-      console.log(resp.data);
       this.setState({
         users: resp.data
       });
@@ -32,15 +31,14 @@ export default class DemoApp extends React.Component {
         {
           eventSources: resp.data[0].trip.map(e => ({
             ...e,
+            // start: moment(e.strat)
+            //   .add(1, "days")
+            //   .format(),
             end: moment(e.end)
               .add(1, "days")
               .format()
           }))
-        },
-        function() {
-          console.log(this.state.eventSources);
-        }
-      );
+        });
     });
   }
 
@@ -68,7 +66,6 @@ export default class DemoApp extends React.Component {
   // show trip card
   handleEventClick = (event) => {
     // get the trip's id from database
-    console.log(event);
     this.setState({
       showCard: true
     })
@@ -99,7 +96,6 @@ export default class DemoApp extends React.Component {
       const start = moment(dateStart).format('YYYY-MM-DD');
       const dateEnd = res.data.end;
       const end = moment(dateEnd).format('YYYY-MM-DD');
-      console.log(start)
       this.setState({
         id: res.data._id,
         title: res.data.title,
@@ -124,17 +120,9 @@ export default class DemoApp extends React.Component {
 
   // update a trip
   handleUpdateTrip = (id) => {
+    // console.log(this.state);
     axios.update(id, this.state)
     .then(res => {
-      console.log(res)
-      this.setState({
-        title: res.data.title,
-        location: res.data.location,
-        start: res.data.start,
-        end: res.data.end,
-        description: res.data.description,
-        showCard: false
-      })
       this.refreshTrips();
     })
     .catch(err => console.log(err));

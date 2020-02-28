@@ -2,8 +2,6 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
 
-// import "./style.css"
-
 export default function TripCard(props) {
   function userDropdowns(users, guests) {
     const mappedUsers = users.map(user => {
@@ -14,7 +12,6 @@ export default function TripCard(props) {
     return mappedUsers;
   }
 
-  console.log(props);
   return (
     <Modal show={props.show} id="trip">
       <Modal.Dialog>
