@@ -121,8 +121,8 @@ export default class DemoApp extends React.Component {
         id: res.data._id,
         title: res.data.title,
         location: res.data.location,
-        start: res.data.start,
-        end: res.data.end,
+        start: start,
+        end: end,
         description: res.data.description,
         guests: res.data.guests
       })
