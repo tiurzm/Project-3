@@ -1,4 +1,4 @@
-const moment = require("moment");
+const moment = require("moment-timezone");
 const dbTrips = require("../models/trips");
 const dbUsers = require("../models/user")
 
@@ -35,7 +35,7 @@ module.exports = {
             title: req.body.title,
             location: req.body.location,
             start: moment(req.body.start),
-            end: moment(req.body.end).endOf('day'),
+            end: moment(req.body.end),
             description: req.body.description,
             user: req.session.passport.user,
             guests: req.body.guests
@@ -74,8 +74,8 @@ module.exports = {
         var updatedTrip = {
             title: req.body.title,
             location: req.body.location,
-            start: moment(req.body.start, 'YYYY-MM-DD'),
-            end: moment(req.body.end, 'YYYY-MM-DD'),
+            start: moment(req.body.start),
+            end: moment(req.body.end),
             description: req.body.description,
             user: req.session.passport.user,
             guests: req.body.guests
