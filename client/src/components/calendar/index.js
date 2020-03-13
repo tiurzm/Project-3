@@ -7,7 +7,7 @@ import TripForm from "components/FormModal";
 import TripCard from "components/TripCard";
 import "./main.scss";
 import axios from "../../utils/API";
-import moment from "moment";
+import moment from "moment-timezone";
 
 export default class DemoApp extends React.Component {
   componentDidMount() {
@@ -29,15 +29,15 @@ export default class DemoApp extends React.Component {
     axios.getTrips().then(resp => {
       this.setState(
         {
-          eventSources: resp.data[0].trip.map(e => ({
-            ...e,
-            // start: moment(e.strat)
-            //   .add(1, "days")
-            //   .format(),
-            end: moment(e.end)
-              .add(1, "days")
-              .format()
-          }))
+          eventSources: resp.data[0].trip.map(e => {
+            let start = moment(e.start).tz('UTC').format('YYYY-MM-DD');
+            let end = moment(e.end).tz('UTC').add(1, 'days').format('YYYY-MM-DD');
+            return {
+              ...e,
+              start: start,
+              end: end
+            };
+          })
         });
     });
   }
@@ -82,20 +82,42 @@ export default class DemoApp extends React.Component {
 
   // trip's save changes button
   handleUpdateClick = () => {
-    this.setState({
-      showCard: false
-    })
-    this.handleUpdateTrip(this.state.id)
-  }
+    if (
+      this.state.title &&
+      this.state.start &&
+      this.state.end &&
+      this.state.description
+      ) {
+        this.setState({
+          showCard: false
+        })
+        this.handleUpdateTrip(this.state.id)
+        this.setState({
+          errorTitle: "",
+          errorLocation: "",
+          errorStart: "",
+          errorEnd: "",
+          errorDescription: "",
+        })
+      } else {
+        this.setState({
+          errorTitle: "*Please enter your trip name",
+          errorLocation: "*Please enter your trip location",
+          errorStart: "*Please enter the start date",
+          errorEnd: "*Please enter the end date",
+          errorDescription: "*Please enter the description"
+        });
+      }
+  };
 
   // get trip's data from database
   handleTrip = (id) => {
     axios.getOneTrip(id)
     .then(res => {
       const dateStart = res.data.start;
-      const start = moment(dateStart).format('YYYY-MM-DD');
+      const start = moment(dateStart).tz("UTC").format('YYYY-MM-DD');
       const dateEnd = res.data.end;
-      const end = moment(dateEnd).format('YYYY-MM-DD');
+      const end = moment(dateEnd).tz("UTC").format('YYYY-MM-DD');
       this.setState({
         id: res.data._id,
         title: res.data.title,
