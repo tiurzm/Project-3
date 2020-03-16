@@ -105,10 +105,10 @@ export default function TripCard(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.delete} variant="danger">
+          <Button onClick={props.delete} variant="danger" class="deleteEvent">
             Delete Trip
           </Button>
-          <Button onClick={props.save} variant="primary">
+          <Button onClick={props.save} variant="primary" class="saveEvent">
             Save Changes
           </Button>
         </Modal.Footer>

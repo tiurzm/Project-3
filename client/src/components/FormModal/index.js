@@ -99,7 +99,7 @@ export default function FormModal(props) {
           <Button onClick={props.close} variant="secondary">
             Close
           </Button>
-          <Button onClick={props.save} variant="primary">
+          <Button onClick={props.save} variant="primary" class="newEvent">
             Save Trip
           </Button>
         </Modal.Footer>
