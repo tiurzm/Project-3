@@ -1,7 +1,9 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import Clock from "../clock";
-import moment from "moment"
+import moment from "moment";
+import "./style.css";
+
 
 export default function TripCard(props) {
   function userDropdowns(users, guests) {
@@ -14,14 +16,14 @@ export default function TripCard(props) {
   }
 
   return (
-    <Modal show={props.show} id="trip">
+    <Modal show={props.show} id="edit">
       <Modal.Dialog>
         <Modal.Header closeButton onClick={props.close}>
           <Modal.Title>
             <i className="far fa-edit"></i> Edit Your Trip
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body >
           <form autocomplete="off">
             <div className="form-group">
               <label htmlFor="title">Trip Name</label>

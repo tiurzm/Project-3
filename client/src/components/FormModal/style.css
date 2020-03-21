@@ -15,7 +15,33 @@
     font-family: 'Jaldi', sans-serif;
 }
 
-#trip {
+#new {
     max-width: 550px;
     width: 100%; 
+}
+
+@media screen and (max-width: 1199.98px){      
+}
+@media screen and (max-width: 991.98px){
+}
+@media screen and (max-width: 767.98px){
+    #new{
+        max-width: 450px;
+        width: 100%;
+    }
+    .modal-dialog{
+        max-width: 400px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 575.98px){
+    #new{
+        max-width: 350px;
+        width: 100%
+    }
+    .modal-dialog{
+        max-width: 300px;
+        width: 100%
+    }
 }

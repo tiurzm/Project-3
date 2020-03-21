@@ -12,7 +12,7 @@ export default function FormModal(props) {
   }
 
   return (
-    <Modal show={props.show} id="trip">
+    <Modal show={props.show} id="new">
       <Modal.Dialog>
         <Modal.Header closeButton onClick={props.close}>
           <Modal.Title>
