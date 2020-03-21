@@ -277,9 +277,9 @@ export default class DemoApp extends React.Component {
           <FullCalendar
             defaultView="dayGridMonth"
             header={{
-              left: "prev,next today",
+              left: "prev, today",
               center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+              right: "next"
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
