@@ -26,7 +26,7 @@ class Profile extends Component {
     else {
       return (
         <Container fluid id="profile" className="m-0 p-0">
-          <Container className="px-5" style={{ marginTop: "50px", paddingTop: "50px", paddingBottom: "100px"}} >
+          <Container className="px-4 px-md-5" style={{ marginTop: "50px", paddingTop: "50px", paddingBottom: "100px"}} >
             <Row className="text-justify">
               <Col className="col-md-6 p-4 text-profile">
                 <p>Welcome back, {this.props.username}!</p>
@@ -43,7 +43,7 @@ class Profile extends Component {
               </button> */}
             </Row>
             <Row className="my-5" id="calendar-profile">
-              <Col className="col-md-12 p-4">
+              <Col className="col-md-12 p-3 p-md-4">
                 <Calender />
               </Col>
             </Row>
