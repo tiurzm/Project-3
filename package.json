@@ -82,7 +82,7 @@
     "moment-timezone": "^0.5.27",
     "mongodb": "^3.5.3",
     "mongoose": "^5.8.11",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
